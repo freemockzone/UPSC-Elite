@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>UPSC Elite Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- VIBRANT DESIGN SYSTEM --- */
+        :root {
+            --primary: #4f46e5;
+            /* Indigo */
+            --primary-dark: #3730a3;
+            --accent: #f59e0b;
+            /* Amber/Gold */
+            --bg-body: #f0f2f5;
+            --white: #ffffff;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --gradient-header: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        /* ==================== 
+           LOGIN SCREEN 
+           ==================== */
+        #login-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            z-index: 9999;
+            display: flex;
+        }
+
+        .login-left {
+            flex: 1;
+            background: var(--gradient-header);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-left::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .login-left::after {
+            content: '';
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .login-right {
+            flex: 1;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px;
+            background: var(--white);
+        }
+
+        .login-box h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .login-box p {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--radius);
+            font-size: 16px;
+            transition: 0.3s;
+            background: #f8fafc;
+        }
+
+        .input-group input:focus {
+            border-color: var(--primary);
+            outline: none;
+            background: #fff;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: var(--radius);
+            background: var(--gradient-header);
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .error-msg {
+            background: #fef2f2;
+            color: #ef4444;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #fee2e2;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            text-align: center;
+            display: none;
+        }
+
+        @media (max-width: 800px) {
+            .login-left {
+                display: none;
+            }
+
+            .login-right {
+                flex: 1;
+                max-width: 100%;
+            }
+        }
+
+        /* ==================== 
+           DASHBOARD 
+           ==================== */
+        #dashboard {
+            display: none;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- DESKTOP SIDEBAR --- */
+        @media (min-width: 801px) {
+            #dashboard {
+                flex-direction: row;
+                overflow: hidden;
+                height: 100vh;
+            }
+
+            aside {
+                width: 280px;
+                background: var(--white);
+                border-right: 1px solid #e2e8f0;
+                display: flex;
+                flex-direction: column;
+                padding: 25px;
+                z-index: 10;
+            }
+
+            .sidebar-logo {
+                font-size: 1.5rem;
+                font-weight: 800;
+                color: var(--primary);
+                margin-bottom: 40px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .nav-item {
+                padding: 12px 15px;
+                margin-bottom: 8px;
+                border-radius: 10px;
+                color: var(--text-light);
+                cursor: pointer;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                transition: 0.2s;
+            }
+
+            .nav-item:hover,
+            .nav-item.active {
+                background: #e0e7ff;
+                color: var(--primary);
+            }
+
+            main {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                position: relative;
+            }
+
+            .desktop-header {
+                height: 70px;
+                background: var(--white);
+                border-bottom: 1px solid #e2e8f0;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 30px;
+            }
+
+            .search-bar {
+                width: 400px;
+                position: relative;
+            }
+
+            .search-bar input {
+                width: 100%;
+                padding: 10px 15px 10px 40px;
+                border-radius: 50px;
+                border: 1px solid #cbd5e1;
+                background: #f8fafc;
+            }
+
+            .search-icon {
+                position: absolute;
+                left: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #94a3b8;
+            }
+
+            .content-area {
+                padding: 30px;
+                overflow-y: auto;
+                flex: 1;
+            }
+
+            .mobile-header {
+                display: none;
+            }
+
+            .mobile-search-area {
+                display: none;
+            }
+
+            .list-container {
+                background: var(--white);
+                border-radius: var(--radius);
+                box-shadow: var(--shadow-card);
+            }
+
+            .list-row {
+                display: grid;
+                grid-template-columns: 3fr 1.5fr 1fr;
+                padding: 15px 20px;
+                border-bottom: 1px solid #f1f5f9;
+                align-items: center;
+                text-decoration: none;
+                color: inherit;
+            }
+
+            .list-row:hover {
+                background: #f8fafc;
+            }
+
+            .list-head {
+                background: #f8fafc;
+                font-weight: 600;
+                color: var(--text-light);
+                border-bottom: 2px solid #e2e8f0;
+            }
+        }
+
+        /* --- MOBILE LAYOUT --- */
+        @media (max-width: 800px) {
+            aside {
+                display: none;
+            }
+
+            .desktop-header {
+                display: none;
+            }
+
+            .mobile-header {
+                background: var(--gradient-header);
+                color: white;
+                padding: 15px 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+            }
+
+            .mob-brand {
+                font-weight: 700;
+                font-size: 1.2rem;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .header-actions {
+                display: flex;
+                gap: 15px;
+            }
+
+            .icon-btn {
+                background: rgba(255, 255, 255, 0.2);
+                border: none;
+                color: white;
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+            }
+
+            .icon-btn:active {
+                background: rgba(255, 255, 255, 0.4);
+            }
+
+            main {
+                width: 100%;
+                flex: 1;
+            }
+
+            .content-area {
+                padding: 20px 15px;
+            }
+
+            .mobile-search-area {
+                margin-bottom: 20px;
+            }
+
+            .mobile-search-area input {
+                width: 100%;
+                padding: 12px 15px;
+                border-radius: 12px;
+                border: none;
+                background: var(--white);
+                box-shadow: var(--shadow-card);
+                font-size: 1rem;
+            }
+
+            .list-head {
+                display: none;
+            }
+
+            .list-container {
+                background: transparent;
+                box-shadow: none;
+            }
+
+            .list-row {
+                display: flex;
+                flex-direction: column;
+                background: var(--white);
+                padding: 15px;
+                margin-bottom: 15px;
+                border-radius: var(--radius);
+                box-shadow: var(--shadow-card);
+                text-decoration: none;
+                color: inherit;
+                position: relative;
+                border-left: 5px solid var(--primary);
+            }
+
+            .col-name {
+                font-weight: 600;
+                font-size: 1rem;
+                margin-bottom: 8px;
+                line-height: 1.4;
+            }
+
+            .col-institute {
+                margin-bottom: 12px;
+            }
+
+            .col-institute span {
+                background: #eff6ff;
+                color: var(--primary);
+                padding: 4px 10px;
+                border-radius: 20px;
+                font-size: 0.8rem;
+                font-weight: 600;
+            }
+
+            .col-action {
+                width: 100%;
+            }
+
+            .btn-download {
+                display: block;
+                width: 100%;
+                text-align: center;
+                background: var(--primary);
+                color: white;
+                padding: 10px;
+                border-radius: 8px;
+                font-weight: 600;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* --- SHARED --- */
+        .pills-wrapper {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .pills-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        .pill {
+            background: var(--white);
+            padding: 8px 18px;
+            border-radius: 50px;
+            border: 1px solid #e2e8f0;
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .pill.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+        }
+
+        @media (min-width: 801px) {
+            .btn-download {
+                background: white;
+                border: 1px solid #e2e8f0;
+                padding: 6px 12px;
+                border-radius: 6px;
+                font-size: 0.85rem;
+                font-weight: 600;
+                color: var(--text-dark);
+                float: right;
+                transition: 0.2s;
+            }
+
+            .list-row:hover .btn-download {
+                background: var(--primary);
+                color: white;
+                border-color: var(--primary);
+            }
+        }
+
+        /* --- NEW WHATSAPP SVG STYLE --- */
+        .wa-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            /* Removed background and border-radius because SVG has them */
+            z-index: 200;
+            transition: transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .wa-float:active {
+            transform: scale(0.9);
+        }
+
+        .wa-float svg {
+            width: 60px;
+            /* Force larger size for easy tapping */
+            height: 60px;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+            /* Add shadow to the shape */
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="login-screen">
+        <div class="login-left">
+            <div style="text-align: center;">
+                <h1 style="font-size: 3.5rem; font-weight: 800;">UPSC<br>ELITE</h1>
+                <p style="opacity: 0.9; font-size: 1.2rem; margin-top: 10px;">Your Success Partner</p>
+            </div>
+        </div>
+        <div class="login-right">
+            <div class="login-box">
+                <h2>Welcome</h2>
+                <p>Please enter your access details below.</p>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <label>Username</label>
+                        <input type="text" id="username" placeholder="e.g. Ankit" required autocomplete="off">
+                    </div>
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn-primary" id="loginBtn">Access Portal</button>
+                    <div id="error-message" class="error-msg">⚠ Invalid Username or Password</div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="dashboard">
+
+        <aside>
+            <div class="sidebar-logo">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="var(--primary)">
+                    <path
+                        d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z" />
+                </svg>
+                UPSC ELITE
+            </div>
+            <div class="nav-item active" onclick="setFilter('All')">
+                <span>📄</span> All Tests
+            </div>
+            <div class="nav-item" onclick="window.location.href='profile.html'">
+                <span>👤</span> My Profile
+            </div>
+            <div class="nav-item" style="margin-top: auto; color: #ef4444;" onclick="logout()">
+                <span>🚪</span> Logout
+            </div>
+        </aside>
+
+        <div class="mobile-header">
+            <div class="mob-brand">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                    <path
+                        d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z" />
+                </svg>
+                UPSC ELITE
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn" onclick="window.location.href='profile.html'" title="My Profile">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path
+                            d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                    </svg>
+                </button>
+                <button class="icon-btn" onclick="logout()" title="Logout">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path
+                            d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <main>
+            <div class="desktop-header">
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="desktopSearch" placeholder="Search tests, institutes..."
+                        onkeyup="syncSearch(this.value)">
+                </div>
+                <div style="font-weight: 600; color: var(--primary);">Admin Support: +91-8168305050</div>
+            </div>
+
+            <div class="content-area">
+
+                <h2 style="margin-bottom: 5px;">Test Repository</h2>
+                <p style="color: var(--text-light); margin-bottom: 25px;">Browse and download your premium resources.
+                </p>
+
+                <div class="mobile-search-area">
+                    <input type="text" id="mobileSearch" placeholder="🔍 Search tests..."
+                        onkeyup="syncSearch(this.value)">
+                </div>
+
+                <div class="pills-wrapper" id="pillsContainer">
+                    <div class="pill active" onclick="setFilter('All')">All</div>
+                </div>
+
+                <div class="list-container">
+                    <div class="list-row list-head">
+                        <div>Test Name</div>
+                        <div>Institute</div>
+                        <div style="text-align:right">Action</div>
+                    </div>
+                    <div id="fileListBody"></div>
+                </div>
+
+                <div style="height: 80px;"></div>
+            </div>
+        </main>
+    </div>
+
+    <a href="https://wa.me/918168305050" class="wa-float" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+            <path fill="#25D366"
+                d="M16 2C8.82 2 3 7.82 3 15c0 2.65.78 5.12 2.12 7.2L3 30l7.97-2.09A12.9 12.9 0 0 0 16 28c7.18 0 13-5.82 13-13S23.18 2 16 2z" />
+            <path fill="#ffffff"
+                d="M22.39 18.51c-.35-.17-2.05-1.01-2.37-1.13-.32-.12-.55-.17-.78.17-.23.35-.9 1.13-1.1 1.36-.2.23-.4.26-.75.09-.35-.17-1.46-.54-2.78-1.72-1.03-.92-1.73-2.05-1.93-2.4-.2-.35-.02-.54.15-.71.16-.16.35-.4.52-.6.17-.2.23-.35.35-.58.12-.23.06-.43-.03-.6-.09-.17-.78-1.88-1.07-2.58-.28-.68-.57-.59-.78-.6h-.66c-.23 0-.6.09-.92.43-.32.35-1.2 1.17-1.2 2.85s1.23 3.3 1.4 3.53c.17.23 2.42 3.7 5.86 5.19.82.35 1.45.56 1.95.72.82.26 1.57.22 2.16.13.66-.1 2.05-.84 2.34-1.65.29-.81.29-1.5.2-1.65-.09-.15-.32-.23-.66-.4z" />
+        </svg>
+    </a>
+
+    <script>
+        /* ==================== CONFIGURATION ==================== */
+        const DATABASE = {
+            "Ankit": {
+                hash: "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+                profile: { name: "Ankit", exam: "UPSC CSE", year: "2026", optional: "Sociology", medium: "English", stage: "Mains Ready", prelims_count: "2", mains_written: "1", paid: "₹132", mode: "UPI", expiry: "31st Dec 2026" }
+            },
+            "Anshul": {
+                hash: "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5",
+                profile: { name: "Anshul", exam: "UPSC CSE", year: "2026", optional: "Geography", medium: "Hindi", stage: "Foundation", prelims_count: "0", mains_written: "0", paid: "₹132", mode: "UPI", expiry: "31st Dec 2026" }
+            },
+            "Amit": {
+                hash: "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+                profile: { name: "Amit", exam: "UPSC CSE", year: "2026", optional: "History", medium: "Hindi", stage: "Interview", prelims_count: "4", mains_written: "2", paid: "₹132", mode: "UPI", expiry: "31st Dec 2026" }
+            },
+        };
+
+        const TEST_DATA = [
+            {
+                institute: "GS Score",
+                tests: [
+                    { name: "GS Score Prelims 2026 All India Open Mock Test 1 Download Pdf", link: "GS-Score-Prelims-2026-All-India-Open-Mock-Test-1-Download-Pdf.pdf" },
+                    { name: "GS Score Prelims 2026 All India Open Mock Test 2 Download Pdf", link: "GS-Score-Prelims-2026-All-India-Open-Mock-Test-2-Download-Pdf.pdf" },
+                    { name: "GS Score Prelims 2026 All India Open Mock Test 3 Download Pdf", link: "GS-Score-Prelims-2026-All-India-Open-Mock-Test-3-Download-Pdf.pdf" },
+                    { name: "GS Score Prelims 2026 All India Open Mock Test 4 Download Pdf", link: "GS-Score-Prelims-2026-All-India-Open-Mock-Test-4-Download-Pdf.pdf" },
+                    { name: "GS Score Prelims 2026 All India Open Mock Test 5 Download Pdf", link: "GS-Score-Prelims-2026-All-India-Open-Mock-Test-5-Download-Pdf.pdf" },
+                    { name: "GS Score Prelims 2026 All India Open Mock Test 6 Download Pdf", link: "GS-Score-Prelims-2026-All-India-Open-Mock-Test-6-Download-Pdf.pdf" },
+                    { name: "GS Score Prelims 2026 All India Open Mock Test 7 Download Pdf", link: "GS-Score-Prelims-2026-All-India-Open-Mock-Test-7-Download-Pdf.pdf" },
+                    { name: "GS Score Prelims 2026 Polity Test 1 With Solution Download Pdf", link: "gs-score-prelims-2026-polity-test-1-with-solution-download-pdf.pdf" },
+                    { name: "GS Score Prelims 2026 Polity Test 2 With Solution Download Pdf", link: "gs-score-prelims-2026-polity-test-2-with-solution-download-pdf.pdf" },
+                    { name: "GS Score Prelims 2026 Polity Test 3 With Solution Download Pdf", link: "gs-score-prelims-2026-polity-test-3-with-solution-download-pdf.pdf" },
+                    { name: "GS Score Prelims 2026 Polity Test 4 With Solution Download Pdf", link: "gs-score-prelims-2026-polity-test-4-with-solution-download-pdf.pdf" },
+                    { name: "GS Score Prelims 2026 Polity Test 5 With Solution Download Pdf", link: "gs-score-prelims-2026-polity-test-5-with-solution-download-pdf.pdf" }
+                ]
+            },
+            {
+                institute: "Next IAS",
+                tests: [
+                    { name: "NEXT IAS Prelims 2026 Test 1 With QA", link: "NEXT-IAS-Prelims-2026-Test-1-With-Question-and-answers.pdf" },
+                    { name: "NEXT IAS Prelims 2026 Test 2 With QA", link: "NEXT-IAS-Prelims-2026-Test-2-With-Question-and-answers.pdf" },
+                    { name: "NEXT IAS Prelims 2026 Test 3 With QA", link: "NEXT-IAS-Prelims-2026-Test-3-With-Question-and-answers.pdf" },
+                    { name: "NEXT IAS Prelims 2026 Test 4 With QA", link: "NEXT-IAS-Prelims-2026-Test-4-With-Question-and-answers.pdf" },
+                    { name: "NEXT IAS Prelims 2026 Test 5 With QA", link: "NEXT-IAS-Prelims-2026-Test-5-With-Question-and-answers.pdf" },
+                    { name: "NEXT IAS Prelims 2026 Test 6 With QA", link: "NEXT-IAS-Prelims-2026-Test-6-With-Question-and-answers.pdf" },
+                    { name: "NEXT IAS Prelims 2026 Test 7 With QA", link: "NEXT-IAS-Prelims-2026-Test-7-With-Question-and-answers.pdf" },
+                    { name: "NEXT IAS Prelims 2026 Test 8 With QA", link: "NEXT-IAS-Prelims-2026-Test-8-With-Question-and-answers.pdf" },
+                    { name: "NEXT IAS Prelims 2026 Test 9 With QA", link: "NEXT-IAS-Prelims-2026-Test-9-With-Question-and-answers.pdf" },
+                    { name: "NEXT IAS Prelims 2026 Test 10 With QA", link: "NEXT-IAS-Prelims-2026-Test-10-With-Question-and-answers.pdf" },
+                    { name: "NEXT IAS Prelims 2026 Test 11 With QA", link: "NEXT-IAS-Prelims-2026-Test-11-With-Question-and-answers.pdf" },
+                    { name: "NEXT IAS Prelims 2026 Test 12 With QA", link: "NEXT-IAS-Prelims-2026-Test-12-With-Question-and-answers.pdf" },
+                    { name: "NEXT IAS Prelims 2026 Test 13 With QA", link: "NEXT-IAS-Prelims-2026-Test-13-With-Question-and-answers.pdf" },
+                    { name: "NEXT IAS Prelims 2026 Test 14 With QA", link: "NEXT-IAS-Prelims-2026-Test-14-With-Question-and-answers.pdf" },
+                    { name: "NEXT IAS Prelims 2026 Test 15 With QA", link: "NEXT-IAS-Prelims-2026-Test-15-With-Question-and-answers.pdf" },
+                    { name: "NEXT IAS Prelims 2026 Test 16 With QA", link: "NEXT-IAS-Prelims-2026-Test-16-With-Question-and-answers.pdf" },
+                    { name: "NEXT IAS Prelims 2026 Test 17 With QA", link: "NEXT-IAS-Prelims-2026-Test-17-With-Question-and-answers.pdf" },
+                    { name: "NEXT IAS Prelims 2026 Test 18 With QA", link: "NEXT-IAS-Prelims-2026-Test-18-With-Question-and-answers.pdf" },
+                    { name: "NEXT IAS Prelims 2026 Test 19 With QA", link: "NEXT-IAS-Prelims-2026-Test-19-With-Question-and-answers.pdf" },
+                    { name: "NEXT IAS Prelims 2026 Test 20 With QA", link: "NEXT-IAS-Prelims-2026-Test-20-With-Question-and-answers.pdf" }
+                ]
+            },
+            {
+                institute: "Only IAS",
+                tests: [
+                    { name: "PW Only IAS Prelims 2026 Test 1 With Solution PDF", link: "PW-Only-IAS-Prelims-2026-Test-1-With-Solution-PDF.pdf" },
+                    { name: "PW Only IAS Prelims 2026 Test 2 With Solution PDF", link: "PW-Only-IAS-Prelims-2026-Test-2-With-Solution-PDF.pdf" },
+                    { name: "PW Only IAS Prelims 2026 Test 3 With Solution PDF", link: "PW-Only-IAS-Prelims-2026-Test-3-With-Solution-PDF.pdf" }
+                ]
+            },
+            {
+                institute: "Shankar IAS",
+                tests: [
+                    { name: "Shankar IAS Prelims 2026 Test 1 With Solution PDF", link: "Shankar-IAS-Prelims-2026-Test-1-With-Solution-PDF.pdf" },
+                    { name: "Shankar IAS Prelims 2026 Test 2 With Solution PDF", link: "Shankar-IAS-Prelims-2026-Test-2-With-Solution-PDF.pdf" },
+                    { name: "Shankar IAS Prelims 2026 Test 3 With Solution PDF", link: "Shankar-IAS-Prelims-2026-Test-3-With-Solution-PDF.pdf" }
+                ]
+            },
+            {
+                institute: "Vajiram & Ravi",
+                tests: [
+                    { name: "Vajiram Prelims 2026 Test 1 With Solutions", link: "Vajiram-and-Ravi-Camp-Prelims-2026-Test-1-With-Solutions-Pdf.pdf" },
+                    { name: "Vajiram Prelims 2026 Test 2 With Solutions", link: "Vajiram-and-Ravi-Camp-Prelims-2026-Test-2-With-Solutions-Pdf.pdf" },
+                    { name: "Vajiram Prelims 2026 Test 3 With Solutions", link: "Vajiram-and-Ravi-Camp-Prelims-2026-Test-3-With-Solutions-Pdf.pdf" }
+                ]
+            },
+            {
+                institute: "Vision IAS",
+                tests: [{ name: "Vision IAS Prelims 2026 Test 1 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-1-with-solution-in-english-pdf.pdf" },
+                { name: "Vision IAS Prelims 2026 Test 2 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-2-with-solution-in-english-pdf.pdf" },
+                { name: "Vision IAS Prelims 2026 Test 3 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-3-with-solution-in-english-pdf.pdf" },
+                { name: "Vision IAS Prelims 2026 Test 4 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-4-with-solution-in-english-pdf.pdf" },
+                { name: "Vision IAS Prelims 2026 Test 5 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-5-with-solution-in-english-pdf.pdf" },
+                { name: "Vision IAS Prelims 2026 Test 6 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-6-with-solution-in-english-pdf.pdf" },
+                { name: "Vision IAS Prelims 2026 Test 7 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-7-with-solution-in-english-pdf.pdf" },
+                { name: "Vision IAS Prelims 2026 Test 8 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-8-with-solution-in-english-pdf.pdf" },
+                { name: "Vision IAS Prelims 2026 Test 9 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-9-with-solution-in-english-pdf.pdf" },
+                { name: "Vision IAS Prelims 2026 Test 10 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-10-with-solution-in-english-pdf.pdf" },
+                { name: "Vision IAS Prelims 2026 Test 11 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-11-with-solution-in-english-pdf.pdf" },
+                { name: "Vision IAS Prelims 2026 Test 12 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-12-with-solution-in-english-pdf.pdf" },
+                { name: "Vision IAS Prelims 2026 Test 13 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-13-with-solution-in-english-pdf.pdf" },
+                { name: "Vision IAS Prelims 2026 Test 14 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-14-with-solution-in-english-pdf.pdf" },
+                { name: "Vision IAS Prelims 2026 Test 15 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-15-with-solution-in-english-pdf.pdf" },
+                { name: "Vision IAS Prelims 2026 Test 16 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-16-with-solution-in-english-pdf.pdf" },
+                { name: "Vision IAS Prelims 2026 Test 17 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-17-with-solution-in-english-pdf.pdf" },
+                { name: "Vision IAS Prelims 2026 Test 18 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-18-with-solution-in-english-pdf.pdf" },
+                ]
+            }
+        ];
+
+        /* ==================== SYSTEM LOGIC ==================== */
+
+        let CURRENT_FILTER = 'All';
+        let CURRENT_SEARCH = '';
+
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const user = document.getElementById('username').value.trim();
+            const pass = document.getElementById('password').value;
+            const btn = document.getElementById('loginBtn');
+            const err = document.getElementById('error-message');
+
+            btn.innerText = "Authenticating...";
+            btn.style.opacity = "0.7";
+
+            const enteredHash = await sha256(pass);
+
+            setTimeout(() => {
+                if (DATABASE[user] && DATABASE[user].hash === enteredHash) {
+                    localStorage.setItem('currentUserProfile', JSON.stringify(DATABASE[user].profile));
+                    initDashboard();
+                } else {
+                    err.style.display = 'block';
+                    btn.innerText = "Access Portal";
+                    btn.style.opacity = "1";
+                }
+            }, 600);
+        });
+
+        function initDashboard() {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'flex';
+
+            const pillsContainer = document.getElementById('pillsContainer');
+            pillsContainer.innerHTML = '<div class="pill active" onclick="setFilter(\'All\')">All</div>';
+
+            TEST_DATA.forEach(group => {
+                const pill = document.createElement('div');
+                pill.className = 'pill';
+                pill.innerText = group.institute;
+                pill.onclick = () => setFilter(group.institute);
+                pillsContainer.appendChild(pill);
+            });
+
+            renderList();
+        }
+
+        function renderList() {
+            const tbody = document.getElementById('fileListBody');
+            tbody.innerHTML = '';
+
+            TEST_DATA.forEach(group => {
+                if (CURRENT_FILTER !== 'All' && group.institute !== CURRENT_FILTER) return;
+
+                group.tests.forEach(test => {
+                    const term = CURRENT_SEARCH.toLowerCase();
+                    if (term && !test.name.toLowerCase().includes(term) && !group.institute.toLowerCase().includes(term)) return;
+
+                    const row = `
+                    <a href="${test.link}" class="list-row" target="_blank">
+                        <div class="col-name">
+                            <span style="color:var(--primary); margin-right:5px; font-size:1.1em;">📄</span>
+                            ${test.name}
+                        </div>
+                        <div class="col-institute"><span>${group.institute}</span></div>
+                        <div class="col-action">
+                            <span class="btn-download">Download PDF</span>
+                        </div>
+                    </a>`;
+                    tbody.innerHTML += row;
+                });
+            });
+
+            if (tbody.innerHTML === '') {
+                tbody.innerHTML = `
+                <div style="text-align:center; padding: 40px; color: #94a3b8;">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🔍</div>
+                    <p>No tests found matching your criteria.</p>
+                </div>`;
+            }
+        }
+
+        function setFilter(name) {
+            CURRENT_FILTER = name;
+            document.querySelectorAll('.pill').forEach(p => {
+                if (p.innerText === name) p.classList.add('active');
+                else p.classList.remove('active');
+            });
+            renderList();
+        }
+
+        function syncSearch(val) {
+            CURRENT_SEARCH = val;
+            if (document.getElementById('mobileSearch')) document.getElementById('mobileSearch').value = val;
+            if (document.getElementById('desktopSearch')) document.getElementById('desktopSearch').value = val;
+            renderList();
+        }
+
+        function logout() {
+            localStorage.clear();
+            location.reload();
+        }
+
+        window.onload = function () {
+            if (localStorage.getItem('currentUserProfile')) {
+                initDashboard();
+            }
+        }
+    </script>
+</body>
+
+</html>
