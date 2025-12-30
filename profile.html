@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - UPSC Elite</title>
+    <style>
+        :root {
+            --primary: #1a252f;
+            --accent: #e74c3c;
+            --bg: #f8f9fa;
+        }
+
+        body {
+            background: var(--bg);
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .profile-card {
+            background: white;
+            width: 100%;
+            max-width: 700px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary), #34495e);
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            background: white;
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            font-weight: bold;
+            margin: 0 auto 15px;
+        }
+
+        .name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .sub-text {
+            opacity: 0.8;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .details-grid {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .detail-item {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .label {
+            font-size: 12px;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .value {
+            font-size: 16px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .status-badge {
+            background: #e8f5e9;
+            color: #27ae60;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        .back-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: #f1f2f6;
+            border: none;
+            color: #555;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .back-btn:hover {
+            background: #e1e2e6;
+            color: #000;
+        }
+
+        @media (max-width: 500px) {
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="profile-card">
+        <div class="header">
+            <div class="avatar" id="p-avatar">U</div>
+            <div class="name" id="p-name">Loading...</div>
+            <div class="sub-text">Premium Member</div>
+            <div id="p-status" class="status-badge">Active Plan</div>
+        </div>
+
+        <div class="details-grid">
+            <div class="detail-item"><span class="label">Target Exam</span><span class="value" id="p-exam">-</span>
+            </div>
+            <div class="detail-item"><span class="label">Attempt Year</span><span class="value" id="p-year">-</span>
+            </div>
+            <div class="detail-item"><span class="label">Optional Subject</span><span class="value"
+                    id="p-optional">-</span></div>
+            <div class="detail-item"><span class="label">Medium</span><span class="value" id="p-medium">-</span></div>
+            <div class="detail-item"><span class="label">Prep Stage</span><span class="value" id="p-stage">-</span>
+            </div>
+            <div class="detail-item"><span class="label">Plan Expiry</span><span class="value" id="p-expiry"
+                    style="color:#e74c3c">-</span></div>
+
+            <div class="detail-item"><span class="label">Prelims Count</span><span class="value" id="p-pre">-</span>
+            </div>
+            <div class="detail-item"><span class="label">Mains Written</span><span class="value" id="p-mains">-</span>
+            </div>
+            <div class="detail-item"><span class="label">Amount Paid</span><span class="value" id="p-paid">-</span>
+            </div>
+            <div class="detail-item"><span class="label">Payment Mode</span><span class="value" id="p-mode">-</span>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-btn">⬅ Back to Dashboard</a>
+    </div>
+
+    <script>
+        // Load data from LocalStorage
+        const data = JSON.parse(localStorage.getItem('currentUserProfile'));
+
+        if (!data) {
+            alert("No user logged in. Redirecting...");
+            window.location.href = "index.html";
+        } else {
+            // Populate fields
+            document.getElementById('p-name').innerText = data.name;
+            document.getElementById('p-avatar').innerText = data.name.charAt(0).toUpperCase();
+
+            document.getElementById('p-exam').innerText = data.exam;
+            document.getElementById('p-year').innerText = data.year;
+            document.getElementById('p-optional').innerText = data.optional;
+            document.getElementById('p-medium').innerText = data.medium;
+            document.getElementById('p-stage').innerText = data.stage;
+            document.getElementById('p-expiry').innerText = data.expiry;
+            document.getElementById('p-pre').innerText = data.prelims_count;
+            document.getElementById('p-mains').innerText = data.mains_written;
+            document.getElementById('p-paid').innerText = data.paid;
+            document.getElementById('p-mode').innerText = data.mode;
+        }
+    </script>
+</body>
+
+</html>
