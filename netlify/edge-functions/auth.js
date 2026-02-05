@@ -1,17 +1,16 @@
 // netlify/edge-functions/auth.js
 
 export default async (request, context) => {
-  // 1. Check for the cookie we set in index.html
+  // 1. Check for the cookie
   const cookies = context.cookies;
   const session = cookies.get("upsc_session");
 
-  // 2. If the cookie is missing, they are NOT logged in
+  // 2. If cookie is missing, redirect to Login (Home)
   if (!session) {
-    // Redirect them back to the login page
     const url = new URL("/", request.url);
     return Response.redirect(url);
   }
 
-  // 3. If cookie exists, allow the download
+  // 3. If authorized, proceed
   return context.next();
 };

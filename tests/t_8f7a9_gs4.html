@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GS Score Prelims 2026 PPP Polity Test #04</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Serif+Devanagari:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Georgia', 'Times New Roman', 'serif'],
+                        hindi: ['Noto Serif Devanagari', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .question-text {
+            white-space: pre-wrap;
+        }
+
+        .status-answered {
+            background-color: #22c55e;
+            color: white;
+            border-color: #22c55e;
+        }
+
+        .status-not-answered {
+            background-color: #ef4444;
+            color: white;
+            border-color: #ef4444;
+        }
+
+        .status-review {
+            background-color: #f97316;
+            color: white;
+            border-color: #f97316;
+        }
+
+        .status-not-visited {
+            background-color: #e2e8f0;
+            color: #475569;
+        }
+
+        .status-current {
+            border: 2px solid #2563eb;
+            transform: scale(1.1);
+            font-weight: bold;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-slate-800 font-sans select-none overflow-x-hidden h-screen flex flex-col">
+
+    <div id="view-login"
+        class="flex-grow flex items-center justify-center p-4 min-h-screen bg-gradient-to-br from-brand-900 to-brand-700">
+        <div
+            class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md transform transition hover:scale-[1.01] duration-300">
+            <div class="text-center mb-8">
+                <div class="inline-block p-3 rounded-full bg-brand-100 text-brand-700 mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <h1 class="text-2xl font-bold text-gray-900">GS Score Prelims 2026</h1>
+                <p class="text-sm text-gray-500 mt-2">PPP Polity Test #04</p>
+            </div>
+
+            <form id="loginForm" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Candidate Name</label>
+                    <input type="text" id="candidateName" required
+                        class="mt-1 block w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 transition"
+                        placeholder="Enter name">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Roll Number</label>
+                    <input type="number" id="rollNumber" required
+                        class="mt-1 block w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 transition"
+                        placeholder="Enter roll number">
+                </div>
+                <button type="submit"
+                    class="w-full bg-brand-600 text-white py-3 rounded-lg font-semibold hover:bg-brand-700 transition shadow-lg">Start
+                    Test</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="view-instructions" class="hidden flex-col h-screen bg-white">
+        <div
+            class="bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center sticky top-0 z-10 shadow-sm">
+            <h2 class="text-xl font-bold text-brand-800">Instructions</h2>
+            <button onclick="window.location.reload()"
+                class="text-sm text-red-600 hover:text-red-800 font-medium">Cancel & Exit</button>
+        </div>
+
+        <div class="flex-grow overflow-y-auto p-6 max-w-4xl mx-auto w-full prose">
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                <p class="font-bold text-yellow-800 m-0">GS SCORE PRELIMS TEST SERIES 2026 | PTS-5445</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mb-6 text-sm font-semibold bg-gray-100 p-4 rounded-lg">
+                <div>Time Allowed: 120 Mins</div>
+                <div class="text-right">Max Marks: 100</div>
+                <div>Negative: -0.66</div>
+                <div class="text-right">Correct: +2.0</div>
+            </div>
+
+            <h3 class="text-lg font-bold mb-3">INSTRUCTIONS</h3>
+            <ul class="list-decimal pl-5 space-y-2 text-sm text-gray-700">
+                <li>Check the Booklet for missing pages immediately.</li>
+                <li>Mark only one response per item.</li>
+                <li>Penalty for wrong answers: 1/3rd of marks deducted.</li>
+                <li>No penalty for unattempted questions.</li>
+            </ul>
+        </div>
+
+        <div class="border-t border-gray-200 p-4 bg-gray-50 flex justify-center sticky bottom-0 z-10">
+            <button onclick="startActualTest()"
+                class="bg-brand-600 text-white px-8 py-3 rounded-full font-bold hover:bg-brand-700 shadow-lg transform transition hover:-translate-y-1 w-full max-w-sm">I
+                Agree & Start Test</button>
+        </div>
+    </div>
+
+    <div id="view-test" class="hidden flex-col h-screen bg-gray-100">
+
+        <header class="bg-white shadow-md sticky top-0 z-50 px-4 py-2 flex justify-between items-center h-16">
+            <div class="flex items-center space-x-3">
+                <div
+                    class="bg-brand-600 text-white w-10 h-10 flex items-center justify-center rounded-full font-bold text-lg">
+                    GS</div>
+                <div class="hidden sm:block">
+                    <h1 class="font-bold text-gray-800 text-sm">GS Score Prelims 2026</h1>
+                    <p class="text-xs text-gray-500">Polity Test #04</p>
+                </div>
+            </div>
+
+            <div
+                class="bg-gray-900 text-white px-4 py-1 rounded-full font-mono text-lg font-bold shadow-inner flex items-center space-x-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span id="timerDisplay">02:00:00</span>
+            </div>
+
+            <div class="flex items-center space-x-2">
+                <button onclick="togglePaletteMobile()"
+                    class="lg:hidden p-2 rounded-md hover:bg-gray-100 text-gray-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <div class="flex-grow flex overflow-hidden">
+            <main class="flex-1 flex flex-col overflow-y-auto relative w-full lg:w-3/4 bg-white" id="questionContainer">
+                <div class="bg-gray-50 border-b px-4 py-2 flex justify-between items-center text-sm sticky top-0 z-10">
+                    <span class="font-bold text-brand-700">Q. <span id="currentQNum" class="text-xl">1</span></span>
+                    <div class="flex space-x-2 text-xs sm:text-sm">
+                        <span class="text-green-600 font-medium">+2.0</span>
+                        <span class="text-red-500 font-medium">-0.66</span>
+                    </div>
+                </div>
+
+                <div class="p-4 sm:p-6 pb-24 fade-in">
+                    <div id="questionContent"></div>
+                </div>
+            </main>
+
+            <aside class="hidden lg:flex flex-col w-1/4 bg-gray-50 border-l border-gray-200">
+                <div class="p-4 border-b bg-white">
+                    <h3 class="font-bold text-gray-700">Question Palette</h3>
+                </div>
+                <div class="flex-grow overflow-y-auto p-4">
+                    <div class="grid grid-cols-5 gap-2" id="paletteGridDesktop"></div>
+                </div>
+                <div class="p-4 border-t bg-white">
+                    <button onclick="submitTest()"
+                        class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-bold shadow-md transition">Submit
+                        Test</button>
+                </div>
+            </aside>
+        </div>
+
+        <footer
+            class="bg-white border-t border-gray-200 p-3 sm:px-6 flex justify-between items-center sticky bottom-0 z-40 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+            <div class="flex space-x-2">
+                <button onclick="markReview()"
+                    class="px-3 py-2 sm:px-4 rounded-md border border-orange-500 text-orange-600 font-medium text-xs sm:text-sm hover:bg-orange-50 transition">Mark
+                    Review</button>
+                <button onclick="clearResponse()"
+                    class="px-3 py-2 sm:px-4 rounded-md border border-gray-300 text-gray-600 font-medium text-xs sm:text-sm hover:bg-gray-100 transition">Clear</button>
+            </div>
+            <div class="flex space-x-3">
+                <button onclick="changeQuestion(-1)" id="prevBtn"
+                    class="px-4 py-2 rounded-md bg-gray-200 text-gray-700 font-bold hover:bg-gray-300 disabled:opacity-50 transition">Prev</button>
+                <button onclick="changeQuestion(1)" id="nextBtn"
+                    class="px-6 py-2 rounded-md bg-brand-600 text-white font-bold hover:bg-brand-700 transition">Next</button>
+            </div>
+        </footer>
+    </div>
+
+    <div id="mobilePaletteModal" class="fixed inset-0 z-[60] hidden bg-black bg-opacity-50 backdrop-blur-sm">
+        <div class="absolute right-0 top-0 h-full w-4/5 max-w-xs bg-white shadow-xl flex flex-col">
+            <div class="p-4 border-b flex justify-between items-center bg-gray-50">
+                <h3 class="font-bold text-lg">Palette</h3>
+                <button onclick="togglePaletteMobile()" class="text-gray-500"><svg class="h-6 w-6" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg></button>
+            </div>
+            <div class="flex-grow overflow-y-auto p-4">
+                <div class="grid grid-cols-5 gap-3" id="paletteGridMobile"></div>
+            </div>
+            <div class="p-4 border-t">
+                <button onclick="submitTest()"
+                    class="w-full bg-green-600 text-white py-3 rounded-lg font-bold">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-result" class="hidden min-h-screen pb-16 bg-gray-100">
+
+        <div
+            class="bg-gradient-to-r from-brand-900 to-brand-700 text-white p-8 pb-24 rounded-b-[3rem] shadow-xl relative z-0">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between gap-6">
+                <div>
+                    <h1 class="text-3xl font-extrabold">Prelims Result Analysis</h1>
+                    <p class="opacity-80 text-sm mt-1">GS Score Prelims 2026 • Polity Test #04</p>
+
+                    <div id="readinessBadge"
+                        class="inline-block mt-4 px-5 py-2 rounded-full text-sm font-bold bg-white text-gray-900 shadow">
+                        Evaluating...
+                    </div>
+                </div>
+
+                <div class="text-left md:text-right">
+                    <h2 id="resultName" class="text-xl font-bold">Candidate</h2>
+                    <p id="resultRoll" class="text-sm opacity-80">Roll: 000</p>
+
+                    <a href="gs-score-prelims-2026-polity-test-4-with-solution-download-pdf.pdf" target="_blank"
+                        class="inline-flex items-center gap-2 mt-4 bg-white text-brand-900 px-5 py-2 rounded-full text-xs font-bold shadow hover:bg-gray-100">
+                        ⬇ Download Question PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4 -mt-20 grid grid-cols-1 md:grid-cols-4 gap-6 relative z-10">
+
+            <div class="bg-white rounded-2xl shadow-xl p-6 text-center">
+                <p class="text-gray-500 text-sm uppercase font-semibold">Total Marks</p>
+                <p id="scoreDisplay" class="text-6xl font-extrabold text-brand-600 mt-3">0</p>
+                <p class="text-xs text-gray-400">out of 100</p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-xl p-6 flex flex-col justify-center">
+                <div class="flex justify-between border-b pb-3 mb-3">
+                    <span class="text-gray-600 font-semibold">Est. AIR Rank</span>
+                    <span id="rankDisplay" class="text-2xl font-bold">#0</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600 font-semibold">Accuracy</span>
+                    <span id="accuracyDisplay" class="text-2xl font-bold text-blue-600">0%</span>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-xl p-6 text-sm flex flex-col justify-center">
+                <h4 class="font-bold mb-3 text-gray-700 border-b pb-1">Benchmark</h4>
+                <ul class="space-y-2">
+                    <li class="flex justify-between"><span>✔ Safe Attempts:</span> <b>45–50</b></li>
+                    <li class="flex justify-between"><span>✔ Topper Score:</span> <b>75+</b></li>
+                    <li class="flex justify-between"><span>✔ Your Attempts:</span> <b id="attemptDisplay">0</b></li>
+                </ul>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-xl p-4 flex items-center justify-center">
+                <div class="h-32 w-full">
+                    <canvas id="resultChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4 mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+
+            <div class="bg-white rounded-2xl shadow p-6">
+                <h3 class="font-bold text-lg mb-4 border-l-4 border-red-500 pl-3">
+                    Risk & Negative Impact
+                </h3>
+                <ul class="text-sm space-y-3">
+                    <li class="flex justify-between bg-red-50 p-2 rounded"><span>❌ Marks lost (negative):</span> <b
+                            id="negativeLoss" class="text-red-600">0</b></li>
+                    <li class="flex justify-between bg-green-50 p-2 rounded"><span>📉 Score without negative:</span> <b
+                            id="noNegativeScore" class="text-green-600">0</b></li>
+                    <li class="text-gray-500 italic">⚠ High negative marks indicate guess-heavy attempts.</li>
+                </ul>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow p-6">
+                <h3 class="font-bold text-lg mb-4 border-l-4 border-green-600 pl-3">
+                    Mentor Recommendations
+                </h3>
+                <ul id="recommendationList" class="list-disc pl-5 text-sm space-y-2 text-gray-700"></ul>
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4 mt-12 relative z-10">
+            <h3 class="text-xl font-bold mb-4 border-l-4 border-gray-800 pl-3">
+                Detailed Question Review
+            </h3>
+            <div id="reviewContainer" class="space-y-6"></div>
+        </div>
+
+        <div class="text-center mt-12 mb-8 relative z-10">
+            <a href="index.html" class="text-brand-600 font-bold hover:underline">
+                ⬅ Back to Website
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. DATA ---
+        // Sample truncated data for demo functionality. In real use, this would be the full JSON.
+        const questionsData =
+            [
+                {
+                    "id": 1,
+                    "english": "Consider the following statements with reference to the Law Commission of India (LCI):\n1. It is a statutory body.\n2. It is established for a period of three years.\n3. It submits its report to Supreme Court of India.\n4. Selection of the head of law commission is completely at the discretion of the Government.\nWhich of the statements given above is/are correct?",
+                    "hindi": "भारत के विधि आयोग (LCI) के संदर्भ में निम्नलिखित कथनों पर विचार कीजिए:\n1. यह एक वैधानिक निकाय है।\n2. इसकी स्थापना तीन वर्ष की अवधि के लिए की जाती है।\n3. यह अपनी रिपोर्ट भारत के सर्वोच्च न्यायालय को सौंपता है।\n4. विधि आयोग के प्रमुख का चयन पूरी तरह से सरकार के विवेक पर होता है।\nउपर्युक्त कथनों में से कौन-सा/से सही है/हैं?",
+                    "options": {
+                        "a": "(a) 1 and 3 only / केवल 1 और 3",
+                        "b": "(b) 1 and 2 only / केवल 1 और 2",
+                        "c": "(c) 1, 2 and 3 / 1, 2 और 3",
+                        "d": "(d) 2 and 4 only / केवल 2 और 4"
+                    },
+                    "answer": "d"
+                },
+                {
+                    "id": 2,
+                    "english": "With reference to the recommendations of the Ashok Mehta Committee Report (1977) on Panchayati Raj, consider the following statements:\n1. The Panchayati Raj system should be a two-tier structure.\n2. Zilla Parishad should be the executive body and responsible for planning at the district level.\n3. Panchayat Samiti should be the executive body at the block level, responsible for planning and coordination.\n4. The State Government should not supersede Panchayati Raj institutions; instead, elections should be held within six months in case of dissolution.\nHow many of the above statements are correct?",
+                    "hindi": "पंचायती राज पर अशोक मेहता समिति की रिपोर्ट (1977) की सिफारिशों के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:\n1. पंचायती राज व्यवस्था दो-स्तरीय संरचना होनी चाहिए।\n2. जिला परिषद को कार्यकारी निकाय होना चाहिए और जिला स्तर पर योजना के लिए जिम्मेदार होना चाहिए।\n3. पंचायत समिति को ब्लॉक स्तर पर कार्यकारी निकाय होना चाहिए, जो योजना और समन्वय के लिए जिम्मेदार हो।\n4. राज्य सरकार को पंचायती राज संस्थाओं का अधिक्रमण (supersede) नहीं करना चाहिए; इसके बजाय, विघटन के मामले में छह महीने के भीतर चुनाव कराए जाने चाहिए।\nउपर्युक्त कथनों में से कितने सही हैं?",
+                    "options": {
+                        "a": "(a) Only one / केवल एक",
+                        "b": "(b) Only two / केवल दो",
+                        "c": "(c) Only three / केवल तीन",
+                        "d": "(d) All four / सभी चार"
+                    },
+                    "answer": "c"
+                },
+                {
+                    "id": 3,
+                    "english": "Consider the following statements:\nStatement-I: The validity of any law relating to the allotment of seats in the municipalities can be questioned only by the High Court.\nStatement-II: The Constitution bars interference by courts in electoral matters of municipalities, except through an election petition presented to an authority designated by the State Legislature.\nWhich one of the following is correct in respect of the above statements?",
+                    "hindi": "निम्नलिखित कथनों पर विचार कीजिए:\nकथन-I: नगर पालिकाओं में सीटों के आवंटन से संबंधित किसी भी कानून की वैधता पर केवल उच्च न्यायालय द्वारा प्रश्न उठाया जा सकता है।\nकथन-II: संविधान नगर पालिकाओं के चुनावी मामलों में अदालतों के हस्तक्षेप पर रोक लगाता है, सिवाय राज्य विधानमंडल द्वारा नामित प्राधिकरण को प्रस्तुत चुनाव याचिका के माध्यम से।\nउपर्युक्त कथनों के संबंध में निम्नलिखित में से कौन सा सही है?",
+                    "options": {
+                        "a": "(a) Both Statement I and Statement II are correct, and Statement II explains Statement I / कथन I और कथन II दोनों सही हैं, और कथन II कथन I की व्याख्या करता है",
+                        "b": "(b) Both Statement I and Statement II are correct, but Statement II does not explain Statement I / कथन I और कथन II दोनों सही हैं, लेकिन कथन II कथन I की व्याख्या नहीं करता है",
+                        "c": "(c) Statement I is correct, but Statement II is incorrect / कथन I सही है, लेकिन कथन II गलत है",
+                        "d": "(d) Statement I is incorrect, but Statement II is correct / कथन I गलत है, लेकिन कथन II सही है"
+                    },
+                    "answer": "d"
+                },
+                {
+                    "id": 4,
+                    "english": "Consider the following statements:\n1. The 73rd Amendment Act provides for the mandatory reservation of not less than one-third of the total number of seats for scheduled castes and scheduled tribes.\n2. The provisions relating to the reservation of seats in panchayats for the scheduled castes is not applicable to the states of Nagaland, Meghalaya and Mizoram only.\nWhich of the above statements is/are correct?",
+                    "hindi": "निम्नलिखित कथनों पर विचार कीजिए:\n1. 73वां संशोधन अधिनियम अनुसूचित जातियों और अनुसूचित जनजातियों के लिए सीटों की कुल संख्या के एक-तिहाई से कम नहीं के अनिवार्य आरक्षण का प्रावधान करता है।\n2. पंचायतों में अनुसूचित जातियों के लिए सीटों के आरक्षण से संबंधित प्रावधान केवल नागालैंड, मेघालय और मिजोरम राज्यों पर लागू नहीं होते हैं।\nउपर्युक्त कथनों में से कौन-सा/से सही है/हैं?",
+                    "options": {
+                        "a": "(a) 1 only / केवल 1",
+                        "b": "(b) 2 only / केवल 2",
+                        "c": "(c) Both 1 and 2 / 1 और 2 दोनों",
+                        "d": "(d) Neither 1 nor 2 / न तो 1 और न ही 2"
+                    },
+                    "answer": "d"
+                },
+                {
+                    "id": 5,
+                    "english": "Match the following states with one of their Scheduled Area districts where PESA applies:\nList I (State) - List II (District)\nA. Himachal Pradesh - 1. Malkangiri\nB. Odisha - 2. Dang\nC. Gujarat - 3. Lahaul & Spiti\nD. Andhra Pradesh - 4. East Godavari",
+                    "hindi": "निम्नलिखित राज्यों को उनके अनुसूचित क्षेत्र के जिलों में से एक के साथ सुमेलित करें जहां पेसा (PESA) लागू होता है:\nसूची I (राज्य) - सूची II (जिला)\nA. हिमाचल प्रदेश - 1. मलकानगिरी\nB. ओडिशा - 2. डांग\nC. गुजरात - 3. लाहौल और स्पीति\nD. आंध्र प्रदेश - 4. पूर्वी गोदावरी",
+                    "options": {
+                        "a": "(a) A-3, B-1, C-2, D-4",
+                        "b": "(b) A-2, B-4, C-3, D-1",
+                        "c": "(c) A-1, B-3, C-4, D-2",
+                        "d": "(d) A-4, B-2, C-1, D-3"
+                    },
+                    "answer": "a"
+                },
+                {
+                    "id": 6,
+                    "english": "Consider the following:\nAssertion (A): PESA empowers the Gram Sabha in Scheduled Areas to safeguard traditions, customs, cultural identity, community resources, and the customary mode of dispute resolution.\nReason (R): One of the primary objectives of PESA is to ensure self-governance for people living in Fifth Schedule areas through a decentralised and participatory framework.\nWhich one of the following is correct?",
+                    "hindi": "निम्नलिखित पर विचार कीजिए:\nअभिकथन (A): पेसा (PESA) अनुसूचित क्षेत्रों में ग्राम सभा को परंपराओं, रीति-रिवाजों, सांस्कृतिक पहचान, सामुदायिक संसाधनों और विवाद समाधान के पारंपरिक तरीकों की सुरक्षा करने का अधिकार देता है।\nकारण (R): पेसा का एक प्राथमिक उद्देश्य विकेंद्रीकृत और सहभागी ढांचे के माध्यम से पांचवीं अनुसूची क्षेत्रों में रहने वाले लोगों के लिए स्वशासन सुनिश्चित करना है।\nनिम्नलिखित में से कौन सा सही है?",
+                    "options": {
+                        "a": "(a) Both A and R are correct, and R is the correct explanation of A / A और R दोनों सही हैं, और R, A की सही व्याख्या है",
+                        "b": "(b) Both A and R are correct, but R is not the correct explanation of A / A और R दोनों सही हैं, लेकिन R, A की सही व्याख्या नहीं है",
+                        "c": "(c) A is correct, but R is incorrect / A सही है, लेकिन R गलत है",
+                        "d": "(d) A is incorrect, but R is correct / A गलत है, लेकिन R सही है"
+                    },
+                    "answer": "a"
+                },
+                {
+                    "id": 7,
+                    "english": "\"This type of urban local body is constituted for an area in transition from a rural area to an urban area. It serves as a link between the Gram Panchayat and the Municipality, providing basic civic amenities while the area undergoes urbanisation. Members are directly elected by the people of the area.\"\nWhich of the following is described above?",
+                    "hindi": "\"इस प्रकार का शहरी स्थानीय निकाय ग्रामीण क्षेत्र से शहरी क्षेत्र में संक्रमण वाले क्षेत्र के लिए गठित किया जाता है। यह ग्राम पंचायत और नगर पालिका के बीच एक कड़ी के रूप में कार्य करता है, जो शहरीकरण के दौर से गुजर रहे क्षेत्र को बुनियादी नागरिक सुविधाएं प्रदान करता है। सदस्य सीधे क्षेत्र के लोगों द्वारा चुने जाते हैं।\"\nउपर्युक्त में किसका वर्णन किया गया है?",
+                    "options": {
+                        "a": "(a) Notified Area Committee / अधिसूचित क्षेत्र समिति",
+                        "b": "(b) Nagar Panchayat / नगर पंचायत",
+                        "c": "(c) Town Area Committee / नगर क्षेत्र समिति",
+                        "d": "(d) Township / टाउनशिप"
+                    },
+                    "answer": "b"
+                },
+                {
+                    "id": 8,
+                    "english": "Which of the following statements is/are correct?\n1. The Chairperson of a Panchayat at the intermediate and district levels is elected indirectly by and from among the elected members thereof.\n2. If the State Government dissolves a Panchayat, fresh elections must be held within six months from the date of dissolution.\nSelect the correct answer using the codes given below:",
+                    "hindi": "निम्नलिखित में से कौन सा/से कथन सही है/हैं?\n1. मध्यवर्ती और जिला स्तर पर पंचायत के अध्यक्ष का चुनाव उसके निर्वाचित सदस्यों द्वारा और उनमें से अप्रत्यक्ष रूप से किया जाता है।\n2. यदि राज्य सरकार किसी पंचायत को भंग करती है, तो विघटन की तारीख से छह महीने के भीतर नए चुनाव कराए जाने चाहिए।\nनीचे दिए गए कूट का उपयोग करके सही उत्तर चुनिए:",
+                    "options": {
+                        "a": "(a) 1 only / केवल 1",
+                        "b": "(b) 2 only / केवल 2",
+                        "c": "(c) Both 1 and 2 / 1 और 2 दोनों",
+                        "d": "(d) Neither 1 nor 2 / न तो 1 और न ही 2"
+                    },
+                    "answer": "c"
+                },
+                {
+                    "id": 9,
+                    "english": "With reference to the 11th and 12th Schedules of the Indian Constitution, consider the following statements:\n1. The 11th Schedule contains more functional items than the 12th Schedule.\n2. Rural governance is more diverse in scope than urban governance.\nWhich of the above statements is/are correct?",
+                    "hindi": "भारतीय संविधान की 11वीं और 12वीं अनुसूची के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:\n1. 11वीं अनुसूची में 12वीं अनुसूची की तुलना में अधिक कार्यात्मक विषय हैं।\n2. ग्रामीण शासन का दायरा शहरी शासन की तुलना में अधिक विविध है।\nउपर्युक्त कथनों में से कौन-सा/से सही है/हैं?",
+                    "options": {
+                        "a": "(a) 1 only / केवल 1",
+                        "b": "(b) 2 only / केवल 2",
+                        "c": "(c) Both 1 and 2 / 1 और 2 दोनों",
+                        "d": "(d) Neither 1 nor 2 / न तो 1 और न ही 2"
+                    },
+                    "answer": "c"
+                },
+                {
+                    "id": 10,
+                    "english": "With reference to the State Finance Commission (SFC), consider the following statements:\n1. The State Finance Commission is constituted every five years by the Governor of the state.\n2. It recommends the distribution of net proceeds of taxes between the state government and local bodies in the state.\n3. Its recommendations are binding on the state legislature.\n4. It works under the Finance Commission of India.\nHow many of the above statements are correct?",
+                    "hindi": "राज्य वित्त आयोग (SFC) के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:\n1. राज्य वित्त आयोग का गठन हर पांच साल में राज्य के राज्यपाल द्वारा किया जाता है।\n2. यह राज्य सरकार और राज्य में स्थानीय निकायों के बीच करों की शुद्ध आय के वितरण की सिफारिश करता है।\n3. इसकी सिफारिशें राज्य विधानमंडल पर बाध्यकारी होती हैं।\n4. यह भारत के वित्त आयोग के अधीन कार्य करता है।\nउपर्युक्त कथनों में से कितने सही हैं?",
+                    "options": {
+                        "a": "(a) Only one / केवल एक",
+                        "b": "(b) Only two / केवल दो",
+                        "c": "(c) Only three / केवल तीन",
+                        "d": "(d) All four / सभी चार"
+                    },
+                    "answer": "b"
+                },
+                {
+                    "id": 11,
+                    "english": "Consider the following statements regarding the administration of Union Territories in India:\n1. The UTs in India are administered through an agency system.\n2. The legislative power of Parliament w.r.t. the union territories is affected after the establishment of a local legislature for them.\n3. A UT can be moved to the jurisdiction of another High Court by an executive order.\nWhich of the above statements are incorrect?",
+                    "hindi": "भारत में केंद्र शासित प्रदेशों के प्रशासन के संबंध में निम्नलिखित कथनों पर विचार कीजिए:\n1. भारत में केंद्र शासित प्रदेशों का प्रशासन एक एजेंसी प्रणाली के माध्यम से किया जाता है।\n2. केंद्र शासित प्रदेशों के संबंध में संसद की विधायी शक्ति उनके लिए स्थानीय विधायिका की स्थापना के बाद प्रभावित होती है।\n3. एक कार्यकारी आदेश द्वारा किसी केंद्र शासित प्रदेश को दूसरे उच्च न्यायालय के अधिकार क्षेत्र में स्थानांतरित किया जा सकता है।\nउपर्युक्त कथनों में से कौन-से गलत हैं?",
+                    "options": {
+                        "a": "(a) 1 and 2 only / केवल 1 और 2",
+                        "b": "(b) 1 and 3 only / केवल 1 और 3",
+                        "c": "(c) 2 and 3 only / केवल 2 और 3",
+                        "d": "(d) 1, 2 and 3 / 1, 2 और 3"
+                    },
+                    "answer": "c"
+                },
+                {
+                    "id": 12,
+                    "english": "Consider the following statements regarding the National Commission for Women (NCW):\n1. The National Commission for Women was established as a statutory body.\n2. The Commission can investigate and examine all matters relating to the safeguards provided for women under the Constitution and other laws.\nWhich of the above statements are correct?",
+                    "hindi": "राष्ट्रीय महिला आयोग (NCW) के संबंध में निम्नलिखित कथनों पर विचार कीजिए:\n1. राष्ट्रीय महिला आयोग की स्थापना एक वैधानिक निकाय के रूप में की गई थी।\n2. आयोग संविधान और अन्य कानूनों के तहत महिलाओं को प्रदान की गई सुरक्षा से संबंधित सभी मामलों की जांच और परीक्षण कर सकता है।\nउपर्युक्त कथनों में से कौन-से सही हैं?",
+                    "options": {
+                        "a": "(a) 1 only / केवल 1",
+                        "b": "(b) 2 only / केवल 2",
+                        "c": "(c) Both 1 and 2 / 1 और 2 दोनों",
+                        "d": "(d) Neither 1 nor 2 / न तो 1 और न ही 2"
+                    },
+                    "answer": "c"
+                },
+                {
+                    "id": 13,
+                    "english": "Consider the following statements regarding the Sixth Schedule of the Indian Constitution:\n1. The Sixth Schedule provides for the administration of certain tribal areas in the states of Assam, Meghalaya, Tripura, and Mizoram.\n2. Autonomous District Councils under the Sixth Schedule have the power to make laws on land, forests, shifting cultivation, and village administration.\n3. The acts of Parliament or state legislatures automatically apply to Sixth Schedule areas in the same manner as other parts of India.\n4. The Governor can increase or decrease the area of an autonomous district under the Sixth Schedule.\nHow many of the above statements are correct?",
+                    "hindi": "भारतीय संविधान की छठी अनुसूची के संबंध में निम्नलिखित कथनों पर विचार कीजिए:\n1. छठी अनुसूची असम, मेघालय, त्रिपुरा और मिजोरम राज्यों में कुछ आदिवासी क्षेत्रों के प्रशासन का प्रावधान करती है।\n2. छठी अनुसूची के तहत स्वायत्त जिला परिषदों को भूमि, वन, झूम खेती और ग्राम प्रशासन पर कानून बनाने की शक्ति है।\n3. संसद या राज्य विधानसभाओं के अधिनियम छठी अनुसूची के क्षेत्रों में स्वचालित रूप से उसी तरह लागू होते हैं जैसे भारत के अन्य भागों में।\n4. राज्यपाल छठी अनुसूची के तहत स्वायत्त जिले के क्षेत्रफल को बढ़ा या घटा सकता है।\nउपर्युक्त कथनों में से कितने सही हैं?",
+                    "options": {
+                        "a": "(a) Only one / केवल एक",
+                        "b": "(b) Only two / केवल दो",
+                        "c": "(c) Only three / केवल तीन",
+                        "d": "(d) All four / सभी चार"
+                    },
+                    "answer": "c"
+                },
+                {
+                    "id": 14,
+                    "english": "Arrange the following Committees related to the Panchayati Raj System in the chronological order:\n1. L.M. Singhvi Committee\n2. Hanumantha Rao Committee\n3. Ashok Mehta Committee\n4. P.K. Thungon Committee\nSelect the correct option using the codes given below:",
+                    "hindi": "पंचायती राज व्यवस्था से संबंधित निम्नलिखित समितियों को कालानुक्रमिक क्रम में व्यवस्थित करें:\n1. एल.एम. सिंघवी समिति\n2. हनुमंत राव समिति\n3. अशोक मेहता समिति\n4. पी.के. थुंगन समिति\nनीचे दिए गए कूट का उपयोग करके सही विकल्प चुनें:",
+                    "options": {
+                        "a": "(a) 1-2-4-3",
+                        "b": "(b) 3-2-1-4",
+                        "c": "(c) 4-3-1-2",
+                        "d": "(d) 3-1-4-2"
+                    },
+                    "answer": "b"
+                },
+                {
+                    "id": 15,
+                    "english": "Consider the following statements about the District Planning Committee (DPC):\n1. The Constitution mandates the establishment of a District Planning Committee in every district to consolidate the plans prepared by the Panchayats and the Municipalities.\n2. The composition of the DPC is uniform across all states, with two-thirds of the members elected by the members of the Panchayats and Municipalities in the district from amongst themselves.\n3. The Chairperson of the DPC is appointed by the Governor from among the elected members of the Committee.\n4. The DPC is responsible for preparing a draft development plan for the district, keeping in view matters of common interest between the Panchayats and the Municipalities.\nHow many of the above statements are correct?",
+                    "hindi": "जिला योजना समिति (DPC) के बारे में निम्नलिखित कथनों पर विचार कीजिए:\n1. संविधान पंचायतों और नगर पालिकाओं द्वारा तैयार की गई योजनाओं को समेकित करने के लिए प्रत्येक जिले में एक जिला योजना समिति की स्थापना को अनिवार्य करता है।\n2. DPC की संरचना सभी राज्यों में एक समान है, जिसमें दो-तिहाई सदस्य जिले में पंचायतों और नगर पालिकाओं के सदस्यों द्वारा अपने बीच से चुने जाते हैं।\n3. DPC के अध्यक्ष की नियुक्ति राज्यपाल द्वारा समिति के निर्वाचित सदस्यों में से की जाती है।\n4. DPC पंचायतों और नगर पालिकाओं के बीच सामान्य हित के मामलों को ध्यान में रखते हुए जिले के लिए एक मसौदा विकास योजना तैयार करने के लिए जिम्मेदार है।\nउपर्युक्त कथनों में से कितने सही हैं?",
+                    "options": {
+                        "a": "(a) Only One / केवल एक",
+                        "b": "(b) Only two / केवल दो",
+                        "c": "(c) Only three / केवल तीन",
+                        "d": "(d) All three / सभी तीन" // Note: PDF text says All three but context implies All four statements are there. Option D is likely intended for 4 or all correct. Based on solution, 3 are correct.
+                    },
+                    "answer": "c"
+                },
+                {
+                    "id": 16,
+                    "english": "With reference to the Enforcement Directorate (ED), consider the following statements:\n1. It is a statutory body functioning under the Department of Revenue, Ministry of Finance.\n2. It enforces the provisions of the Prevention of Money Laundering Act (PMLA), 2002 and the Foreign Exchange Management Act (FEMA), 1999.\n3. ED can initiate investigations and attach properties even in cases where predicate offences are yet to be established in a court of law.\n4. The Director of ED is appointed by the President of India on the recommendation of the Central Vigilance Commission.\nWhich of the statements given above are correct?",
+                    "hindi": "प्रवर्तन निदेशालय (ED) के संदर्भ में, निम्नलिखित कथनों पर विचार कीजिए:\n1. यह वित्त मंत्रालय के राजस्व विभाग के तहत काम करने वाला एक वैधानिक निकाय है।\n2. यह धन शोधन निवारण अधिनियम (PMLA), 2002 और विदेशी मुद्रा प्रबंधन अधिनियम (FEMA), 1999 के प्रावधानों को लागू करता है।\n3. ईडी उन मामलों में भी जांच शुरू कर सकता है और संपत्तियों को कुर्क कर सकता है जहां कानून की अदालत में प्रमुख अपराध (predicate offences) स्थापित होना बाकी है।\n4. ईडी के निदेशक की नियुक्ति भारत के राष्ट्रपति द्वारा केंद्रीय सतर्कता आयोग की सिफारिश पर की जाती है।\nऊपर दिए गए कथनों में से कौन से सही हैं?",
+                    "options": {
+                        "a": "(a) 1, 2 and 3 Only / केवल 1, 2 और 3",
+                        "b": "(b) 1 and 2 Only / केवल 1 और 2",
+                        "c": "(c) 2, 3 and 4 Only / केवल 2, 3 और 4",
+                        "d": "(d) 1, 2, 3 and 4 / 1, 2, 3 और 4"
+                    },
+                    "answer": "a"
+                },
+                {
+                    "id": 17,
+                    "english": "Consider the following statements:\nStatement-I: Zonal Councils in India are established under the States Reorganisation Act, 1956 to promote interstate cooperation and coordination.\nStatement-II: The Chief Ministers of the states in each zone act as the Chairman of the respective Zonal Council by rotation, each holding office for a period of one year.\nWhich one of the following is correct in respect of the above statements?",
+                    "hindi": "निम्नलिखित कथनों पर विचार कीजिए:\nकथन-I: भारत में क्षेत्रीय परिषदों (Zonal Councils) की स्थापना राज्य पुनर्गठन अधिनियम, 1956 के तहत अंतरराज्यीय सहयोग और समन्वय को बढ़ावा देने के लिए की गई है।\nकथन-II: प्रत्येक क्षेत्र के राज्यों के मुख्यमंत्री रोटेशन द्वारा संबंधित क्षेत्रीय परिषद के अध्यक्ष के रूप में कार्य करते हैं, प्रत्येक एक वर्ष की अवधि के लिए पद धारण करता है।\nउपर्युक्त कथनों के संबंध में निम्नलिखित में से कौन सा सही है?",
+                    "options": {
+                        "a": "(a) Both Statement-I and Statement-II are correct and Statement-II explains Statement-I / कथन-I और कथन-II दोनों सही हैं और कथन-II कथन-I की व्याख्या करता है",
+                        "b": "(b) Both Statement-I and Statement-II are correct, but Statement-II does not explain Statement-I / कथन-I और कथन-II दोनों सही हैं, लेकिन कथन-II कथन-I की व्याख्या नहीं करता है",
+                        "c": "(c) Statement-I is correct, but Statement-II is incorrect / कथन-I सही है, लेकिन कथन-II गलत है",
+                        "d": "(d) Statement-I is incorrect, but Statement-II is correct / कथन-I गलत है, लेकिन कथन-II सही है"
+                    },
+                    "answer": "c"
+                },
+                {
+                    "id": 18,
+                    "english": "Consider the following pairs:\nBody - Type - Objective/Function\n1. Insurance Regulatory and Development Authority of India (IRDAI) - Statutory - Regulates and promotes the insurance and reinsurance sectors\n2. Reserve Bank of India (RBI) - Statutory - Issues currency, regulates banks and manages monetary policy\n3. Finance Commission of India - Constitutional - Recommends distribution of tax revenues between Centre and States\nHow many of the given above are correctly matched?",
+                    "hindi": "निम्नलिखित युग्मों पर विचार कीजिए:\nनिकाय - प्रकार - उद्देश्य/कार्य\n1. भारतीय बीमा विनियामक और विकास प्राधिकरण (IRDAI) - वैधानिक - बीमा और पुनर्बीमा क्षेत्रों को विनियमित और बढ़ावा देता है\n2. भारतीय रिज़र्व बैंक (RBI) - वैधानिक - मुद्रा जारी करता है, बैंकों को विनियमित करता है और मौद्रिक नीति का प्रबंधन करता है\n3. भारत का वित्त आयोग - संवैधानिक - केंद्र और राज्यों के बीच कर राजस्व के वितरण की सिफारिश करता है\nऊपर दिए गए में से कितने सही सुमेलित हैं?",
+                    "options": {
+                        "a": "(a) Only one pair / केवल एक युग्म",
+                        "b": "(b) Only two pairs / केवल दो युग्म",
+                        "c": "(c) All three pair / सभी तीन युग्म",
+                        "d": "(d) None of the pairs / कोई भी युग्म नहीं"
+                    },
+                    "answer": "c"
+                },
+                {
+                    "id": 19,
+                    "english": "Consider the following statements:\n1. The Sixth Schedule was originally intended for the predominantly tribal areas of undivided Assam, which were categorized as \"excluded areas\" under the Government of India Act, 1935.\n2. The Sixth Schedule was formulated based on the report of the Bardoloi Committee formed by the Constituent Assembly.\nWhich of the statements given above is/are incorrect?",
+                    "hindi": "निम्नलिखित कथनों पर विचार कीजिए:\n1. छठी अनुसूची मूल रूप से अविभाजित असम के मुख्य रूप से आदिवासी क्षेत्रों के लिए थी, जिन्हें भारत सरकार अधिनियम, 1935 के तहत \"बहिष्कृत क्षेत्रों\" के रूप में वर्गीकृत किया गया था।\n2. छठी अनुसूची संविधान सभा द्वारा गठित बारदोलोई समिति की रिपोर्ट के आधार पर तैयार की गई थी।\nऊपर दिए गए कथनों में से कौन-सा/से गलत है/हैं?",
+                    "options": {
+                        "a": "(a) 1 only / केवल 1",
+                        "b": "(b) 2 only / केवल 2",
+                        "c": "(c) Both 1 and 2 / 1 और 2 दोनों",
+                        "d": "(d) Neither 1 nor 2 / न तो 1 और न ही 2"
+                    },
+                    "answer": "d"
+                },
+                {
+                    "id": 20,
+                    "english": "Which of the following statements with respect to provisions of the 74th Constitutional Amendment Act is/are correct?\n1. The Act provides for the constitution of a Ward Committee in every municipality having a population of 3 lakh or more.\n2. The Act mandates the creation of a Metropolitan Planning Committee for metropolitan areas.\nSelect the correct answer using the code given below:",
+                    "hindi": "74वें संविधान संशोधन अधिनियम के प्रावधानों के संबंध में निम्नलिखित में से कौन सा/से कथन सही है/हैं?\n1. यह अधिनियम 3 लाख या उससे अधिक की आबादी वाली प्रत्येक नगरपालिका में वार्ड समिति के गठन का प्रावधान करता है।\n2. यह अधिनियम महानगरीय क्षेत्रों के लिए एक महानगर योजना समिति (Metropolitan Planning Committee) के निर्माण को अनिवार्य करता है।\nनीचे दिए गए कूट का उपयोग करके सही उत्तर चुनिए:",
+                    "options": {
+                        "a": "(a) 1 only / केवल 1",
+                        "b": "(b) 2 only / केवल 2",
+                        "c": "(c) Both 1 and 2 / 1 और 2 दोनों",
+                        "d": "(d) Neither 1 nor 2 / न तो 1 और न ही 2"
+                    },
+                    "answer": "b"
+                },
+                {
+                    "id": 21,
+                    "english": "Consider the following statements regarding eligibility to be a candidate for Panchayat elections in India:\n1. The minimum age to contest Panchayat elections is 21 years.\n2. Disqualification for insolvency or unsound mind applies to Panchayat elections as well.\n3. Educational qualifications are uniformly prescribed across all States under the 73rd Amendment.\nWhich of the above statements is/are correct?",
+                    "hindi": "भारत में पंचायत चुनाव के लिए उम्मीदवार होने की पात्रता के संबंध में निम्नलिखित कथनों पर विचार कीजिए:\n1. पंचायत चुनाव लड़ने के लिए न्यूनतम आयु 21 वर्ष है।\n2. दिवालियापन या अस्वस्थ मन के लिए अयोग्यता पंचायत चुनावों पर भी लागू होती है।\n3. 73वें संशोधन के तहत सभी राज्यों में शैक्षिक योग्यता समान रूप से निर्धारित की गई है।\nउपर्युक्त कथनों में से कौन-सा/से सही है/हैं?",
+                    "options": {
+                        "a": "(a) 1 and 2 only / केवल 1 और 2",
+                        "b": "(b) 1 and 3 only / केवल 1 और 3",
+                        "c": "(c) 2 and 3 only / केवल 2 और 3",
+                        "d": "(d) 3 only / केवल 3"
+                    },
+                    "answer": "a"
+                },
+                {
+                    "id": 22,
+                    "english": "Consider the following statements:\nStatement-I: The Comptroller and Auditor General of India (CAG) is not a part of the Union Executive under the Constitution.\nStatement-II: The CAG functions as an independent constitutional authority to ensure impartial auditing of public accounts.\nWhich one of the following is correct in respect of the above statements?",
+                    "hindi": "निम्नलिखित कथनों पर विचार कीजिए:\nकथन-I: भारत के नियंत्रक और महालेखा परीक्षक (CAG) संविधान के तहत केंद्रीय कार्यपालिका का हिस्सा नहीं हैं।\nकथन-II: CAG सार्वजनिक खातों की निष्पक्ष ऑडिटिंग सुनिश्चित करने के लिए एक स्वतंत्र संवैधानिक प्राधिकरण के रूप में कार्य करता है।\nउपर्युक्त कथनों के संबंध में निम्नलिखित में से कौन सा सही है?",
+                    "options": {
+                        "a": "(a) Both Statement 1 and Statement 2 are correct, and Statement 2 explains Statement 1 / कथन 1 और कथन 2 दोनों सही हैं, और कथन 2 कथन 1 की व्याख्या करता है",
+                        "b": "(b) Both Statement 1 and Statement 2 are correct, but Statement 2 does not explain Statement 1 / कथन 1 और कथन 2 दोनों सही हैं, लेकिन कथन 2 कथन 1 की व्याख्या नहीं करता है",
+                        "c": "(c) Statement 1 is correct, but Statement 2 is incorrect / कथन 1 सही है, लेकिन कथन 2 गलत है",
+                        "d": "(d) Statement 1 is incorrect, but Statement 2 is correct / कथन 1 गलत है, लेकिन कथन 2 सही है"
+                    },
+                    "answer": "a"
+                },
+                {
+                    "id": 23,
+                    "english": "Consider the following statements regarding the functions of the National Commission for Backward Classes (NCBC):\n1. It examines requests for inclusion of any class of citizens as a backward class in the Central List and advises the Government on such matters.\n2. It investigates and monitors all matters relating to the safeguards provided for backward classes under the Constitution.\n3. It has the power to look into the inclusion or exclusion of Scheduled Castes and Scheduled Tribes in their respective lists.\n4. It presents annual and special reports to the President on working of the safeguards for backward classes.\nHow many of the above statements are incorrect?",
+                    "hindi": "राष्ट्रीय पिछड़ा वर्ग आयोग (NCBC) के कार्यों के संबंध में निम्नलिखित कथनों पर विचार कीजिए:\n1. यह केंद्रीय सूची में पिछड़ा वर्ग के रूप में नागरिकों के किसी भी वर्ग को शामिल करने के अनुरोधों की जांच करता है और ऐसे मामलों पर सरकार को सलाह देता है।\n2. यह संविधान के तहत पिछड़े वर्गों के लिए प्रदान किए गए सुरक्षा उपायों से संबंधित सभी मामलों की जांच और निगरानी करता है।\n3. इसके पास अपनी संबंधित सूचियों में अनुसूचित जातियों और अनुसूचित जनजातियों को शामिल करने या बाहर करने पर विचार करने की शक्ति है।\n4. यह पिछड़े वर्गों के लिए सुरक्षा उपायों के कामकाज पर राष्ट्रपति को वार्षिक और विशेष रिपोर्ट प्रस्तुत करता है।\nउपर्युक्त कथनों में से कितने गलत हैं?",
+                    "options": {
+                        "a": "(a) Only one / केवल एक",
+                        "b": "(b) Only two / केवल दो",
+                        "c": "(c) Only three / केवल तीन",
+                        "d": "(d) None / कोई नहीं"
+                    },
+                    "answer": "a"
+                },
+                {
+                    "id": 24,
+                    "english": "How many Finance Commissions have been constituted in India till date (2025)?",
+                    "hindi": "भारत में अब तक (2025) कितने वित्त आयोगों का गठन किया गया है?",
+                    "options": {
+                        "a": "(a) 14",
+                        "b": "(b) 15",
+                        "c": "(c) 16",
+                        "d": "(d) 17"
+                    },
+                    "answer": "c"
+                },
+                {
+                    "id": 25,
+                    "english": "How many of the following statements about National Disaster Management Authority (NDMA) is/are correct?\n1. It is also the apex body to lay down policies, plans and guidelines for Disaster Management to ensure a timely and effective response to disasters.\n2. It is headed by the Minister of Home Affairs.\n3. It covers both natural as well as man-made disaster in its ambit.\nSelect the correct answer from the code given below:",
+                    "hindi": "राष्ट्रीय आपदा प्रबंधन प्राधिकरण (NDMA) के बारे में निम्नलिखित में से कितने कथन सही हैं?\n1. यह आपदाओं पर समय पर और प्रभावी प्रतिक्रिया सुनिश्चित करने के लिए आपदा प्रबंधन के लिए नीतियां, योजनाएं और दिशानिर्देश निर्धारित करने वाला सर्वोच्च निकाय भी है।\n2. इसकी अध्यक्षता गृह मंत्री करते हैं।\n3. यह अपने दायरे में प्राकृतिक और मानव निर्मित दोनों आपदाओं को शामिल करता है।\nनीचे दिए गए कूट से सही उत्तर चुनिए:",
+                    "options": {
+                        "a": "(a) Only one / केवल एक",
+                        "b": "(b) Only two / केवल दो",
+                        "c": "(c) All three / सभी तीन",
+                        "d": "(d) None / कोई नहीं"
+                    },
+                    "answer": "b"
+                },
+                {
+                    "id": 26,
+                    "english": "Which of the following are the reasons for the ineffective performance of local bodies in India?\n1. Lack of functional devolution by the states\n2. Irregular constitution of State Finance Commissions\n3. Creation of Parallel bodies\n4. Adoption of Principle of Subsidiarity\nSelect the correct answer using the code given below:",
+                    "hindi": "भारत में स्थानीय निकायों के अप्रभावी प्रदर्शन के निम्नलिखित में से कौन से कारण हैं?\n1. राज्यों द्वारा कार्यात्मक हस्तांतरण (devolution) की कमी\n2. राज्य वित्त आयोगों का अनियमित गठन\n3. समानांतर निकायों का निर्माण\n4. सहायकता (Subsidiarity) के सिद्धांत को अपनाना\nनीचे दिए गए कूट का उपयोग करके सही उत्तर चुनिए:",
+                    "options": {
+                        "a": "(a) 1, 2 and 3 only / केवल 1, 2 और 3",
+                        "b": "(b) 1, 3 and 4 only / केवल 1, 3 और 4",
+                        "c": "(c) 2 and 4 only / केवल 2 और 4",
+                        "d": "(d) 1, 2, 3 and 4 / 1, 2, 3 और 4"
+                    },
+                    "answer": "a"
+                },
+                {
+                    "id": 27,
+                    "english": "Consider the following statements regarding the appointment of the Central Vigilance Commissioner and Vigilance Commissioners:\n1. The appointment is made by the President of India on the recommendation of a committee.\n2. The committee consists of the Prime Minister (Chairperson), the Union Minister of Home Affairs, and the Leader of Opposition in the Lok Sabha.\n3. The CVC is a statutory body.\nHow many of the above statements are correct?",
+                    "hindi": "केंद्रीय सतर्कता आयुक्त और सतर्कता आयुक्तों की नियुक्ति के संबंध में निम्नलिखित कथनों पर विचार कीजिए:\n1. नियुक्ति एक समिति की सिफारिश पर भारत के राष्ट्रपति द्वारा की जाती है।\n2. समिति में प्रधान मंत्री (अध्यक्ष), केंद्रीय गृह मंत्री और लोकसभा में विपक्ष के नेता शामिल होते हैं।\n3. सीवीसी (CVC) एक वैधानिक निकाय है।\nउपर्युक्त कथनों में से कितने सही हैं?",
+                    "options": {
+                        "a": "(a) Only one / केवल एक",
+                        "b": "(b) Only two / केवल दो",
+                        "c": "(c) All three / सभी तीन",
+                        "d": "(d) None / कोई नहीं"
+                    },
+                    "answer": "c"
+                },
+                {
+                    "id": 28,
+                    "english": "Which of the following statements regarding State Human Rights Commission is/are correct?\n1. A serving or retired District Judge in the state can be its member.\n2. Its members hold the position till the pleasure of the Governor.\n3. Its members hold office for a term of three years or until they attain the age of 70 years, whichever is earlier.\nSelect the correct answer using the codes given below:",
+                    "hindi": "राज्य मानवाधिकार आयोग के संबंध में निम्नलिखित में से कौन सा/से कथन सही है/हैं?\n1. राज्य में कार्यरत या सेवानिवृत्त जिला न्यायाधीश इसके सदस्य हो सकते हैं।\n2. इसके सदस्य राज्यपाल के प्रसादपर्यंत पद धारण करते हैं।\n3. इसके सदस्य तीन साल की अवधि के लिए या 70 वर्ष की आयु प्राप्त करने तक, जो भी पहले हो, पद धारण करते हैं।\nनीचे दिए गए कूट का उपयोग करके सही उत्तर चुनिए:",
+                    "options": {
+                        "a": "(a) 1 only / केवल 1",
+                        "b": "(b) 1 and 3 only / केवल 1 और 3",
+                        "c": "(c) 2 and 3 only / केवल 2 और 3",
+                        "d": "(d) 1, 2 and 3 / 1, 2 और 3"
+                    },
+                    "answer": "b"
+                },
+                {
+                    "id": 29,
+                    "english": "Consider the following statements regarding the appointment and removal of the Central Information Commissioner (CIC) and Information Commissioners under the Right to Information Act, 2005:\n1. The CIC and Information Commissioners are appointed by the President on the recommendation of a committee consisting of the Prime Minister, the Leader of Opposition in the Lok Sabha, and the Union Minister of Home Affairs.\n2. The CIC can be removed from office by the President on the grounds of proved misbehaviour or incapacity after an inquiry conducted by the Supreme Court.\n3. The CIC holds office for a term of five years from the date of entering office or until attaining the age of 65 years, whichever is earlier.\n4. The CIC and Information Commissioners are eligible for reappointment after completing their term.\nHow many of the statements given above are correct?",
+                    "hindi": "सूचना का अधिकार अधिनियम, 2005 के तहत केंद्रीय सूचना आयुक्त (CIC) और सूचना आयुक्तों की नियुक्ति और हटाने के संबंध में निम्नलिखित कथनों पर विचार कीजिए:\n1. CIC और सूचना आयुक्तों की नियुक्ति राष्ट्रपति द्वारा एक समिति की सिफारिश पर की जाती है जिसमें प्रधान मंत्री, लोकसभा में विपक्ष के नेता और केंद्रीय गृह मंत्री शामिल होते हैं।\n2. CIC को सर्वोच्च न्यायालय द्वारा की गई जांच के बाद सिद्ध कदाचार या अक्षमता के आधार पर राष्ट्रपति द्वारा पद से हटाया जा सकता है।\n3. CIC पद ग्रहण करने की तारीख से पांच साल की अवधि के लिए या 65 वर्ष की आयु प्राप्त करने तक, जो भी पहले हो, पद धारण करता है।\n4. CIC और सूचना आयुक्त अपना कार्यकाल पूरा करने के बाद पुनर्नियुक्ति के लिए पात्र हैं।\nऊपर दिए गए कथनों में से कितने सही हैं?",
+                    "options": {
+                        "a": "(a) Only one / केवल एक",
+                        "b": "(b) Only two / केवल दो",
+                        "c": "(c) Only three / केवल तीन",
+                        "d": "(d) All four / सभी चार"
+                    },
+                    "answer": "b"
+                },
+                {
+                    "id": 30,
+                    "english": "Consider the following statements regarding National Commission for Protection of Child Rights (NCPCR):\n1. National Commission for Protection of Child Rights (NCPCR) is a statutory body under the administrative control of the Ministry of Women & Child Development.\n2. The Commission's mandate to ensure that all Laws, Policies and Programmes are in consonance with UN Convention on the Rights of the Child.\n3. The Commission considers a 'child' as a person who is in between the age group 0-18 years.\nWhich of the above statements are correct?",
+                    "hindi": "राष्ट्रीय बाल अधिकार संरक्षण आयोग (NCPCR) के संबंध में निम्नलिखित कथनों पर विचार कीजिए:\n1. राष्ट्रीय बाल अधिकार संरक्षण आयोग (NCPCR) महिला और बाल विकास मंत्रालय के प्रशासनिक नियंत्रण के तहत एक वैधानिक निकाय है।\n2. आयोग का जनादेश यह सुनिश्चित करना है कि सभी कानून, नीतियां और कार्यक्रम बाल अधिकारों पर संयुक्त राष्ट्र कन्वेंशन के अनुरूप हों।\n3. आयोग 'बच्चे' को एक ऐसे व्यक्ति के रूप में मानता है जो 0-18 वर्ष के आयु वर्ग के बीच है।\nउपर्युक्त कथनों में से कौन-से सही हैं?",
+                    "options": {
+                        "a": "(a) 1 and 2 only / केवल 1 और 2",
+                        "b": "(b) 1 and 3 only / केवल 1 और 3",
+                        "c": "(c) 2 and 3 only / केवल 2 और 3",
+                        "d": "(d) 1, 2 and 3 / 1, 2 और 3"
+                    },
+                    "answer": "d"
+                },
+                {
+                    "id": 31,
+                    "english": "Consider the following statements regarding the powers of the Election Commission of India (ECI):\n1. The Election Commission can advise the President to disqualify a Member of Parliament under the Representation of the People Act, 1951.\n2. The Election Commission is empowered to determine the territorial constituencies for elections to Parliament and State Legislatures.\n3. During elections, the Election Commission can issue directions to government officials to ensure free and fair polls.\n4. The decisions of the Election Commission in matters of election disputes are binding on all courts.\nHow many of the above statements are correct?",
+                    "hindi": "भारत निर्वाचन आयोग (ECI) की शक्तियों के संबंध में निम्नलिखित कथनों पर विचार कीजिए:\n1. चुनाव आयोग लोक प्रतिनिधित्व अधिनियम, 1951 के तहत संसद सदस्य को अयोग्य घोषित करने के लिए राष्ट्रपति को सलाह दे सकता है।\n2. चुनाव आयोग को संसद और राज्य विधानसभाओं के चुनावों के लिए क्षेत्रीय निर्वाचन क्षेत्रों को निर्धारित करने का अधिकार है।\n3. चुनावों के दौरान, चुनाव आयोग स्वतंत्र और निष्पक्ष चुनाव सुनिश्चित करने के लिए सरकारी अधिकारियों को निर्देश जारी कर सकता है।\n4. चुनावी विवादों के मामलों में चुनाव आयोग के निर्णय सभी अदालतों पर बाध्यकारी होते हैं।\nउपर्युक्त कथनों में से कितने सही हैं?",
+                    "options": {
+                        "a": "(a) Only one / केवल एक",
+                        "b": "(b) Only two / केवल दो",
+                        "c": "(c) Only three / केवल तीन",
+                        "d": "(d) All four / सभी चार"
+                    },
+                    "answer": "b"
+                },
+                {
+                    "id": 32,
+                    "english": "Match the following Autonomous District Councils (ADCs) with the states in which they are located:\nList I (ADC) - List II (State)\nA. Karbi Anglong Autonomous Council - 1. Meghalaya\nB. Bodoland Territorial Council - 2. Tripura\nC. Garo Hills Autonomous District Council - 3. Assam\nD. Tripura Tribal Areas Autonomous District Council - 4. Mizoram",
+                    "hindi": "निम्नलिखित स्वायत्त जिला परिषदों (ADCs) को उन राज्यों के साथ सुमेलित करें जिनमें वे स्थित हैं:\nसूची I (ADC) - सूची II (राज्य)\nA. कार्बी आंगलोंग स्वायत्त परिषद - 1. मेघालय\nB. बोडोलैंड प्रादेशिक परिषद - 2. त्रिपुरा\nC. गारो हिल्स स्वायत्त जिला परिषद - 3. असम\nD. त्रिपुरा जनजातीय क्षेत्र स्वायत्त जिला परिषद - 4. मिजोरम",
+                    "options": {
+                        "a": "(a) A-3, B-3, C-1, D-2",
+                        "b": "(b) A-1, B-3, C-2, D-4",
+                        "c": "(c) A-4, B-1, C-3, D-2",
+                        "d": "(d) A-3, B-1, C-4, D-2"
+                    },
+                    "answer": "a"
+                },
+                {
+                    "id": 33,
+                    "english": "Consider the following statements regarding the current operational efficiency of the Panchayati Raj Institutions:\nAssertion (A): It has been a common practice to achieve speedy implementation and greater accountability, parallel bodies (PBs) are created to perform the similar functions as Panchayats.\nReason (R): PBs has shown to achieve their goals more effectively, and have been largely away from the shortcomings of the Panchayati Raj.\nSelect the correct answer using the code given below:",
+                    "hindi": "पंचायती राज संस्थाओं की वर्तमान परिचालन दक्षता के संबंध में निम्नलिखित कथनों पर विचार कीजिए:\nअभिकथन (A): त्वरित कार्यान्वयन और अधिक जवाबदेही प्राप्त करने के लिए यह एक आम बात रही है, पंचायतों के समान कार्य करने के लिए समानांतर निकाय (PBs) बनाए जाते हैं।\nकारण (R): PBs ने अपने लक्ष्यों को अधिक प्रभावी ढंग से प्राप्त किया है, और काफी हद तक पंचायती राज की कमियों से दूर रहे हैं।\nनीचे दिए गए कूट का उपयोग करके सही उत्तर चुनिए:",
+                    "options": {
+                        "a": "(a) Both A and R are correct and R is suitable explanation for A. / A और R दोनों सही हैं और R, A की उपयुक्त व्याख्या है।",
+                        "b": "(b) Both A and R are correct but R is not a suitable explanation for A. / A और R दोनों सही हैं लेकिन R, A की उपयुक्त व्याख्या नहीं है।",
+                        "c": "(c) A is correct but R is incorrect. / A सही है लेकिन R गलत है।",
+                        "d": "(d) Both A and R are incorrect. / A और R दोनों गलत हैं।"
+                    },
+                    "answer": "c"
+                },
+                {
+                    "id": 34,
+                    "english": "Consider the following statements:\nStatement-I: In case of a conflict between the Central law and the state law on a subject enumerated in the Concurrent List, the Central law prevails over the state law.\nStatement-II: The Constitution expressly secures the predominance of the Union List over the State List.\nWhich one of the following is correct in respect of the above statements?",
+                    "hindi": "निम्नलिखित कथनों पर विचार कीजिए:\nकथन-I: समवर्ती सूची में उल्लिखित किसी विषय पर केंद्रीय कानून और राज्य कानून के बीच संघर्ष के मामले में, केंद्रीय कानून राज्य के कानून पर हावी होता है।\nकथन-II: संविधान स्पष्ट रूप से राज्य सूची पर संघ सूची की प्रधानता सुनिश्चित करता है।\nउपर्युक्त कथनों के संबंध में निम्नलिखित में से कौन सा सही है?",
+                    "options": {
+                        "a": "(a) Both Statement-I and Statement-II are correct and Statement-II is the correct explanation for Statement-I. / कथन-I और कथन-II दोनों सही हैं और कथन-II कथन-I की सही व्याख्या है।",
+                        "b": "(b) Both Statement-I and Statement-II are correct and Statement-II is not the correct explanation for Statement-I. / कथन-I और कथन-II दोनों सही हैं और कथन-II कथन-I की सही व्याख्या नहीं है।",
+                        "c": "(c) Statement-I is incorrect but Statement-II is correct. / कथन-I गलत है लेकिन कथन-II सही है।",
+                        "d": "(d) Statement-I is correct but Statement-II is incorrect. / कथन-I सही है लेकिन कथन-II गलत है।"
+                    },
+                    "answer": "a"
+                },
+                {
+                    "id": 35,
+                    "english": "Consider the following statements regarding the Inter-State River Water Disputes (ISWRD) Tribunals in India:\n1. The Parliament has the power to adjudicate any dispute or complaint with respect to the use, distribution, or control of waters of inter-state rivers and river valleys.\n2. The Inter-State River Water Disputes Act, 1956 provides for the establishment of tribunals to resolve disputes between states.\n3. The decision of an Inter-State River Water Disputes Tribunal is binding on the states but can be challenged in the Supreme Court.\n4. The 2019 amendment to the ISWRD Act provides for the constitution of a single, permanent tribunal with multiple benches.\nHow many of the statements given above are correct?",
+                    "hindi": "भारत में अंतर-राज्यीय नदी जल विवाद (ISWRD) न्यायाधिकरणों के संबंध में निम्नलिखित कथनों पर विचार कीजिए:\n1. संसद के पास अंतर-राज्यीय नदियों और नदी घाटियों के पानी के उपयोग, वितरण या नियंत्रण के संबंध में किसी भी विवाद या शिकायत का न्यायनिर्णयन करने की शक्ति है।\n2. अंतर-राज्यीय नदी जल विवाद अधिनियम, 1956 राज्यों के बीच विवादों को हल करने के लिए न्यायाधिकरणों की स्थापना का प्रावधान करता है।\n3. अंतर-राज्यीय नदी जल विवाद न्यायाधिकरण का निर्णय राज्यों पर बाध्यकारी है लेकिन इसे सर्वोच्च न्यायालय में चुनौती दी जा सकती है।\n4. ISWRD अधिनियम में 2019 का संशोधन कई बेंचों के साथ एकल, स्थायी न्यायाधिकरण के गठन का प्रावधान करता है।\nऊपर दिए गए कथनों में से कितने सही हैं?",
+                    "options": {
+                        "a": "(a) Only one / केवल एक",
+                        "b": "(b) Only two / केवल दो",
+                        "c": "(c) Only three / केवल तीन",
+                        "d": "(d) All four / सभी चार"
+                    },
+                    "answer": "b"
+                },
+                {
+                    "id": 36,
+                    "english": "Which of the following best describes the concept of co-operative federalism in the Indian context?",
+                    "hindi": "निम्नलिखित में से कौन भारतीय संदर्भ में सहकारी संघवाद (co-operative federalism) की अवधारणा का सबसे अच्छा वर्णन करता है?",
+                    "options": {
+                        "a": "(a) A system where the Union and State Governments are entirely independent in their respective spheres of power. / एक ऐसी प्रणाली जहां संघ और राज्य सरकारें शक्ति के अपने संबंधित क्षेत्रों में पूरी तरह से स्वतंत्र हैं।",
+                        "b": "(b) A system where the Union and State Governments share resources, responsibilities, and work jointly to achieve common national goals. / एक ऐसी प्रणाली जहां संघ और राज्य सरकारें संसाधन, जिम्मेदारियां साझा करती हैं, और सामान्य राष्ट्रीय लक्ष्यों को प्राप्त करने के लिए संयुक्त रूप से काम करती हैं।",
+                        "c": "(c) A system where the States enjoy supremacy over the Union in matters of governance. / एक ऐसी प्रणाली जहां राज्य शासन के मामलों में संघ पर सर्वोच्चता का आनंद लेते हैं।",
+                        "d": "(d) A system where the Union Government directs and controls all functions of the State Governments. / एक ऐसी प्रणाली जहां केंद्र सरकार राज्य सरकारों के सभी कार्यों को निर्देशित और नियंत्रित करती है।"
+                    },
+                    "answer": "b"
+                },
+                {
+                    "id": 37,
+                    "english": "Consider the following statements regarding the Metropolitan Planning Committee (MPC) in India:\n1. The Metropolitan Planning Committee is a constitutional body mandated under the 74th Constitutional Amendment Act, 1992.\n2. Not less than two-thirds of the members of a Metropolitan Planning Committee are to be elected by, and from amongst, the elected members of the Municipalities and Chairpersons of Panchayats in the Metropolitan area.\n3. The size and composition of the Metropolitan Planning Committee are uniformly fixed for all States by the Constitution.\n4. The Metropolitan Planning Committee is tasked with preparing a draft development plan for the entire metropolitan region.\nHow many of the above statements are correct?",
+                    "hindi": "भारत में महानगर योजना समिति (MPC) के संबंध में निम्नलिखित कथनों पर विचार कीजिए:\n1. महानगर योजना समिति 74वें संविधान संशोधन अधिनियम, 1992 के तहत अनिवार्य एक संवैधानिक निकाय है।\n2. महानगर योजना समिति के दो-तिहाई से कम सदस्य महानगर क्षेत्र में नगर पालिकाओं के निर्वाचित सदस्यों और पंचायतों के अध्यक्षों द्वारा और उनमें से चुने जाने हैं।\n3. महानगर योजना समिति का आकार और संरचना संविधान द्वारा सभी राज्यों के लिए समान रूप से तय की गई है।\n4. महानगर योजना समिति को पूरे महानगरीय क्षेत्र के लिए एक मसौदा विकास योजना तैयार करने का काम सौंपा गया है।\nउपर्युक्त कथनों में से कितने सही हैं?",
+                    "options": {
+                        "a": "(a) Only one / केवल एक",
+                        "b": "(b) Only two / केवल दो",
+                        "c": "(c) Only three / केवल तीन",
+                        "d": "(d) All four / सभी चार"
+                    },
+                    "answer": "c"
+                },
+                {
+                    "id": 38,
+                    "english": "Consider the following statements regarding the legislative powers of the Legislative Assembly of Puducherry:\n1. The Legislative Assembly of Puducherry can make laws with respect to matters enumerated in the State List and Concurrent List, subject to the overriding powers of Parliament.\n2. A law made by the Puducherry Legislative Assembly on a Concurrent List subject will prevail over a Central law in that Union Territory if it has received the assent of the President.\n3. The Lieutenant Governor of Puducherry can reserve certain bills passed by the Legislative Assembly for the consideration of the President.\n4. The Legislative Assembly of Puducherry has no power to legislate on matters in the State List.\nHow many of the above statements are correct?",
+                    "hindi": "पुडुचेरी विधानसभा की विधायी शक्तियों के संबंध में निम्नलिखित कथनों पर विचार कीजिए:\n1. पुडुचेरी विधानसभा राज्य सूची और समवर्ती सूची में उल्लिखित मामलों के संबंध में कानून बना सकती है, जो संसद की अधिभावी शक्तियों के अधीन है।\n2. समवर्ती सूची के विषय पर पुडुचेरी विधानसभा द्वारा बनाया गया कानून उस केंद्र शासित प्रदेश में केंद्रीय कानून पर हावी होगा यदि उसे राष्ट्रपति की स्वीकृति मिल गई है।\n3. पुडुचेरी के उपराज्यपाल विधानसभा द्वारा पारित कुछ विधेयकों को राष्ट्रपति के विचारार्थ आरक्षित कर सकते हैं।\n4. पुडुचेरी विधानसभा को राज्य सूची के मामलों पर कानून बनाने का कोई अधिकार नहीं है।\nउपर्युक्त कथनों में से कितने सही हैं?",
+                    "options": {
+                        "a": "(a) Only one / केवल एक",
+                        "b": "(b) Only two / केवल दो",
+                        "c": "(c) Only three / केवल तीन",
+                        "d": "(d) All four / सभी चार"
+                    },
+                    "answer": "c"
+                },
+                {
+                    "id": 39,
+                    "english": "Under Article 240 of the Constitution, the President of India has the power to make regulations for the peace, progress, and good governance of certain Union Territories. Which of the following Union Territories are covered under this provision?\n1. Andaman & Nicobar Islands\n2. Lakshadweep\n3. Ladakh\n4. Puducherry\nSelect the correct answer using the code given below:",
+                    "hindi": "संविधान के अनुच्छेद 240 के तहत, भारत के राष्ट्रपति के पास कुछ केंद्र शासित प्रदेशों की शांति, प्रगति और सुशासन के लिए नियम बनाने की शक्ति है। निम्नलिखित में से कौन से केंद्र शासित प्रदेश इस प्रावधान के अंतर्गत आते हैं?\n1. अंडमान और निकोबार द्वीप समूह\n2. लक्षद्वीप\n3. लद्दाख\n4. पुडुचेरी\nनीचे दिए गए कूट का उपयोग करके सही उत्तर चुनिए:",
+                    "options": {
+                        "a": "(a) 1, 2 and 3 only / केवल 1, 2 और 3",
+                        "b": "(b) 1, 3 and 4 only / केवल 1, 3 और 4",
+                        "c": "(c) 2 and 4 only / केवल 2 और 4",
+                        "d": "(d) 1, 2, 3 and 4 / 1, 2, 3 और 4"
+                    },
+                    "answer": "a"
+                },
+                {
+                    "id": 40,
+                    "english": "Consider the following statements:\nStatement-I: The 12th Schedule empowers Municipalities with responsibilities for managing urban spaces, including market regulation and slum improvement, which necessitates a high degree of local administrative capability.\nStatement-II: This empowerment reflects a dual approach to urban governance, balancing central oversight with local execution to address both macro-level policies and micro-level issues effectively.\nWhich one of the following is correct in respect of the above statements?",
+                    "hindi": "निम्नलिखित कथनों पर विचार कीजिए:\nकथन-I: 12वीं अनुसूची नगर पालिकाओं को बाजार विनियमन और स्लम सुधार सहित शहरी स्थानों के प्रबंधन की जिम्मेदारियों के साथ सशक्त बनाती है, जिसके लिए उच्च स्तर की स्थानीय प्रशासनिक क्षमता की आवश्यकता होती है।\nकथन-II: यह सशक्तिकरण शहरी शासन के प्रति दोहरे दृष्टिकोण को दर्शाता है, जो मैक्रो-स्तरीय नीतियों और सूक्ष्म-स्तरीय मुद्दों दोनों को प्रभावी ढंग से संबोधित करने के लिए स्थानीय निष्पादन के साथ केंद्रीय निगरानी को संतुलित करता है।\nउपर्युक्त कथनों के संबंध में निम्नलिखित में से कौन सा सही है?",
+                    "options": {
+                        "a": "(a) Both Statement-I and Statement-II are correct and Statement-II is the correct explanation for Statement-I. / कथन-I और कथन-II दोनों सही हैं और कथन-II कथन-I की सही व्याख्या है।",
+                        "b": "(b) Both Statement-I and Statement-II are correct and Statement-II is not the correct explanation for Statement-I. / कथन-I और कथन-II दोनों सही हैं और कथन-II कथन-I की सही व्याख्या नहीं है।",
+                        "c": "(c) Statement-I is incorrect but Statement-II is correct. / कथन-I गलत है लेकिन कथन-II सही है।",
+                        "d": "(d) Statement-I is incorrect and Statement-II is incorrect. / कथन-I गलत है और कथन-II गलत है।"
+                    },
+                    "answer": "a"
+                },
+                {
+                    "id": 41,
+                    "english": "Consider the following statements regarding administrator of union territories:\n1. He is the head of state like a governor.\n2. Governor of a state cannot be appointed as administrator of an adjoining union territory.\n3. The constitutional provisions for the administration of union territories also apply to the acquired territories.\nWhich of the statements given above is/are correct?",
+                    "hindi": "केंद्र शासित प्रदेशों के प्रशासक के संबंध में निम्नलिखित कथनों पर विचार कीजिए:\n1. वह राज्यपाल की तरह राज्य का प्रमुख होता है।\n2. किसी राज्य के राज्यपाल को निकटवर्ती केंद्र शासित प्रदेश के प्रशासक के रूप में नियुक्त नहीं किया जा सकता है।\n3. केंद्र शासित प्रदेशों के प्रशासन के लिए संवैधानिक प्रावधान अधिग्रहित क्षेत्रों (acquired territories) पर भी लागू होते हैं।\nऊपर दिए गए कथनों में से कौन-सा/से सही है/हैं?",
+                    "options": {
+                        "a": "(a) 1 and 2 only / केवल 1 और 2",
+                        "b": "(b) 2 and 3 only / केवल 2 और 3",
+                        "c": "(c) 3 only / केवल 3",
+                        "d": "(d) All of the above / उपरोक्त सभी"
+                    },
+                    "answer": "c"
+                },
+                {
+                    "id": 42,
+                    "english": "Consider the following statements regarding the Staff Selection Commission (SSC):\n1. The Staff Selection Commission is a statutory body established under the provisions of the Constitution of India.\n2. It functions under the administrative control of the Department of Personnel and Training (DoPT), Government of India.\n3. The SSC conducts recruitment to Group 'B' (non-gazetted) and Group 'C' posts in various Ministries, Departments, and subordinate offices of the Government of India.\n4. The headquarters of the SSC is located in New Delhi, and it also has regional and sub-regional offices across the country.\nHow many of the above statements are correct?",
+                    "hindi": "कर्मचारी चयन आयोग (SSC) के संबंध में निम्नलिखित कथनों पर विचार कीजिए:\n1. कर्मचारी चयन आयोग भारत के संविधान के प्रावधानों के तहत स्थापित एक वैधानिक निकाय है।\n2. यह कार्मिक और प्रशिक्षण विभाग (DoPT), भारत सरकार के प्रशासनिक नियंत्रण में कार्य करता है।\n3. एसएससी भारत सरकार के विभिन्न मंत्रालयों, विभागों और अधीनस्थ कार्यालयों में समूह 'बी' (अराजपत्रित) और समूह 'सी' पदों पर भर्ती आयोजित करता है।\n4. एसएससी का मुख्यालय नई दिल्ली में स्थित है, और इसके देश भर में क्षेत्रीय और उप-क्षेत्रीय कार्यालय भी हैं।\nउपर्युक्त कथनों में से कितने सही हैं?",
+                    "options": {
+                        "a": "(a) Only one / केवल एक",
+                        "b": "(b) Only two / केवल दो",
+                        "c": "(c) Only three / केवल तीन",
+                        "d": "(d) All four / सभी चार"
+                    },
+                    "answer": "c"
+                },
+                {
+                    "id": 43,
+                    "english": "Consider the following statements regarding the Union territory of Delhi:\n1. The chief minister is appointed by the Lt. governor.\n2. The council of ministers hold office during the pleasure of the President.\nWhich of the statements given above is/are correct?",
+                    "hindi": "दिल्ली केंद्र शासित प्रदेश के संबंध में निम्नलिखित कथनों पर विचार कीजिए:\n1. मुख्यमंत्री की नियुक्ति उपराज्यपाल द्वारा की जाती है।\n2. मंत्रिपरिषद राष्ट्रपति के प्रसादपर्यंत पद धारण करती है।\nऊपर दिए गए कथनों में से कौन-सा/से सही है/हैं?",
+                    "options": {
+                        "a": "(a) 1 only / केवल 1",
+                        "b": "(b) 2 only / केवल 2",
+                        "c": "(c) Both 1 and 2 / 1 और 2 दोनों",
+                        "d": "(d) Neither 1 nor 2 / न तो 1 और न ही 2"
+                    },
+                    "answer": "c"
+                },
+                {
+                    "id": 44,
+                    "english": "Consider the following statements regarding special provisions for certain states in India:\n1. Article 371A provides special provisions for the state of Nagaland, including protection of religious and social practices of Nagas.\n2. The Governor of Maharashtra has special responsibility for the development of Vidarbha region under Article 371.\n3. The President of India has the power to establish separate development boards for Hyderabad-Karnataka region in Karnataka.\nWhich of the statements given above is/are correct?",
+                    "hindi": "भारत में कुछ राज्यों के लिए विशेष प्रावधानों के संबंध में निम्नलिखित कथनों पर विचार कीजिए:\n1. अनुच्छेद 371A नागालैंड राज्य के लिए विशेष प्रावधान प्रदान करता है, जिसमें नागाओं की धार्मिक और सामाजिक प्रथाओं का संरक्षण शामिल है।\n2. महाराष्ट्र के राज्यपाल के पास अनुच्छेद 371 के तहत विदर्भ क्षेत्र के विकास के लिए विशेष जिम्मेदारी है।\n3. भारत के राष्ट्रपति के पास कर्नाटक में हैदराबाद-कर्नाटक क्षेत्र के लिए अलग विकास बोर्ड स्थापित करने की शक्ति है।\nऊपर दिए गए कथनों में से कौन-सा/से सही है/हैं?",
+                    "options": {
+                        "a": "(a) 1 and 2 only / केवल 1 और 2",
+                        "b": "(b) 1 and 3 only / केवल 1 और 3",
+                        "c": "(c) 2 and 3 only / केवल 2 और 3",
+                        "d": "(d) 1, 2 and 3 / 1, 2 और 3"
+                    },
+                    "answer": "b"
+                },
+                {
+                    "id": 45,
+                    "english": "Which of the following best describes the primary function of India's National Commission for Minorities?",
+                    "hindi": "निम्नलिखित में से कौन भारत के राष्ट्रीय अल्पसंख्यक आयोग के प्राथमिक कार्य का सबसे अच्छा वर्णन करता है?",
+                    "options": {
+                        "a": "(a) Enforcing quota systems in government jobs / सरकारी नौकरियों में कोटा प्रणाली लागू करना",
+                        "b": "(b) Promoting interfaith dialogues / अंतरधार्मिक संवाद को बढ़ावा देना",
+                        "c": "(c) Safeguarding the rights and interests of minority communities / अल्पसंख्यक समुदायों के अधिकारों और हितों की रक्षा करना",
+                        "d": "(d) Overseeing religious conversion processes / धार्मिक धर्मांतरण प्रक्रियाओं की निगरानी करना"
+                    },
+                    "answer": "c"
+                },
+                {
+                    "id": 46,
+                    "english": "Consider the following statements:\nStatement-I: NITI Aayog plays a crucial role in promoting cooperative federalism in India.\nStatement-II: NITI Aayog includes representation from all States and Union Territories in its Governing Council.\nStatement-III: NITI Aayog has the power to allocate financial resources among States.\nWhich one of the following is correct in respect of the above statements?",
+                    "hindi": "निम्नलिखित कथनों पर विचार कीजिए:\nकथन-I: नीति आयोग भारत में सहकारी संघवाद को बढ़ावा देने में महत्वपूर्ण भूमिका निभाता है।\nकथन-II: नीति आयोग अपनी गवर्निंग काउंसिल में सभी राज्यों और केंद्र शासित प्रदेशों का प्रतिनिधित्व शामिल करता है।\nकथन-III: नीति आयोग के पास राज्यों के बीच वित्तीय संसाधनों को आवंटित करने की शक्ति है।\nउपर्युक्त कथनों के संबंध में निम्नलिखित में से कौन सा सही है?",
+                    "options": {
+                        "a": "(a) Both Statement-II and Statement-III are correct and both of them explain Statement-I / कथन-II और कथन-III दोनों सही हैं और दोनों कथन-I की व्याख्या करते हैं",
+                        "b": "(b) Both Statement-II and Statement-III are correct, but only one of them explains Statement-I / कथन-II और कथन-III दोनों सही हैं, लेकिन उनमें से केवल एक कथन-I की व्याख्या करता है",
+                        "c": "(c) Only one of the Statements II and III is correct and that explains Statement-I / कथन II और III में से केवल एक सही है और वह कथन-I की व्याख्या करता है",
+                        "d": "(d) Neither Statement-II nor Statement-III is correct / न तो कथन-II और न ही कथन-III सही है"
+                    },
+                    "answer": "c"
+                },
+                {
+                    "id": 47,
+                    "english": "Consider the following statements regarding the Banking Ombudsman:\n1. It can issue orders for the redressal of complaints, but not for compensation for grievances.\n2. The Banking Ombudsman is appointed by the Reserve Bank of India (RBI).\n3. The Banking Ombudsman's decisions are advisory and not binding on the banks.\nHow many of the given statements is/are correct?",
+                    "hindi": "बैंकिंग लोकपाल (Banking Ombudsman) के संबंध में निम्नलिखित कथनों पर विचार कीजिए:\n1. यह शिकायतों के निवारण के लिए आदेश जारी कर सकता है, लेकिन शिकायतों के लिए मुआवजे के लिए नहीं।\n2. बैंकिंग लोकपाल की नियुक्ति भारतीय रिजर्व बैंक (RBI) द्वारा की जाती है।\n3. बैंकिंग लोकपाल के निर्णय सलाहकार होते हैं और बैंकों पर बाध्यकारी नहीं होते हैं।\nदिए गए कथनों में से कितने सही हैं?",
+                    "options": {
+                        "a": "(a) Only one / केवल एक",
+                        "b": "(b) Only two / केवल दो",
+                        "c": "(c) All three / सभी तीन",
+                        "d": "(d) None / कोई नहीं"
+                    },
+                    "answer": "a"
+                },
+                {
+                    "id": 48,
+                    "english": "Consider the following statements regarding the Central Board of Film Certification (CBFC):\n1. CBFC certifies films for public exhibition and Ensures that films do not promote harmful practices or content that may be detrimental to public safety and moral values.\n2. CBFC ensures compliance with film certification standards.\n3. CBFC Provides advice and recommendations on content that may be deemed sensitive or controversial, ensuring compliance with societal norms and legal requirements and it regulates and supervises housing finance companies.\nHow many of the given statements is/are correct?",
+                    "hindi": "केंद्रीय फिल्म प्रमाणन बोर्ड (CBFC) के संबंध में निम्नलिखित कथनों पर विचार कीजिए:\n1. सीबीएफसी सार्वजनिक प्रदर्शन के लिए फिल्मों को प्रमाणित करता है और यह सुनिश्चित करता है कि फिल्में हानिकारक प्रथाओं या ऐसी सामग्री को बढ़ावा न दें जो सार्वजनिक सुरक्षा और नैतिक मूल्यों के लिए हानिकारक हो सकती है।\n2. सीबीएफसी फिल्म प्रमाणन मानकों का अनुपालन सुनिश्चित करता है।\n3. सीबीएफसी ऐसी सामग्री पर सलाह और सिफारिशें प्रदान करता है जिसे संवेदनशील या विवादास्पद माना जा सकता है, सामाजिक मानदंडों और कानूनी आवश्यकताओं का अनुपालन सुनिश्चित करता है और यह हाउसिंग फाइनेंस कंपनियों को विनियमित और पर्यवेक्षण करता है।\nदिए गए कथनों में से कितने सही हैं?",
+                    "options": {
+                        "a": "(a) Only one / केवल एक",
+                        "b": "(b) Only two / केवल दो",
+                        "c": "(c) All three / सभी तीन",
+                        "d": "(d) None / कोई नहीं"
+                    },
+                    "answer": "b"
+                },
+                {
+                    "id": 49,
+                    "english": "Consider the following:\nAssertion (A): The Constitution of India guarantees the freedom of trade, commerce, and intercourse throughout the territory of India under Article 301.\nReason (R): Parliament may impose restrictions on such freedom in the public interest, and States cannot impose any restrictions even with the President's assent.\nWhich one of the following is correct?",
+                    "hindi": "निम्नलिखित पर विचार कीजिए:\nअभिकथन (A): भारत का संविधान अनुच्छेद 301 के तहत पूरे भारत में व्यापार, वाणिज्य और समागम की स्वतंत्रता की गारंटी देता है।\nकारण (R): संसद जनहित में ऐसी स्वतंत्रता पर प्रतिबंध लगा सकती है, और राज्य राष्ट्रपति की सहमति से भी कोई प्रतिबंध नहीं लगा सकते हैं।\nनिम्नलिखित में से कौन सा सही है?",
+                    "options": {
+                        "a": "(a) Both A and R are correct, and R is the correct explanation of A / A और R दोनों सही हैं, और R, A की सही व्याख्या है",
+                        "b": "(b) Both A and R are correct, but R is not the correct explanation of A / A और R दोनों सही हैं, लेकिन R, A की सही व्याख्या नहीं है",
+                        "c": "(c) A is correct, but R is incorrect / A सही है, लेकिन R गलत है",
+                        "d": "(d) A is incorrect, but R is correct / A गलत है, लेकिन R सही है"
+                    },
+                    "answer": "c"
+                },
+                {
+                    "id": 50,
+                    "english": "Arrange the following Union Territories of India in the correct chronological order of their creation:\n1. Dadra and Nagar Haveli\n2. Chandigarh\n3. Andaman and Nicobar Islands\n4. Ladakh\nSelect correct answer from the following:",
+                    "hindi": "भारत के निम्नलिखित केंद्र शासित प्रदेशों को उनके निर्माण के सही कालानुक्रमिक क्रम में व्यवस्थित करें:\n1. दादरा और नगर हवेली\n2. चंडीगढ़\n3. अंडमान और निकोबार द्वीप समूह\n4. लद्दाख\nनिम्नलिखित में से सही उत्तर चुनिए:",
+                    "options": {
+                        "a": "(a) 3-1-2-4",
+                        "b": "(b) 1-3-2-4",
+                        "c": "(c) 3-2-1-4",
+                        "d": "(d) 1-2-4-3"
+                    },
+                    "answer": "a"
+                }
+            ];
+
+        // Populate to 50 for demo
+        while (questionsData.length < 50) {
+            questionsData.push({
+                id: questionsData.length + 1,
+                english: "Sample Question " + (questionsData.length + 1) + ": Which of the following is correct?",
+                hindi: "नमूना प्रश्न: निम्नलिखित में से कौन सा सही है?",
+                options: { "a": "Option A", "b": "Option B", "c": "Option C", "d": "Option D" },
+                answer: ["a", "b", "c", "d"][Math.floor(Math.random() * 4)]
+            });
+        }
+
+        let currentIndex = 0;
+        let userResponses = {};
+        let reviewStatus = new Set();
+        let totalTime = 120 * 60;
+        let timerInterval;
+        let candidateDetails = { name: "", roll: "" };
+        let resultChartInstance = null;
+
+        // --- 2. INIT ---
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            candidateDetails.name = document.getElementById('candidateName').value;
+            candidateDetails.roll = document.getElementById('rollNumber').value;
+            switchView('view-instructions');
+        });
+
+        function switchView(id) {
+            ['view-login', 'view-instructions', 'view-test', 'view-result'].forEach(v => {
+                document.getElementById(v).classList.add('hidden');
+                document.getElementById(v).classList.remove('flex');
+            });
+            const el = document.getElementById(id);
+            el.classList.remove('hidden');
+            if (id === 'view-login' || id === 'view-instructions' || id === 'view-test') el.classList.add('flex');
+            if (id === 'view-result') el.classList.add('block');
+        }
+
+        // --- 3. TEST ENGINE ---
+        function startActualTest() {
+            switchView('view-test');
+            renderPalette();
+            loadQuestion(0);
+            startTimer();
+        }
+
+        function startTimer() {
+            const display = document.getElementById('timerDisplay');
+            timerInterval = setInterval(() => {
+                let h = Math.floor(totalTime / 3600);
+                let m = Math.floor((totalTime % 3600) / 60);
+                let s = totalTime % 60;
+                display.innerText = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+                if (totalTime <= 0) { clearInterval(timerInterval); submitTest(); }
+                totalTime--;
+            }, 1000);
+        }
+
+        function loadQuestion(index) {
+            currentIndex = index;
+            const q = questionsData[index];
+            const savedAns = userResponses[q.id];
+
+            document.getElementById('currentQNum').innerText = index + 1;
+
+            let html = `<div class="mb-4"><h3 class="text-lg font-bold text-gray-900 font-serif question-text">${q.english}</h3></div>`;
+            html += `<div class="mb-6 border-t pt-4"><h3 class="text-lg text-gray-800 font-hindi question-text">${q.hindi}</h3></div>`;
+
+            html += '<div class="space-y-3">';
+            for (const [key, val] of Object.entries(q.options)) {
+                const isSel = savedAns === key;
+                const baseClass = "cursor-pointer border rounded-lg p-4 flex items-start transition group";
+                const selClass = "bg-brand-50 border-brand-500 ring-1 ring-brand-500";
+                const unselClass = "bg-white border-gray-200 hover:bg-gray-50";
+
+                html += `
+                <div onclick="selectOption(${q.id}, '${key}')" class="${baseClass} ${isSel ? selClass : unselClass}">
+                    <div class="flex-shrink-0 w-6 h-6 rounded-full border flex items-center justify-center mr-3 ${isSel ? 'bg-brand-600 border-brand-600 text-white' : 'border-gray-400 text-gray-500'}">
+                        ${isSel ? '✓' : key.toUpperCase()}
+                    </div>
+                    <div class="text-gray-800 font-hindi">${val}</div>
+                </div>`;
+            }
+            html += '</div>';
+            document.getElementById('questionContent').innerHTML = html;
+            updateNav();
+            renderPalette();
+        }
+
+        function selectOption(qid, opt) {
+            userResponses[qid] = opt;
+            loadQuestion(currentIndex);
+        }
+        function clearResponse() { delete userResponses[questionsData[currentIndex].id]; loadQuestion(currentIndex); }
+        function markReview() {
+            const id = questionsData[currentIndex].id;
+            reviewStatus.has(id) ? reviewStatus.delete(id) : reviewStatus.add(id);
+            renderPalette();
+        }
+        function changeQuestion(d) {
+            const n = currentIndex + d;
+            if (n >= 0 && n < questionsData.length) loadQuestion(n);
+        }
+        function updateNav() {
+            document.getElementById('prevBtn').disabled = currentIndex === 0;
+            document.getElementById('nextBtn').innerText = currentIndex === questionsData.length - 1 ? 'Finish' : 'Next';
+        }
+
+        function renderPalette() {
+            const createGrid = (isMobile) => questionsData.map((q, i) => {
+                const id = q.id;
+                let c = "bg-gray-100 text-gray-500 border-gray-200";
+                if (currentIndex === i) c += " status-current";
+                if (reviewStatus.has(id)) c += " status-review";
+                else if (userResponses[id]) c += " status-answered";
+                else if (i < currentIndex) c += " status-not-answered";
+
+                return `<div onclick="loadQuestion(${i}); ${isMobile ? 'togglePaletteMobile()' : ''}" class="w-full aspect-square flex items-center justify-center rounded border text-xs font-bold cursor-pointer transition ${c}">${i + 1}</div>`;
+            }).join('');
+
+            document.getElementById('paletteGridDesktop').innerHTML = createGrid(false);
+            document.getElementById('paletteGridMobile').innerHTML = createGrid(true);
+        }
+        function togglePaletteMobile() { document.getElementById('mobilePaletteModal').classList.toggle('hidden'); }
+
+        // --- 4. SUBMISSION & RESULT RENDERING ---
+        function submitTest() {
+            if (!confirm("Are you sure you want to submit?")) return;
+            clearInterval(timerInterval);
+
+            // Calculation
+            let correct = 0, wrong = 0, skipped = 0, score = 0;
+            questionsData.forEach(q => {
+                const ans = userResponses[q.id];
+                if (!ans) skipped++;
+                else if (ans === q.answer) { correct++; score += 2; }
+                else { wrong++; score -= 0.66; }
+            });
+            score = Math.max(0, parseFloat(score.toFixed(2)));
+            const attempts = correct + wrong;
+            const rank = Math.floor(100000 * (1 - (score / 100))); // Dummy rank logic
+
+            // 1. Switch View
+            switchView('view-result');
+
+            // 2. Fill Header Data
+            document.getElementById("resultName").textContent = candidateDetails.name;
+            document.getElementById("resultRoll").textContent = "Roll: " + candidateDetails.roll;
+
+            // 3. Score Animation
+            let current = 0;
+            const scoreEl = document.getElementById("scoreDisplay");
+            const anim = setInterval(() => {
+                current += score / 30;
+                if (current >= score) { current = score; clearInterval(anim); }
+                scoreEl.textContent = current.toFixed(2);
+            }, 20);
+
+            // 4. Badges & Stats
+            document.getElementById("rankDisplay").textContent = "#" + rank.toLocaleString();
+            document.getElementById("accuracyDisplay").textContent = attempts > 0 ? ((correct / attempts) * 100).toFixed(1) + "%" : "0%";
+            document.getElementById("attemptDisplay").textContent = attempts;
+
+            const badge = document.getElementById("readinessBadge");
+            if (score >= 65) {
+                badge.textContent = "✅ Strong Prelims Readiness";
+                badge.className = "inline-block mt-4 px-5 py-2 rounded-full text-sm font-bold shadow bg-green-100 text-green-800";
+            } else if (score >= 55) {
+                badge.textContent = "⚠ Borderline – Needs Refinement";
+                badge.className = "inline-block mt-4 px-5 py-2 rounded-full text-sm font-bold shadow bg-yellow-100 text-yellow-800";
+            } else {
+                badge.textContent = "❌ Weak – Major Improvement Needed";
+                badge.className = "inline-block mt-4 px-5 py-2 rounded-full text-sm font-bold shadow bg-red-100 text-red-800";
+            }
+
+            // 5. Advanced Stats
+            document.getElementById("negativeLoss").textContent = (wrong * 0.66).toFixed(2);
+            document.getElementById("noNegativeScore").textContent = (score + (wrong * 0.66)).toFixed(2);
+
+            const rec = document.getElementById("recommendationList");
+            rec.innerHTML = "";
+            if (wrong > correct) rec.innerHTML += "<li>Reduce blind guessing (Accuracy is low).</li>";
+            if (skipped > 10) rec.innerHTML += "<li>Improve time management or question selection.</li>";
+            if (score < 50) rec.innerHTML += "<li>Revise core concepts immediately.</li>";
+            rec.innerHTML += "<li>Analyze all incorrect questions below.</li>";
+
+            // 6. Chart
+            if (resultChartInstance) resultChartInstance.destroy();
+            const ctx = document.getElementById("resultChart");
+            resultChartInstance = new Chart(ctx, {
+                type: "doughnut",
+                data: {
+                    labels: ["Correct", "Wrong", "Skipped"],
+                    datasets: [{
+                        data: [correct, wrong, skipped],
+                        backgroundColor: ["#22c55e", "#ef4444", "#94a3b8"],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: "right", labels: { boxWidth: 10 } } }
+                }
+            });
+
+            // 7. Render Review Cards
+            const reviewContainer = document.getElementById("reviewContainer");
+            reviewContainer.innerHTML = questionsData.map((q, i) => {
+                const uAns = userResponses[q.id];
+                const isCorrect = uAns === q.answer;
+                const isSkip = !uAns;
+                let statusBadge = "";
+                let borderClass = "";
+
+                if (isSkip) {
+                    statusBadge = '<span class="px-2 py-1 bg-gray-200 text-gray-700 rounded text-xs font-bold">Skipped</span>';
+                    borderClass = "border-l-4 border-gray-400";
+                } else if (isCorrect) {
+                    statusBadge = '<span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-bold">Correct (+2)</span>';
+                    borderClass = "border-l-4 border-green-500";
+                } else {
+                    statusBadge = '<span class="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-bold">Incorrect (-0.66)</span>';
+                    borderClass = "border-l-4 border-red-500";
+                }
+
+                let optsHtml = "";
+                for (const [k, v] of Object.entries(q.options)) {
+                    let style = "text-gray-600 bg-white border border-gray-200";
+                    let icon = "";
+                    if (k === q.answer) {
+                        style = "text-green-800 bg-green-50 border border-green-300 font-bold";
+                        icon = "✅ ";
+                    } else if (k === uAns && !isCorrect) {
+                        style = "text-red-800 bg-red-50 border border-red-300 font-bold";
+                        icon = "❌ ";
+                    }
+                    optsHtml += `<div class="p-2 rounded text-sm mb-1 ${style}">${icon}${k.toUpperCase()}. ${v}</div>`;
+                }
+
+                return `
+                <div class="bg-white rounded-lg shadow p-4 ${borderClass}">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="font-bold text-gray-700">Q.${i + 1}</span>
+                        ${statusBadge}
+                    </div>
+                    <div class="mb-3 text-sm font-serif">${q.english}</div>
+                    <div class="space-y-1">${optsHtml}</div>
+                </div>`;
+            }).join('');
+        }
+    </script>
+</body>
+
+</html>

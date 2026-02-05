@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>UPSC Elite Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Segoe+UI:wght@400;600;700&display=swap"
         rel="stylesheet">
 
     <style>
-        /* --- VIBRANT DESIGN SYSTEM --- */
+        /* --- DESIGN TOKENS --- */
         :root {
             --primary: #4f46e5;
             --primary-dark: #3730a3;
@@ -20,78 +21,58 @@
             --white: #ffffff;
             --text-dark: #1e293b;
             --text-light: #64748b;
-            --gradient-header: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-            --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --radius: 12px;
+            --gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
+        /* --- GLOBAL RESET (FORCE FIT) --- */
         * {
             box-sizing: border-box;
+            /* Crucial for force flex */
             margin: 0;
             padding: 0;
-            font-family: 'Poppins', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* FORCE WIDTH & PREVENT COPY/SELECT */
         body {
             background-color: var(--bg-body);
+            font-family: 'Poppins', sans-serif;
             color: var(--text-dark);
+            width: 100vw;
             min-height: 100vh;
-            width: 100%;
             overflow-x: hidden;
-            /* Force width restriction */
-            -webkit-user-select: none;
-            /* Safari */
-            -moz-user-select: none;
-            /* Firefox */
-            -ms-user-select: none;
-            /* IE10+/Edge */
+            /* Force no horizontal scroll */
             user-select: none;
-            /* Standard */
         }
 
-        /* Allow text selection only in input fields for typing */
-        input,
-        textarea {
-            -webkit-user-select: text;
-            -moz-user-select: text;
-            -ms-user-select: text;
+        /* Allow typing */
+        input {
             user-select: text;
         }
 
-        /* ==================== 
-           LOGIN SCREEN REDESIGN
-           ==================== */
+        /* ==================== LOGIN SCREEN ==================== */
         #login-screen {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             background: var(--white);
             z-index: 9999;
             display: flex;
-            overflow: hidden;
-            /* Default for desktop */
+            flex-direction: row;
+            /* Default Desktop */
         }
 
         .login-left {
             flex: 1.3;
-            background: var(--gradient-header);
+            background: var(--gradient);
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: white;
             position: relative;
             overflow: hidden;
-            padding: 40px;
         }
 
-        /* Animated Background Circles */
-        .login-left::before {
-            content: '';
+        /* Decorative Circles */
+        .circle-1 {
             position: absolute;
             top: -10%;
             right: -10%;
@@ -101,8 +82,7 @@
             border-radius: 50%;
         }
 
-        .login-left::after {
-            content: '';
+        .circle-2 {
             position: absolute;
             bottom: -10%;
             left: -10%;
@@ -112,143 +92,18 @@
             border-radius: 50%;
         }
 
-        /* Glassmorphism Marketing Card */
         .market-card {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 35px;
+            padding: 40px;
             border-radius: 24px;
-            max-width: 550px;
-            width: 100%;
+            max-width: 500px;
+            color: white;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
-            text-align: left;
-            position: relative;
             z-index: 2;
         }
 
-        .deal-badge {
-            background: var(--accent);
-            color: #000;
-            font-weight: 800;
-            text-transform: uppercase;
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            display: inline-block;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5);
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-5px);
-            }
-        }
-
-        .market-card h1 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 15px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .institute-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin: 20px 0;
-        }
-
-        .inst-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .checkmark {
-            color: var(--success);
-            font-weight: bold;
-        }
-
-        .price-comparison {
-            background: white;
-            color: var(--text-dark);
-            border-radius: 16px;
-            padding: 20px;
-            margin-top: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .price-col {
-            flex: 1;
-            text-align: center;
-        }
-
-        .price-divider {
-            width: 1px;
-            height: 50px;
-            background: #e2e8f0;
-            margin: 0 15px;
-        }
-
-        .price-label {
-            font-size: 0.75rem;
-            color: var(--text-light);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 5px;
-        }
-
-        .price-val-old {
-            color: var(--danger);
-            font-size: 1.4rem;
-            font-weight: 700;
-            text-decoration: line-through;
-        }
-
-        .price-sub {
-            font-size: 0.7rem;
-            color: var(--text-light);
-        }
-
-        .price-val-new {
-            color: var(--success);
-            font-size: 2rem;
-            font-weight: 800;
-            line-height: 1;
-        }
-
-        .bonus-text {
-            background: rgba(16, 185, 129, 0.2);
-            color: #064e3b;
-            padding: 8px;
-            text-align: center;
-            border-radius: 8px;
-            margin-top: 15px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-        }
-
-        /* Right Side & Mobile */
         .login-right {
             flex: 1;
             max-width: 500px;
@@ -257,72 +112,12 @@
             justify-content: center;
             padding: 40px;
             background: var(--white);
-            position: relative;
         }
 
-        /* Mobile Adjustments: Show ALL Info */
-        @media (max-width: 900px) {
-            #login-screen {
-                flex-direction: column;
-                /* Stack vertically */
-                overflow-y: auto;
-                /* Allow scrolling */
-                height: 100vh;
-                /* Full viewport height */
-                position: relative;
-            }
-
-            .login-left {
-                display: flex;
-                /* Force display on mobile */
-                flex: 0 0 auto;
-                /* Don't expand, just fit content */
-                min-height: auto;
-                padding: 30px 20px;
-                border-bottom-left-radius: 30px;
-                border-bottom-right-radius: 30px;
-            }
-
-            .market-card {
-                padding: 25px;
-                background: rgba(255, 255, 255, 0.2);
-                /* Slightly more opaque on mobile */
-            }
-
-            .market-card h1 {
-                font-size: 1.8rem;
-            }
-
-            .login-right {
-                flex: 0 0 auto;
-                /* Allow it to sit below */
-                padding: 30px 20px;
-                max-width: 100%;
-                background: transparent;
-            }
-
-            .login-box {
-                background: white;
-                padding: 25px;
-                border-radius: 16px;
-                box-shadow: var(--shadow-card);
-            }
-        }
-
-        .login-box h2 {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 5px;
-        }
-
-        .login-box p {
-            color: var(--text-light);
-            margin-bottom: 30px;
-            font-size: 0.9rem;
-        }
-
+        /* Input Styling */
         .input-group {
             margin-bottom: 20px;
+            width: 100%;
         }
 
         .input-group label {
@@ -336,15 +131,15 @@
             width: 100%;
             padding: 14px;
             border: 2px solid #e2e8f0;
-            border-radius: var(--radius);
+            border-radius: 12px;
             font-size: 16px;
+            outline: none;
             transition: 0.3s;
             background: #f8fafc;
         }
 
         .input-group input:focus {
             border-color: var(--primary);
-            outline: none;
             background: #fff;
         }
 
@@ -352,48 +147,51 @@
             width: 100%;
             padding: 15px;
             border: none;
-            border-radius: var(--radius);
-            background: var(--gradient-header);
+            border-radius: 12px;
+            background: var(--gradient);
             color: white;
             font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
-            transition: transform 0.2s;
+            transition: 0.2s;
         }
 
         .btn-primary:active {
             transform: scale(0.98);
         }
 
-        .error-msg {
-            background: #fef2f2;
-            color: #ef4444;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #fee2e2;
-            margin-top: 15px;
-            font-size: 0.9rem;
-            text-align: center;
-            display: none;
+        /* --- MOBILE LOGIN ADAPTATION --- */
+        @media (max-width: 900px) {
+            #login-screen {
+                flex-direction: column;
+                overflow-y: auto;
+            }
+
+            .login-left {
+                flex: 0 0 auto;
+                padding: 40px 20px;
+                border-radius: 0 0 40px 40px;
+            }
+
+            .login-right {
+                flex: 0 0 auto;
+                padding: 30px 20px;
+            }
         }
 
-
-        /* ==================== 
-           DASHBOARD 
-           ==================== */
+        /* ==================== DASHBOARD LAYOUT ==================== */
         #dashboard {
             display: none;
-            flex-direction: column;
-            min-height: 100vh;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
         }
 
-        /* --- DESKTOP SIDEBAR --- */
+        /* --- DESKTOP SIDEBAR & HEADER --- */
         @media (min-width: 801px) {
             #dashboard {
                 flex-direction: row;
-                overflow: hidden;
-                height: 100vh;
             }
 
             aside {
@@ -406,16 +204,6 @@
                 z-index: 10;
             }
 
-            .sidebar-logo {
-                font-size: 1.5rem;
-                font-weight: 800;
-                color: var(--primary);
-                margin-bottom: 40px;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-
             .nav-item {
                 padding: 12px 15px;
                 margin-bottom: 8px;
@@ -425,7 +213,7 @@
                 font-weight: 500;
                 display: flex;
                 align-items: center;
-                gap: 10px;
+                gap: 12px;
                 transition: 0.2s;
             }
 
@@ -439,155 +227,157 @@
                 flex: 1;
                 display: flex;
                 flex-direction: column;
-                height: 100%;
+                background: var(--bg-body);
                 position: relative;
             }
 
             .desktop-header {
-                height: 70px;
+                height: 80px;
                 background: var(--white);
                 border-bottom: 1px solid #e2e8f0;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                padding: 0 30px;
-            }
-
-            .search-bar {
-                width: 400px;
-                position: relative;
+                padding: 0 40px;
             }
 
             .search-bar input {
-                width: 100%;
-                padding: 10px 15px 10px 40px;
+                width: 400px;
+                padding: 12px 20px;
                 border-radius: 50px;
                 border: 1px solid #cbd5e1;
                 background: #f8fafc;
             }
 
-            .search-icon {
-                position: absolute;
-                left: 15px;
-                top: 50%;
-                transform: translateY(-50%);
-                color: #94a3b8;
-            }
-
             .content-area {
-                padding: 30px;
+                padding: 40px;
                 overflow-y: auto;
                 flex: 1;
             }
 
-            .mobile-header {
-                display: none;
-            }
-
-            .mobile-search-area {
-                display: none;
-            }
-
+            /* Desktop Lists */
             .list-container {
-                background: var(--white);
-                border-radius: var(--radius);
-                box-shadow: var(--shadow-card);
+                background: white;
+                border-radius: 16px;
+                box-shadow: var(--shadow);
             }
 
             .list-row {
                 display: grid;
                 grid-template-columns: 3fr 1.5fr 1fr;
-                padding: 15px 20px;
+                padding: 18px 25px;
                 border-bottom: 1px solid #f1f5f9;
                 align-items: center;
-                text-decoration: none;
-                color: inherit;
-            }
-
-            .list-row:hover {
-                background: #f8fafc;
             }
 
             .list-head {
                 background: #f8fafc;
                 font-weight: 600;
                 color: var(--text-light);
-                border-bottom: 2px solid #e2e8f0;
+            }
+
+            .btn-action {
+                float: right;
+                padding: 8px 16px;
+                border: 1px solid #e2e8f0;
+                border-radius: 8px;
+                font-size: 0.85rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: 0.2s;
+            }
+
+            .list-row:hover .btn-action {
+                background: var(--primary);
+                color: white;
+                border-color: var(--primary);
+            }
+
+            /* Test Grid Desktop */
+            #testGrid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 25px;
+            }
+
+            /* Elements hidden on Desktop */
+            .mobile-bottom-nav,
+            .mobile-header,
+            .mobile-search-wrapper {
+                display: none;
             }
         }
 
-        /* --- MOBILE LAYOUT --- */
+        /* --- MOBILE LAYOUT (FORCE FLEX METHOD) --- */
         @media (max-width: 800px) {
-            aside {
-                display: none;
+            #dashboard {
+                flex-direction: column;
             }
 
+            /* Hide Desktop Elements */
+            aside,
             .desktop-header {
                 display: none;
             }
 
+            /* 1. Mobile Top Header */
             .mobile-header {
-                background: var(--gradient-header);
-                color: white;
-                padding: 15px 20px;
+                height: 60px;
+                background: var(--white);
+                border-bottom: 1px solid #e2e8f0;
                 display: flex;
-                justify-content: space-between;
                 align-items: center;
+                justify-content: space-between;
+                padding: 0 20px;
                 position: sticky;
                 top: 0;
-                z-index: 100;
-                box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+                z-index: 50;
+                flex-shrink: 0;
             }
 
-            .mob-brand {
-                font-weight: 700;
+            .brand-mobile {
+                font-weight: 800;
                 font-size: 1.2rem;
+                color: var(--primary);
                 display: flex;
                 align-items: center;
                 gap: 8px;
             }
 
-            .header-actions {
-                display: flex;
-                gap: 15px;
-            }
-
-            .icon-btn {
-                background: rgba(255, 255, 255, 0.2);
-                border: none;
-                color: white;
-                width: 36px;
-                height: 36px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: pointer;
-            }
-
+            /* 2. Main Content (Flex Grow) */
             main {
-                width: 100%;
                 flex: 1;
+                display: flex;
+                flex-direction: column;
+                overflow-y: auto;
+                background: var(--bg-body);
+                padding-bottom: 80px;
+                /* Space for bottom nav */
+                width: 100%;
             }
 
             .content-area {
-                padding: 20px 15px;
-            }
-
-            .mobile-search-area {
-                margin-bottom: 20px;
-            }
-
-            .mobile-search-area input {
+                padding: 20px;
                 width: 100%;
-                padding: 12px 15px;
-                border-radius: 12px;
+            }
+
+            /* 3. Mobile Search */
+            .mobile-search-wrapper {
+                margin-bottom: 20px;
+                width: 100%;
+            }
+
+            .mobile-search-wrapper input {
+                width: 100%;
+                padding: 14px;
                 border: none;
-                background: var(--white);
-                box-shadow: var(--shadow-card);
+                border-radius: 12px;
+                background: white;
+                box-shadow: var(--shadow);
                 font-size: 1rem;
             }
 
+            /* 4. Mobile Lists (Stacked Flex) */
             .list-head {
                 display: none;
             }
@@ -595,31 +385,31 @@
             .list-container {
                 background: transparent;
                 box-shadow: none;
+                width: 100%;
             }
 
             .list-row {
                 display: flex;
                 flex-direction: column;
-                background: var(--white);
-                padding: 15px;
+                background: white;
+                padding: 20px;
                 margin-bottom: 15px;
-                border-radius: var(--radius);
-                box-shadow: var(--shadow-card);
-                text-decoration: none;
-                color: inherit;
+                border-radius: 16px;
+                box-shadow: var(--shadow);
+                width: 100%;
                 position: relative;
                 border-left: 5px solid var(--primary);
             }
 
             .col-name {
                 font-weight: 600;
-                font-size: 1rem;
-                margin-bottom: 8px;
+                font-size: 1.05rem;
+                margin-bottom: 10px;
                 line-height: 1.4;
             }
 
             .col-institute {
-                margin-bottom: 12px;
+                margin-bottom: 15px;
             }
 
             .col-institute span {
@@ -631,24 +421,72 @@
                 font-weight: 600;
             }
 
-            .col-action {
-                width: 100%;
-            }
-
-            .btn-download {
+            .btn-action {
                 display: block;
                 width: 100%;
+                padding: 12px;
                 text-align: center;
                 background: var(--primary);
                 color: white;
-                padding: 10px;
-                border-radius: 8px;
+                border-radius: 10px;
                 font-weight: 600;
-                font-size: 0.9rem;
+                font-size: 1rem;
+                margin-top: auto;
+                border: none;
+            }
+
+            /* 5. Mobile Test Grid (Full Width) */
+            #testGrid {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                width: 100%;
+            }
+
+            /* 6. Fixed Bottom Navigation (The Fix) */
+            .mobile-bottom-nav {
+                height: 70px;
+                background: white;
+                border-top: 1px solid #e2e8f0;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                z-index: 100;
+                box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+            }
+
+            .nav-btn {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                color: var(--text-light);
+                font-size: 0.7rem;
+                font-weight: 600;
+                flex: 1;
+                height: 100%;
+                background: none;
+                border: none;
+                cursor: pointer;
+            }
+
+            .nav-btn svg {
+                width: 24px;
+                height: 24px;
+                margin-bottom: 4px;
+                fill: currentColor;
+            }
+
+            .nav-btn.active {
+                color: var(--primary);
             }
         }
 
-        /* --- SHARED --- */
+        /* --- SHARED STYLES --- */
         .pills-wrapper {
             display: flex;
             gap: 10px;
@@ -656,80 +494,118 @@
             padding-bottom: 5px;
             margin-bottom: 20px;
             scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-
-        .pills-wrapper::-webkit-scrollbar {
-            display: none;
         }
 
         .pill {
-            background: var(--white);
-            padding: 8px 18px;
+            background: white;
+            padding: 8px 20px;
             border-radius: 50px;
             border: 1px solid #e2e8f0;
-            color: var(--text-light);
-            font-weight: 500;
             font-size: 0.9rem;
             white-space: nowrap;
             cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
         .pill.active {
             background: var(--primary);
             color: white;
             border-color: var(--primary);
-            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
         }
 
-        @media (min-width: 801px) {
-            .btn-download {
-                background: white;
-                border: 1px solid #e2e8f0;
-                padding: 6px 12px;
-                border-radius: 6px;
-                font-size: 0.85rem;
-                font-weight: 600;
-                color: var(--text-dark);
-                float: right;
-                transition: 0.2s;
-            }
-
-            .list-row:hover .btn-download {
-                background: var(--primary);
-                color: white;
-                border-color: var(--primary);
-            }
+        /* --- PROFILE CARD STYLES (MATCHED EXACTLY) --- */
+        .profile-wrapper {
+            display: flex;
+            justify-content: center;
+            width: 100%;
         }
 
-        /* --- WHATSAPP SVG STYLE --- */
-        .wa-float {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            z-index: 200;
-            transition: transform 0.2s;
+        .my-profile-card {
+            background: white;
+            width: 100%;
+            max-width: 700px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            border: 1px solid #f0f0f0;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .p-header {
+            background: linear-gradient(135deg, #1a252f, #34495e);
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .p-avatar {
+            width: 80px;
+            height: 80px;
+            background: white;
+            color: #1a252f;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 35px;
+            font-weight: bold;
+            margin: 0 auto 15px;
         }
 
-        .wa-float:active {
-            transform: scale(0.9);
+        .p-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
         }
 
-        .wa-float svg {
-            width: 60px;
-            height: 60px;
-            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+        .p-sub {
+            opacity: 0.8;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
-        .icon {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
+        .p-badge {
+            background: #e8f5e9;
+            color: #27ae60;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .p-grid {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .p-item {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .p-label {
+            font-size: 12px;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .p-value {
+            font-size: 16px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        @media (max-width: 600px) {
+            .p-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -738,167 +614,164 @@
 
     <div id="login-screen">
         <div class="login-left">
+            <div class="circle-1"></div>
+            <div class="circle-2"></div>
             <div class="market-card">
-                <div class="deal-badge">🔥 SAVINGS ALERT</div>
-                <h1>All Top Institutes.<br>One Tiny Price.</h1>
-                <p style="opacity: 0.9; margin-top: 10px;">Why pay per course when you can have it all?</p>
-
-                <div class="institute-grid">
-                    <div class="inst-item"><span class="checkmark">✓</span> GS Score</div>
-                    <div class="inst-item"><span class="checkmark">✓</span> Next IAS</div>
-                    <div class="inst-item"><span class="checkmark">✓</span> Only IAS</div>
-                    <div class="inst-item"><span class="checkmark">✓</span> Shankar IAS</div>
-                    <div class="inst-item"><span class="checkmark">✓</span> Vajiram & Ravi</div>
-                    <div class="inst-item"><span class="checkmark">✓</span> Vision IAS</div>
-                </div>
-
-                <div class="price-comparison">
-                    <div class="price-col">
-                        <div class="price-label">Market Price</div>
-                        <div class="price-val-old">₹9,999</div>
-                        <div class="price-sub">per institute</div>
-                    </div>
-                    <div class="price-divider"></div>
-                    <div class="price-col">
-                        <div class="price-label" style="color:var(--primary);">Our Price</div>
-                        <div class="price-val-new">₹132</div>
-                        <div class="price-sub" style="font-weight:600; color:var(--success);">FOR EVERYTHING</div>
-                    </div>
-                </div>
-
-                <div class="bonus-text">
-                    🎁 PLUS: Access 300+ Premium Newspapers Daily
+                <h1 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 15px;">UPSC Elite Portal</h1>
+                <p style="opacity: 0.9;">Premium Access to All India Mock Tests & Resources.</p>
+                <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                    <span
+                        style="background: rgba(255,255,255,0.2); padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">📚
+                        500+ PDFs</span>
+                    <span
+                        style="background: rgba(255,255,255,0.2); padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">⚡
+                        Live CBT</span>
                 </div>
             </div>
         </div>
-
         <div class="login-right">
-            <div class="login-box">
-                <h2>Welcome</h2>
-                <p>Enter credentials to access premium resources.</p>
-                <form id="loginForm">
-                    <div class="input-group">
-                        <label>Username</label>
-                        <input type="text" id="username" placeholder="e.g. Ankit" required autocomplete="off">
-                    </div>
-                    <div class="input-group">
-                        <label>Password</label>
-                        <input type="password" id="password" placeholder="••••••••" required>
-                    </div>
-                    <button type="submit" class="btn-primary" id="loginBtn">Access Portal</button>
-                    <div id="error-message" class="error-msg">⚠ Invalid Username or Password</div>
-                </form>
-            </div>
+            <h2 style="font-size: 2rem; color: var(--primary); margin-bottom: 10px;">Welcome</h2>
+            <p style="color: var(--text-light); margin-bottom: 30px;">Login to your dashboard.</p>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label>Username</label>
+                    <input type="text" id="username" placeholder="e.g. Ankit" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-primary" id="loginBtn">Secure Login</button>
+                <div id="error-message" class="error-msg">Invalid Credentials</div>
+            </form>
         </div>
     </div>
 
     <div id="dashboard">
 
         <aside>
-            <div class="sidebar-logo">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="var(--primary)">
-                    <path
-                        d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z" />
-                </svg>
+            <div
+                style="font-size: 1.4rem; font-weight: 800; color: var(--primary); margin-bottom: 40px; display: flex; align-items: center; gap: 10px;">
+                <span
+                    style="background:var(--primary); color:white; width:32px; height:32px; display:flex; align-items:center; justify-content:center; border-radius:8px; font-size:1rem;">🎓</span>
                 UPSC ELITE
             </div>
-            <div class="nav-item active" onclick="setFilter('All')">
-                <span>📄</span> All Tests
-            </div>
-            <div class="nav-item" onclick="window.location.href='profile.html'">
-                <span>👤</span> My Profile
-            </div>
-            <div class="nav-item" style="margin-top: auto; color: #ef4444;" onclick="logout()">
-                <span>🚪</span> Logout
-            </div>
+            <div class="nav-item active" onclick="switchTab('pdfs')" id="nav-pdfs"><span>📄</span> All Tests</div>
+            <div class="nav-item" onclick="switchTab('tests')" id="nav-tests"><span>🖥️</span> Live Tests</div>
+            <div class="nav-item" onclick="switchTab('profile')" id="nav-profile"><span>👤</span> My Profile</div>
+            <div class="nav-item" style="margin-top: auto; color: var(--danger);" onclick="logout()"><span>🚪</span>
+                Logout</div>
         </aside>
 
         <div class="mobile-header">
-            <div class="mob-brand">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                    <path
-                        d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z" />
-                </svg>
+            <div class="brand-mobile">
+                <span
+                    style="background:var(--primary); color:white; width:28px; height:28px; display:flex; align-items:center; justify-content:center; border-radius:6px; font-size:0.9rem;">🎓</span>
                 UPSC ELITE
             </div>
-            <div class="header-actions">
-                <button class="icon-btn" onclick="window.location.href='profile.html'" title="My Profile">
-                    <svg class="icon" viewBox="0 0 24 24">
-                        <path
-                            d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                    </svg>
-                </button>
-                <button class="icon-btn" onclick="logout()" title="Logout">
-                    <svg class="icon" viewBox="0 0 24 24">
-                        <path
-                            d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
-                    </svg>
-                </button>
-            </div>
+            <button onclick="logout()"
+                style="background:none; border:none; color:var(--text-light); font-size:1.2rem;">🚪</button>
         </div>
 
         <main>
             <div class="desktop-header">
                 <div class="search-bar">
-                    <span class="search-icon">🔍</span>
-                    <input type="text" id="desktopSearch" placeholder="Search tests, institutes..."
+                    <input type="text" id="desktopSearch" placeholder="Search resources..."
                         onkeyup="syncSearch(this.value)">
                 </div>
-                <div style="font-weight: 600; color: var(--primary);">Admin Support: +91-8168305050</div>
+                <div style="font-weight: 600;" id="headerUser">Student</div>
             </div>
 
             <div class="content-area">
 
-                <h2 style="margin-bottom: 5px;">Test Repository</h2>
-                <p style="color: var(--text-light); margin-bottom: 25px;">Browse and download your premium resources.
-                </p>
-
-                <div class="mobile-search-area">
-                    <input type="text" id="mobileSearch" placeholder="🔍 Search tests..."
+                <div class="mobile-search-wrapper">
+                    <input type="text" id="mobileSearch" placeholder="🔍 Search tests & notes..."
                         onkeyup="syncSearch(this.value)">
                 </div>
 
-                <div class="pills-wrapper" id="pillsContainer">
-                    <div class="pill active" onclick="setFilter('All')">All</div>
-                </div>
-
-                <div class="list-container">
-                    <div class="list-row list-head">
-                        <div>Test Name</div>
-                        <div>Institute</div>
-                        <div style="text-align:right">Action</div>
+                <div id="view-pdfs">
+                    <h2 style="margin-bottom: 10px;">Study Material</h2>
+                    <div class="pills-wrapper" id="pillsContainer"></div>
+                    <div class="list-container">
+                        <div class="list-row list-head">
+                            <div>Test Name</div>
+                            <div>Institute</div>
+                            <div style="text-align:right">Action</div>
+                        </div>
+                        <div id="fileListBody"></div>
                     </div>
-                    <div id="fileListBody"></div>
                 </div>
 
-                <div style="height: 80px;"></div>
+                <div id="view-tests" style="display:none;">
+                    <h2 style="margin-bottom: 20px;">Live Evaluation Center</h2>
+                    <div id="testGrid"></div>
+                </div>
+
+                <div id="view-profile" style="display:none;">
+                    <div class="profile-wrapper">
+                        <div class="my-profile-card">
+                            <div class="p-header">
+                                <div class="p-avatar" id="p-avatar">U</div>
+                                <div class="p-name" id="p-name">Loading...</div>
+                                <div class="p-sub">Premium Member</div>
+                                <div class="p-badge" id="p-status">Active Plan</div>
+                            </div>
+                            <div class="p-grid">
+                                <div class="p-item"><span class="p-label">Target Exam</span><span class="p-value"
+                                        id="p-exam">-</span></div>
+                                <div class="p-item"><span class="p-label">Attempt Year</span><span class="p-value"
+                                        id="p-year">-</span></div>
+                                <div class="p-item"><span class="p-label">Optional Subject</span><span class="p-value"
+                                        id="p-optional">-</span></div>
+                                <div class="p-item"><span class="p-label">Medium</span><span class="p-value"
+                                        id="p-medium">-</span></div>
+                                <div class="p-item"><span class="p-label">Prep Stage</span><span class="p-value"
+                                        id="p-stage">-</span></div>
+                                <div class="p-item"><span class="p-label">Plan Expiry</span><span class="p-value"
+                                        id="p-expiry" style="color:#e74c3c">-</span></div>
+                                <div class="p-item"><span class="p-label">Prelims Count</span><span class="p-value"
+                                        id="p-pre">-</span></div>
+                                <div class="p-item"><span class="p-label">Mains Written</span><span class="p-value"
+                                        id="p-mains">-</span></div>
+                                <div class="p-item"><span class="p-label">Amount Paid</span><span class="p-value"
+                                        id="p-paid">-</span></div>
+                                <div class="p-item"><span class="p-label">Payment Mode</span><span class="p-value"
+                                        id="p-mode">-</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </main>
+
+        <div class="mobile-bottom-nav">
+            <button class="nav-btn active" onclick="switchTab('pdfs')" id="mob-pdfs">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
+                </svg>
+                Material
+            </button>
+            <button class="nav-btn" onclick="switchTab('tests')" id="mob-tests">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM4 18V6h16v12H4zM6 10h2v2H6zm0 4h2v2H6zm4-4h8v2h-8zm0 4h8v2h-8z" />
+                </svg>
+                Live Tests
+            </button>
+            <button class="nav-btn" onclick="switchTab('profile')" id="mob-profile">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                </svg>
+                Profile
+            </button>
+        </div>
+
     </div>
 
-    <a href="https://wa.me/918168305050" class="wa-float" target="_blank">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-            <path fill="#25D366"
-                d="M16 2C8.82 2 3 7.82 3 15c0 2.65.78 5.12 2.12 7.2L3 30l7.97-2.09A12.9 12.9 0 0 0 16 28c7.18 0 13-5.82 13-13S23.18 2 16 2z" />
-            <path fill="#ffffff"
-                d="M22.39 18.51c-.35-.17-2.05-1.01-2.37-1.13-.32-.12-.55-.17-.78.17-.23.35-.9 1.13-1.1 1.36-.2.23-.4.26-.75.09-.35-.17-1.46-.54-2.78-1.72-1.03-.92-1.73-2.05-1.93-2.4-.2-.35-.02-.54.15-.71.16-.16.35-.4.52-.6.17-.2.23-.35.35-.58.12-.23.06-.43-.03-.6-.09-.17-.78-1.88-1.07-2.58-.28-.68-.57-.59-.78-.6h-.66c-.23 0-.6.09-.92.43-.32.35-1.2 1.17-1.2 2.85s1.23 3.3 1.4 3.53c.17.23 2.42 3.7 5.86 5.19.82.35 1.45.56 1.95.72.82.26 1.57.22 2.16.13.66-.1 2.05-.84 2.34-1.65.29-.81.29-1.5.2-1.65-.09-.15-.32-.23-.66-.4z" />
-        </svg>
-    </a>
-
     <script>
-        /* ==================== SECURITY & WIDTH RESTRICTIONS ==================== */
-        // Disable Right Click
-        document.addEventListener('contextmenu', event => event.preventDefault());
-
-        // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
-        document.onkeydown = function (e) {
-            if (e.keyCode == 123) return false; // F12
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; // Ctrl+Shift+I
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false; // Ctrl+Shift+C
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; // Ctrl+Shift+J
-            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; // Ctrl+U
-        };
-
         /* ==================== CONFIGURATION ==================== */
         const DATABASE = {
             "Akash Kumar": {
@@ -1035,7 +908,7 @@
             },
         };
 
-        const TEST_DATA = [
+        const PDF_DATA = [
             {
                 institute: "GS Score",
                 tests: [
@@ -1132,8 +1005,13 @@
             }
         ];
 
-        /* ==================== SYSTEM LOGIC ==================== */
 
+
+        const LIVE_TESTS = [
+            { id: "gs_test_04", title: "GS Score Prelims 2026 - Polity Test #04", institute: "GS Score", questions: 100, time: "120 Mins", link: "tests/t_8f7a9_gs4.html" }
+        ];
+
+        /* ==================== SYSTEM LOGIC ==================== */
         let CURRENT_FILTER = 'All';
         let CURRENT_SEARCH = '';
 
@@ -1157,15 +1035,9 @@
 
             setTimeout(() => {
                 if (DATABASE[user] && DATABASE[user].hash === enteredHash) {
-                    // SAVE PROFILE LOCALLY
                     localStorage.setItem('currentUserProfile', JSON.stringify(DATABASE[user].profile));
-
-                    // --- NEW SECURITY: SET COOKIE FOR SERVER VALIDATION ---
-                    // Expires in 1 day (86400 seconds)
                     document.cookie = "upsc_session=true; path=/; max-age=86400; SameSite=Strict";
-                    // ------------------------------------------------------
-
-                    initDashboard();
+                    initDashboard(DATABASE[user].profile);
                 } else {
                     err.style.display = 'block';
                     btn.innerText = "Access Portal";
@@ -1174,57 +1046,93 @@
             }, 600);
         });
 
-        function initDashboard() {
+        function initDashboard(profile) {
+            if (!profile) profile = JSON.parse(localStorage.getItem('currentUserProfile'));
+
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('dashboard').style.display = 'flex';
 
+            if (document.getElementById('headerUser')) document.getElementById('headerUser').innerText = profile.name;
+
+            // Populate Profile Tab
+            if (document.getElementById('p-name')) {
+                const p = profile;
+                document.getElementById('p-name').innerText = p.name;
+                document.getElementById('p-avatar').innerText = p.name.charAt(0).toUpperCase();
+                document.getElementById('p-exam').innerText = p.exam || '-';
+                document.getElementById('p-year').innerText = p.year || '-';
+                document.getElementById('p-optional').innerText = p.optional || '-';
+                document.getElementById('p-medium').innerText = p.medium || '-';
+                document.getElementById('p-stage').innerText = p.stage || '-';
+                document.getElementById('p-expiry').innerText = p.expiry || '-';
+                document.getElementById('p-pre').innerText = p.prelims_count || '-';
+                document.getElementById('p-mains').innerText = p.mains_written || '-';
+                document.getElementById('p-paid').innerText = p.paid || '-';
+                document.getElementById('p-mode').innerText = p.mode || '-';
+            }
+
+            // Init Filters
             const pillsContainer = document.getElementById('pillsContainer');
             pillsContainer.innerHTML = '<div class="pill active" onclick="setFilter(\'All\')">All</div>';
-
-            TEST_DATA.forEach(group => {
-                const pill = document.createElement('div');
-                pill.className = 'pill';
-                pill.innerText = group.institute;
-                pill.onclick = () => setFilter(group.institute);
-                pillsContainer.appendChild(pill);
+            PDF_DATA.forEach(group => {
+                pillsContainer.innerHTML += `<div class="pill" onclick="setFilter('${group.institute}')">${group.institute}</div>`;
             });
 
             renderList();
+            renderTests();
+        }
+
+        function switchTab(tab) {
+            // Desktop Nav
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            if (document.getElementById(`nav-${tab}`)) document.getElementById(`nav-${tab}`).classList.add('active');
+
+            // Mobile Nav
+            document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+            if (document.getElementById(`mob-${tab}`)) document.getElementById(`mob-${tab}`).classList.add('active');
+
+            // Views
+            ['pdfs', 'tests', 'profile'].forEach(v => document.getElementById(`view-${v}`).style.display = 'none');
+            document.getElementById(`view-${tab}`).style.display = 'block';
         }
 
         function renderList() {
             const tbody = document.getElementById('fileListBody');
             tbody.innerHTML = '';
 
-            TEST_DATA.forEach(group => {
+            PDF_DATA.forEach(group => {
                 if (CURRENT_FILTER !== 'All' && group.institute !== CURRENT_FILTER) return;
-
                 group.tests.forEach(test => {
-                    const term = CURRENT_SEARCH.toLowerCase();
-                    if (term && !test.name.toLowerCase().includes(term) && !group.institute.toLowerCase().includes(term)) return;
-
-                    const row = `
-                <a href="${test.link}" class="list-row" target="_blank">
-                    <div class="col-name">
-                        <span style="color:var(--primary); margin-right:5px; font-size:1.1em;">📄</span>
-                        ${test.name}
-                    </div>
-                    <div class="col-institute"><span>${group.institute}</span></div>
-                    <div class="col-action">
-                        <span class="btn-download">Download PDF</span>
-                    </div>
-                </a>`;
-                    tbody.innerHTML += row;
+                    if (CURRENT_SEARCH && !test.name.toLowerCase().includes(CURRENT_SEARCH.toLowerCase())) return;
+                    tbody.innerHTML += `
+                    <div class="list-row">
+                        <div class="col-name">${test.name}</div>
+                        <div class="col-institute"><span>${group.institute}</span></div>
+                        <div class="col-action">
+                            <a href="${test.link}" target="_blank" class="btn-action">Download PDF</a>
+                        </div>
+                    </div>`;
                 });
             });
+        }
 
-            if (tbody.innerHTML === '') {
-                tbody.innerHTML = `
-            <div style="text-align:center; padding: 40px; color: #94a3b8;">
-                <div style="font-size: 3rem; margin-bottom: 10px;">🔍</div>
-                <p>No tests found matching your criteria.</p>
-            </div>`;
-            }
+        function renderTests() {
+            const grid = document.getElementById('testGrid');
+            grid.innerHTML = '';
+
+            LIVE_TESTS.forEach(test => {
+                if (CURRENT_SEARCH && !test.title.toLowerCase().includes(CURRENT_SEARCH.toLowerCase())) return;
+                grid.innerHTML += `
+                <div class="list-row" style="border-left-color: var(--accent);">
+                    <div class="col-name">⚡ ${test.title}</div>
+                    <div class="col-institute">
+                        <span>${test.questions} Qs</span> <span>${test.time}</span>
+                    </div>
+                    <div class="col-action">
+                        <a href="${test.link}" target="_blank" class="btn-action" style="background:var(--text-dark); border:none; color:white; text-align:center; display:block; width:100%;">Start Live Test</a>
+                    </div>
+                </div>`;
+            });
         }
 
         function setFilter(name) {
@@ -1241,25 +1149,20 @@
             if (document.getElementById('mobileSearch')) document.getElementById('mobileSearch').value = val;
             if (document.getElementById('desktopSearch')) document.getElementById('desktopSearch').value = val;
             renderList();
+            renderTests();
         }
 
         function logout() {
             localStorage.clear();
-
-            // --- NEW SECURITY: DELETE COOKIE ---
             document.cookie = "upsc_session=; path=/; max-age=0";
-            // -----------------------------------
-
             location.reload();
         }
 
         window.onload = function () {
-            if (localStorage.getItem('currentUserProfile')) {
-                initDashboard();
-            }
+            const saved = localStorage.getItem('currentUserProfile');
+            if (saved) initDashboard(JSON.parse(saved));
         }
     </script>
-
 </body>
 
 </html>

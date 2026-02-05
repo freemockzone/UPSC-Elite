@@ -1,5 +1,9 @@
 # netlify.toml
 
 [[edge_functions]]
-  path = "/*.pdf"     # Trigger on all PDF files
-  function = "auth"   # Run the 'auth' function defined below
+  path = "/*.pdf"        # Protect all PDFs
+  function = "auth"
+
+[[edge_functions]]
+  path = "/tests/*"      # Protect all Live Test HTML files
+  function = "auth"
