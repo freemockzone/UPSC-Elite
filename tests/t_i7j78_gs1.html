@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GS Score Prelims 2026 | Mockers Hub Elite</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Serif+Devanagari:wght@400;700&family=Merriweather:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Merriweather"', 'serif'],
+                        hindi: ['"Noto Serif Devanagari"', 'serif'],
+                    },
+                    colors: {
+                        brand: { 50: '#eef2ff', 100: '#e0e7ff', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 900: '#312e81' },
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* --- CORE LAYOUT --- */
+        html,
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+            height: 100%;
+            overflow: hidden;
+            /* Lock body, scroll views individually */
+        }
+
+        /* Views Container Styles */
+        .view-container {
+            height: 100%;
+            width: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            display: none;
+            /* Hidden by default */
+            flex-direction: column;
+        }
+
+        .view-container.active {
+            display: flex;
+        }
+
+        /* --- UI COMPONENTS --- */
+        .hero-bg {
+            background: radial-gradient(circle at 50% 0%, #312e81 0%, #111827 60%);
+        }
+
+        .brand-gradient {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* --- SCROLLBARS --- */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* --- QUESTION STYLING --- */
+        .question-text {
+            white-space: pre-wrap;
+            line-height: 1.8;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- PALETTE COLORS --- */
+        /* These classes are applied dynamically via JS */
+        .pal-current {
+            background-color: #4f46e5;
+            color: white;
+            border-color: #4f46e5;
+            box-shadow: 0 0 10px rgba(79, 70, 229, 0.4);
+            transform: scale(1.1);
+            z-index: 10;
+        }
+
+        .pal-review {
+            background-color: #9333ea;
+            color: white;
+            border-color: #9333ea;
+        }
+
+        .pal-answered {
+            background-color: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+
+        .pal-skipped {
+            background-color: #ef4444;
+            color: white;
+            border-color: #ef4444;
+        }
+
+        .pal-normal {
+            background-color: white;
+            color: #64748b;
+            border-color: #e2e8f0;
+        }
+    </style>
+
+    <noscript>
+        <meta http-equiv="refresh" content="0;url=login.html">
+        <style>
+            body {
+                display: none !important;
+            }
+        </style>
+    </noscript>
+
+    <script type="module">
+        import { auth, onAuthStateChanged } from './firebase-config.js';
+
+        // Security: Block Context Menu & Keys
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.onkeydown = function (e) {
+            if (e.keyCode == 123) return false;
+            if (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+        }
+    </script>
+</head>
+
+<body class="text-slate-800 antialiased">
+
+    <div id="view-login" class="view-container active hero-bg relative">
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+            <div
+                class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob">
+            </div>
+            <div
+                class="absolute top-0 right-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000">
+            </div>
+            <div
+                class="absolute -bottom-8 left-1/3 w-96 h-96 bg-brand-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000">
+            </div>
+        </div>
+
+        <div class="flex-grow flex items-center justify-center p-4 relative z-10">
+            <div class="glass-panel rounded-3xl shadow-2xl p-8 md:p-12 w-full max-w-md border-t border-white/50">
+                <div class="text-center mb-10">
+                    <div class="inline-flex items-center gap-2 mb-6 group cursor-default">
+                        <div
+                            class="brand-gradient text-white p-2 rounded-xl font-extrabold text-2xl shadow-lg shadow-indigo-500/30 group-hover:scale-105 transition">
+                            MH</div>
+                        <span class="font-bold text-2xl text-slate-900 tracking-tight">MOCKERS<span
+                                class="text-brand-600">HUB</span></span>
+                    </div>
+                    <h1 class="text-3xl font-extrabold text-slate-900 mb-2">Secure Portal</h1>
+                    <div
+                        class="inline-block px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs font-bold border border-indigo-100">
+                        GS Score Prelims 2026 • Polity Test #01
+                    </div>
+                </div>
+
+                <form id="loginForm" class="space-y-6">
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Candidate
+                            Name</label>
+                        <input type="text" id="candidateName" required
+                            class="w-full px-5 py-3.5 rounded-xl bg-slate-50 border border-slate-200 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none transition font-semibold text-slate-900 placeholder-slate-400"
+                            placeholder="Enter your full name">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Roll
+                            Number</label>
+                        <input type="number" id="rollNumber" required
+                            class="w-full px-5 py-3.5 rounded-xl bg-slate-50 border border-slate-200 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 outline-none transition font-semibold text-slate-900 placeholder-slate-400"
+                            placeholder="e.g. 24001">
+                    </div>
+                    <button type="submit"
+                        class="w-full brand-gradient text-white py-4 rounded-xl font-bold text-lg shadow-xl shadow-indigo-500/30 hover:shadow-indigo-500/50 hover:scale-[1.02] active:scale-95 transition-all duration-200">
+                        Access Test Environment
+                    </button>
+                </form>
+
+                <div class="mt-8 text-center flex items-center justify-center gap-2 text-xs text-slate-400 font-medium">
+                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <span>SSL Encrypted • IP Logged</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-instructions" class="view-container bg-slate-50">
+        <header
+            class="bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center sticky top-0 z-30 shadow-sm flex-shrink-0">
+            <div class="flex items-center gap-2">
+                <div class="brand-gradient text-white px-2 py-0.5 rounded text-sm font-bold">MH</div>
+                <h2 class="text-lg font-bold text-slate-900">Test Instructions</h2>
+            </div>
+            <button onclick="window.location.reload()"
+                class="text-sm text-slate-500 hover:text-red-600 font-semibold transition flex items-center gap-1">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+                Exit
+            </button>
+        </header>
+
+        <div class="flex-grow overflow-y-auto p-4 md:p-8 custom-scrollbar">
+            <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-200 p-8 md:p-10">
+                <div class="bg-indigo-50 border-l-4 border-indigo-500 p-5 mb-8 rounded-r-xl">
+                    <h3 class="font-bold text-indigo-900 text-lg">GS SCORE PRELIMS TEST SERIES 2026</h3>
+                    <p class="text-indigo-700 text-sm mt-1">Test Code: PTS-5445 • Subject: Polity • Set A</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center">
+                        <div class="text-xs text-slate-500 uppercase font-bold tracking-wide">Duration</div>
+                        <div class="text-2xl font-bold text-slate-900 mt-1">120 <span
+                                class="text-xs text-slate-400">min</span></div>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center">
+                        <div class="text-xs text-slate-500 uppercase font-bold tracking-wide">Max Marks</div>
+                        <div class="text-2xl font-bold text-slate-900 mt-1">100</div>
+                    </div>
+                    <div class="bg-red-50 p-4 rounded-xl border border-red-100 text-center">
+                        <div class="text-xs text-red-500 uppercase font-bold tracking-wide">Negative</div>
+                        <div class="text-2xl font-bold text-red-600 mt-1">-0.66</div>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-xl border border-green-100 text-center">
+                        <div class="text-xs text-green-500 uppercase font-bold tracking-wide">Correct</div>
+                        <div class="text-2xl font-bold text-green-600 mt-1">+2.0</div>
+                    </div>
+                </div>
+
+                <div class="prose prose-slate max-w-none">
+                    <h4 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <span class="bg-brand-100 text-brand-600 p-1 rounded"><svg class="w-4 h-4" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg></span>
+                        General Guidelines
+                    </h4>
+                    <ul class="space-y-3 text-slate-600 text-sm leading-relaxed list-none pl-0">
+                        <li class="flex gap-3"><span class="text-brand-600 font-bold">•</span><span>Check the question
+                                booklet for any missing pages or questions immediately.</span></li>
+                        <li class="flex gap-3"><span class="text-brand-600 font-bold">•</span><span>There are four
+                                alternatives for the answer to every question. For each question, only
+                                <strong>one</strong> response is allowed.</span></li>
+                        <li class="flex gap-3"><span class="text-brand-600 font-bold">•</span><span>There will be a
+                                penalty for wrong answers marked by a candidate (1/3rd of marks assigned).</span></li>
+                        <li class="flex gap-3"><span class="text-brand-600 font-bold">•</span><span>If a question is
+                                left blank (no answer marked), there will be <strong>no penalty</strong>.</span></li>
+                        <li class="flex gap-3"><span class="text-brand-600 font-bold">•</span><span>Do not close the
+                                browser window or switch tabs. The test may auto-submit if suspicious activity is
+                                detected.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="bg-white border-t border-gray-200 p-4 flex justify-center sticky bottom-0 z-30 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] flex-shrink-0">
+            <button onclick="startActualTest()"
+                class="bg-slate-900 text-white px-12 py-3.5 rounded-xl font-bold hover:bg-slate-800 shadow-lg shadow-slate-900/20 transform transition hover:-translate-y-1 w-full max-w-sm flex items-center justify-center gap-2 text-lg">
+                I Agree & Start Test
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3">
+                    </path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div id="view-test" class="view-container bg-slate-100">
+
+        <header
+            class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40 px-4 h-16 flex justify-between items-center flex-shrink-0">
+            <div class="flex items-center gap-3">
+                <div
+                    class="brand-gradient text-white w-9 h-9 flex items-center justify-center rounded-lg font-bold text-sm shadow-md">
+                    MH</div>
+                <div class="hidden sm:block leading-tight">
+                    <h1 class="font-bold text-slate-800 text-sm">GS Score Prelims 2026</h1>
+                    <p class="text-[11px] text-slate-500 font-medium">Polity Test #01</p>
+                </div>
+            </div>
+
+            <div
+                class="bg-slate-900 text-white px-4 py-1.5 rounded-full font-mono text-base font-bold shadow-inner flex items-center gap-2 border border-slate-700">
+                <svg class="w-4 h-4 text-yellow-400 animate-pulse" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span id="timerDisplay">02:00:00</span>
+            </div>
+
+            <button onclick="togglePaletteMobile()" class="lg:hidden p-2 rounded-lg hover:bg-gray-100 text-slate-600">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </header>
+
+        <div class="flex-grow flex overflow-hidden">
+            <main class="flex-1 flex flex-col overflow-y-auto relative w-full lg:w-3/4 bg-white custom-scrollbar"
+                id="questionContainer">
+                <div
+                    class="bg-slate-50/90 backdrop-blur-sm border-b border-gray-100 px-6 py-3 flex justify-between items-center sticky top-0 z-10">
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-sm font-bold text-slate-400 uppercase tracking-wider">Question</span>
+                        <span id="currentQNum" class="text-2xl font-extrabold text-brand-600">1</span>
+                        <span id="reviewIndicator"
+                            class="hidden ml-2 bg-purple-100 text-purple-700 text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wide border border-purple-200">Review
+                            Marked</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-3 text-xs font-bold bg-white px-3 py-1.5 rounded-full border border-gray-200 shadow-sm">
+                        <span class="text-green-600 flex items-center gap-1"><span
+                                class="w-1.5 h-1.5 rounded-full bg-green-500"></span> +2.0</span>
+                        <span class="w-px h-3 bg-gray-300"></span>
+                        <span class="text-red-500 flex items-center gap-1"><span
+                                class="w-1.5 h-1.5 rounded-full bg-red-500"></span> -0.66</span>
+                    </div>
+                </div>
+
+                <div class="p-6 md:p-10 pb-32 fade-in max-w-5xl mx-auto w-full">
+                    <div id="questionContent"></div>
+                </div>
+            </main>
+
+            <aside class="hidden lg:flex flex-col w-1/4 bg-slate-50 border-l border-gray-200 shadow-inner">
+                <div class="p-4 border-b border-gray-200 bg-white">
+                    <h3 class="font-bold text-slate-700 text-xs uppercase tracking-wider mb-3">Palette Legend</h3>
+                    <div class="grid grid-cols-2 gap-2 text-[10px] font-semibold text-slate-600">
+                        <div class="flex items-center gap-1.5"><span
+                                class="w-2.5 h-2.5 rounded-sm bg-green-500"></span>Answered</div>
+                        <div class="flex items-center gap-1.5"><span
+                                class="w-2.5 h-2.5 rounded-sm bg-red-500"></span>Skipped</div>
+                        <div class="flex items-center gap-1.5"><span
+                                class="w-2.5 h-2.5 rounded-sm bg-purple-600"></span>Review</div>
+                        <div class="flex items-center gap-1.5"><span
+                                class="w-2.5 h-2.5 rounded-sm bg-white border border-gray-300"></span>Unvisited</div>
+                    </div>
+                </div>
+                <div class="flex-grow overflow-y-auto p-4 custom-scrollbar">
+                    <div class="grid grid-cols-5 gap-2" id="paletteGridDesktop"></div>
+                </div>
+                <div class="p-5 border-t border-gray-200 bg-white">
+                    <button onclick="submitTest()"
+                        class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-bold shadow-lg shadow-green-600/20 transition transform active:scale-95">
+                        Submit Test
+                    </button>
+                </div>
+            </aside>
+        </div>
+
+        <footer
+            class="bg-white border-t border-gray-200 px-4 py-3 md:px-8 flex justify-between items-center sticky bottom-0 z-30 shadow-[0_-4px_10px_-1px_rgba(0,0,0,0.05)] flex-shrink-0">
+            <div class="flex gap-2 sm:gap-3">
+                <button onclick="markReview()"
+                    class="px-4 py-2.5 rounded-lg border border-purple-400 text-purple-700 font-bold text-xs sm:text-sm hover:bg-purple-50 transition flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                    Mark Review
+                </button>
+                <button onclick="clearResponse()"
+                    class="px-4 py-2.5 rounded-lg border border-gray-200 text-slate-500 font-bold text-xs sm:text-sm hover:bg-gray-50 transition">
+                    Clear
+                </button>
+            </div>
+            <div class="flex gap-3">
+                <button onclick="changeQuestion(-1)" id="prevBtn"
+                    class="px-5 py-2.5 rounded-lg bg-gray-100 text-slate-600 font-bold hover:bg-gray-200 disabled:opacity-40 disabled:cursor-not-allowed transition">
+                    Prev
+                </button>
+                <button onclick="changeQuestion(1)" id="nextBtn"
+                    class="px-8 py-2.5 rounded-lg bg-slate-900 text-white font-bold hover:bg-slate-800 transition shadow-lg shadow-slate-900/20">
+                    Next
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <div id="mobilePaletteModal" class="fixed inset-0 z-[60] hidden bg-black/60 backdrop-blur-sm transition-opacity">
+        <div
+            class="absolute right-0 top-0 h-full w-4/5 max-w-xs bg-white shadow-2xl flex flex-col transform transition-transform duration-300">
+            <div class="p-4 border-b flex justify-between items-center bg-slate-50">
+                <h3 class="font-bold text-lg text-slate-800">Questions</h3>
+                <button onclick="togglePaletteMobile()" class="text-slate-400 hover:text-slate-600">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="flex-grow overflow-y-auto p-4 custom-scrollbar">
+                <div class="grid grid-cols-5 gap-3" id="paletteGridMobile"></div>
+            </div>
+            <div class="p-4 border-t bg-slate-50">
+                <button onclick="submitTest()"
+                    class="w-full bg-green-600 text-white py-3 rounded-xl font-bold shadow-md">Submit Test</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-result" class="view-container bg-slate-50 custom-scrollbar">
+
+        <div id="printableArea" class="pb-16">
+            <div
+                class="hero-bg text-white p-8 pb-32 rounded-b-[3rem] shadow-2xl relative overflow-hidden print:rounded-none print:shadow-none print:pb-8">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-500/20 rounded-full blur-3xl -mr-16 -mt-16">
+                </div>
+
+                <div
+                    class="max-w-6xl mx-auto relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                    <div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span
+                                class="bg-indigo-500/30 border border-indigo-400/30 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">Report
+                                Card</span>
+                        </div>
+                        <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">Performance Analysis</h1>
+                        <p class="text-indigo-200 mt-2 font-light">GS Score Prelims 2026 • Polity Test #01</p>
+                        <div id="readinessBadge"
+                            class="inline-flex items-center gap-2 mt-6 px-5 py-2.5 rounded-xl text-sm font-bold bg-white/10 backdrop-blur-md border border-white/20">
+                            Evaluating...
+                        </div>
+                    </div>
+
+                    <div
+                        class="text-left md:text-right bg-white/5 p-4 rounded-xl border border-white/10 backdrop-blur-sm print:bg-transparent print:border-0">
+                        <h2 id="resultName" class="text-xl font-bold text-white print:text-black">Candidate</h2>
+                        <p id="resultRoll" class="text-sm text-indigo-200 mb-3 print:text-gray-600">Roll: 000</p>
+
+                        <div class="flex flex-col gap-2" data-html2canvas-ignore>
+                            <a href="gs-score-prelims-2026-polity-test-1-with-solution-download-pdf.pdf" target="_blank"
+                                class="bg-white text-brand-900 px-5 py-2 rounded-lg text-xs font-bold shadow-lg hover:bg-brand-50 transition flex items-center justify-center gap-2 w-full">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                </svg>
+                                Download Question PDF
+                            </a>
+                            <button onclick="downloadScorecard()"
+                                class="bg-indigo-600 text-white border border-indigo-500 px-5 py-2 rounded-lg text-xs font-bold shadow-lg hover:bg-indigo-500 transition flex items-center justify-center gap-2 w-full">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                    </path>
+                                </svg>
+                                Download Scorecard
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="max-w-6xl mx-auto px-4 -mt-24 grid grid-cols-1 md:grid-cols-4 gap-6 relative z-10 print:mt-4 print:grid-cols-4">
+                <div
+                    class="bg-white rounded-2xl shadow-xl p-6 text-center border border-gray-100 print:shadow-none print:border">
+                    <p class="text-slate-400 text-xs uppercase font-bold tracking-widest mb-2">Your Score</p>
+                    <div class="flex items-center justify-center gap-1">
+                        <p id="scoreDisplay" class="text-5xl font-extrabold text-slate-900">0</p>
+                        <span class="text-lg text-slate-400 font-medium self-end mb-1">/200</span>
+                    </div>
+                </div>
+                <div
+                    class="bg-white rounded-2xl shadow-xl p-6 flex flex-col justify-center border border-gray-100 print:shadow-none print:border">
+                    <div class="flex justify-between border-b border-gray-100 pb-3 mb-3">
+                        <span class="text-slate-500 font-semibold text-sm">Est. Rank</span>
+                        <span id="rankDisplay" class="text-xl font-bold text-brand-600">#0</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500 font-semibold text-sm">Accuracy</span>
+                        <span id="accuracyDisplay" class="text-xl font-bold text-green-600">0%</span>
+                    </div>
+                </div>
+                <div
+                    class="bg-white rounded-2xl shadow-xl p-6 text-sm flex flex-col justify-center border border-gray-100 print:shadow-none print:border">
+                    <h4 class="font-bold mb-3 text-slate-800 text-xs uppercase tracking-wider">Benchmark</h4>
+                    <ul class="space-y-2.5">
+                        <li class="flex justify-between text-slate-600"><span>Safe Attempts</span> <b
+                                class="text-slate-900">45–50</b></li>
+                        <li class="flex justify-between text-slate-600"><span>Topper Score</span> <b
+                                class="text-slate-900">75+</b></li>
+                        <li class="flex justify-between text-slate-600"><span>Your Attempts</span> <b
+                                id="attemptDisplay" class="text-brand-600">0</b></li>
+                    </ul>
+                </div>
+                <div
+                    class="bg-white rounded-2xl shadow-xl p-4 flex items-center justify-center border border-gray-100 print:shadow-none print:border">
+                    <div class="h-28 w-full">
+                        <canvas id="resultChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="max-w-6xl mx-auto px-4 mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10 print:grid-cols-2">
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 print:break-inside-avoid">
+                    <h3 class="font-bold text-lg mb-4 flex items-center gap-2 text-slate-800">
+                        <span class="bg-red-100 text-red-600 p-1.5 rounded-lg"><svg class="w-5 h-5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"></path>
+                            </svg></span>
+                        Negative Impact Analysis
+                    </h3>
+                    <ul class="text-sm space-y-3">
+                        <li class="flex justify-between bg-red-50 p-3 rounded-lg border border-red-100">
+                            <span class="text-red-800 font-medium">Marks Lost (Negative)</span>
+                            <b id="negativeLoss" class="text-red-700">-0.00</b>
+                        </li>
+                        <li class="flex justify-between bg-green-50 p-3 rounded-lg border border-green-100">
+                            <span class="text-green-800 font-medium">Potential Score (No Negatives)</span>
+                            <b id="noNegativeScore" class="text-green-700">0.00</b>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 print:break-inside-avoid">
+                    <h3 class="font-bold text-lg mb-4 flex items-center gap-2 text-slate-800">
+                        <span class="bg-brand-100 text-brand-600 p-1.5 rounded-lg"><svg class="w-5 h-5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
+                                </path>
+                            </svg></span>
+                        AI Recommendations
+                    </h3>
+                    <ul id="recommendationList"
+                        class="space-y-2 text-slate-600 text-sm list-disc pl-5 marker:text-brand-500"></ul>
+                </div>
+            </div>
+
+            <div class="max-w-6xl mx-auto px-4 mt-12 relative z-10 print:mt-6">
+                <h3 class="text-xl font-bold mb-6 text-slate-900 border-b pb-4">Detailed Question Review</h3>
+                <div id="reviewContainer" class="space-y-6"></div>
+            </div>
+        </div>
+
+        <div class="text-center mt-12 mb-16 relative z-10 pb-8" data-html2canvas-ignore>
+            <a href="index.html"
+                class="inline-flex items-center gap-2 text-brand-600 font-bold hover:text-brand-800 transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                Back to Dashboard
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. CONFIG & DATA ---
+        let currentIndex = 0;
+        let userResponses = {};
+        let reviewStatus = new Set();
+        let visitedQuestions = new Set();
+        let totalTime = 120 * 60;
+        let timerInterval;
+        let candidateDetails = { name: "", roll: "" };
+        let resultChartInstance = null;
+
+        // Sample Data (Truncated, logic fills rest)
+        const questionsData = [
+            {
+                "id": 1,
+                "english": "In the context of Political theory, consider the following statements:\nStatement-I: The theory deals with the ideas and principles that shape Constitutions, governments and social life in a systematic manner.\nStatement-II: It probes the significance of principles such as rule of law, separation of powers, judicial review, etc.\nWhich one of the following is correct in respect of the above statements?",
+                "hindi": "राजनीतिक सिद्धांत के संदर्भ में निम्नलिखित कथनों पर विचार कीजिए:\nकथन-I: यह सिद्धांत संविधान, सरकारों और सामाजिक जीवन को आकार देने वाले विचारों और सिद्धांतों का व्यवस्थित अध्ययन करता है।\nकथन-II: यह विधि के शासन, शक्तियों के पृथक्करण, न्यायिक पुनरावलोकन आदि जैसे सिद्धांतों के महत्व की जांच करता है।\nउपरोक्त कथनों के संबंध में निम्नलिखित में से कौन सा सही है?",
+                "options": {
+                    "a": "(a) Both Statement-I and Statement-II are correct and Statement-II is the correct explanation for Statement-I / कथन-I और कथन-II दोनों सही हैं तथा कथन-II, कथन-I की सही व्याख्या है",
+                    "b": "(b) Both Statement-I and Statement-II are correct and Statement-II is not the correct explanation for Statement-I / कथन-I और कथन-II दोनों सही हैं लेकिन कथन-II, कथन-I की सही व्याख्या नहीं है",
+                    "c": "(c) Statement-I is correct but Statement-II is incorrect / कथन-I सही है लेकिन कथन-II गलत है",
+                    "d": "(d) Statement-I is incorrect but Statement-II is correct / कथन-I गलत है लेकिन कथन-II सही है"
+                },
+                "answer": "a"
+            },
+            {
+                "id": 2,
+                "english": "Which of the following statement is most appropriate about Political Theory",
+                "hindi": "राजनीतिक सिद्धांत के बारे में निम्नलिखित में से कौन सा कथन सबसे उपयुक्त है?",
+                "options": {
+                    "a": "(a) It discusses ideas that form the basis of political institutions. / यह उन विचारों पर चर्चा करता है जो राजनीतिक संस्थाओं का आधार बनते हैं।",
+                    "b": "(b) It explains the relationship between different religions. / यह विभिन्न धर्मों के बीच संबंधों की व्याख्या करता है।",
+                    "c": "(c) It explains the meanings of concepts like equality and freedom. / यह समानता और स्वतंत्रता जैसी अवधारणाओं के अर्थ की व्याख्या करता है।",
+                    "d": "(d) It predicts the performance of political parties. / यह राजनीतिक दलों के प्रदर्शन की भविष्यवाणी करता है।"
+                },
+                "answer": "a"
+            },
+            {
+                "id": 3,
+                "english": "Which among the following most appropriately describes a 'Nation'?",
+                "hindi": "निम्नलिखित में से कौन 'राष्ट्र' का सबसे उपयुक्त वर्णन करता है?",
+                "options": {
+                    "a": "(a) It is constituted by a group who share certain features such as descent, or language, or religion or ethnicity. / यह एक ऐसे समूह द्वारा गठित होता है जो वंश, या भाषा, या धर्म या जातीयता जैसी कुछ विशेषताओं को साझा करते हैं।",
+                    "b": "(b) People have a common set of characteristics like a common language, belief and share boundaries. / लोगों में एक आम भाषा, विश्वास और साझा सीमाओं जैसी विशेषताओं का एक सामान्य समूह होता है।",
+                    "c": "(c) It is a casual collection of people, who are bound by a common set of rules and values. / यह लोगों का एक आकस्मिक संग्रह है, जो नियमों और मूल्यों के एक सामान्य समूह से बंधे हैं।",
+                    "d": "(d) People refer to the collective identity and vision for the future of a group which aspires to have an independent political existence. / लोग एक समूह के भविष्य के लिए सामूहिक पहचान और दृष्टि का उल्लेख करते हैं जो एक स्वतंत्र राजनीतिक अस्तित्व की आकांक्षा रखता है।"
+                },
+                "answer": "d"
+            },
+            {
+                "id": 4,
+                "english": "With reference to the functions of constitution, consider the following:\n1. Constitutional Governance\n2. Legal Interpretation\n3. Amendment and Flexibility\n4. Protection of Minority Rights\nHow many of the above-mentioned are correct?",
+                "hindi": "संविधान के कार्यों के संदर्भ में, निम्नलिखित पर विचार करें:\n1. संवैधानिक शासन\n2. कानूनी व्याख्या\n3. संशोधन और लचीलापन\n4. अल्पसंख्यक अधिकारों का संरक्षण\nउपर्युक्त में से कितने सही हैं?",
+                "options": {
+                    "a": "(a) Only one / केवल एक",
+                    "b": "(b) Only two / केवल दो",
+                    "c": "(c) Only three / केवल तीन",
+                    "d": "(d) All four / सभी चार"
+                },
+                "answer": "d"
+            },
+            {
+                "id": 5,
+                "english": "Consider the following statements:\nStatement-I: The India is an indestructible union of destructible States.\nStatement-II: Union of India is divided into different states only for the convenience of administration.\nWhich one of the following is correct in respect of the above statements?",
+                "hindi": "निम्नलिखित कथनों पर विचार करें:\nकथन-I: भारत विनाशी राज्यों का एक अविनाशी संघ है।\nकथन-II: भारत संघ को केवल प्रशासन की सुविधा के लिए विभिन्न राज्यों में विभाजित किया गया है।\nउपरोक्त कथनों के संबंध में निम्नलिखित में से कौन सा सही है?",
+                "options": {
+                    "a": "(a) Both Statement-I and Statement-II are correct and Statement-II is the correct explanation for Statement-I / कथन-I और कथन-II दोनों सही हैं तथा कथन-II, कथन-I की सही व्याख्या है",
+                    "b": "(b) Both Statement-I and Statement-II are correct and Statement-II is not the correct explanation for Statement-I / कथन-I और कथन-II दोनों सही हैं लेकिन कथन-II, कथन-I की सही व्याख्या नहीं है",
+                    "c": "(c) Statement-I is correct but Statement-II is incorrect / कथन-I सही है लेकिन कथन-II गलत है",
+                    "d": "(d) Statement-I is incorrect but Statement-II is correct / कथन-I गलत है लेकिन कथन-II सही है"
+                },
+                "answer": "c"
+            },
+            {
+                "id": 6,
+                "english": "Consider the following statements:\n1. Citizenship of a nation guarantees political, civil rights and socio-economic rights.\n2. Indian Citizenship involves certain obligations on citizens by virtue of the Constitution.\nWhich of the statements given above is/are correct?",
+                "hindi": "निम्नलिखित कथनों पर विचार करें:\n1. एक राष्ट्र की नागरिकता राजनीतिक, नागरिक अधिकारों और सामाजिक-आर्थिक अधिकारों की गारंटी देती है।\n2. भारतीय नागरिकता में संविधान के आधार पर नागरिकों पर कुछ दायित्व शामिल हैं।\nऊपर दिए गए कथनों में से कौन सा/से सही है/हैं?",
+                "options": {
+                    "a": "(a) 1 only / केवल 1",
+                    "b": "(b) 2 only / केवल 2",
+                    "c": "(c) Both 1 and 2 / 1 और 2 दोनों",
+                    "d": "(d) Neither 1 nor 2 / न तो 1 और न ही 2"
+                },
+                "answer": "c"
+            },
+            {
+                "id": 7,
+                "english": "With reference to provision of 'Dual Citizenship' in India, consider the following statements:\n1. It is mandatory for all Indian passport holders to surrender their last Indian passport immediately after acquisition of foreign nationality.\n2. It is an offence for foreign nationals to hold Indian passports under the Citizenship Act.\nWhich of the statements given above is/are correct?",
+                "hindi": "भारत में 'दोहरी नागरिकता' के प्रावधान के संदर्भ में, निम्नलिखित कथनों पर विचार करें:\n1. सभी भारतीय पासपोर्ट धारकों के लिए विदेशी नागरिकता प्राप्त करने के तुरंत बाद अपने अंतिम भारतीय पासपोर्ट को सरेंडर करना अनिवार्य है।\n2. नागरिकता अधिनियम के तहत विदेशी नागरिकों के लिए भारतीय पासपोर्ट रखना एक अपराध है।\nऊपर दिए गए कथनों में से कौन सा/से सही है/हैं?",
+                "options": {
+                    "a": "(a) 1 only / केवल 1",
+                    "b": "(b) 2 only / केवल 2",
+                    "c": "(c) Both 1 and 2 / 1 और 2 दोनों",
+                    "d": "(d) Neither 1 nor 2 / न तो 1 और न ही 2"
+                },
+                "answer": "c"
+            },
+            {
+                "id": 8,
+                "english": "Consider the following statements:\n1. Overseas citizen of India (OCI) includes a group of people holding a company in any foreign country of Indian origin.\n2. Foreign nationals cannot apply for OCI while on visiting India in Tourist Visa.\n3. The foreigner staying in a particular country or in India for a continuous period of 6 months is eligible to apply for OCI cardholder.\n4. The Spouse of OCI cardholder, whose marriage is registered in the country of residence, is also eligible for OCI cardholder to India.\nHow many of the statements given above are correct?",
+                "hindi": "निम्नलिखित कथनों पर विचार करें:\n1. भारत के विदेशी नागरिक (OCI) में भारतीय मूल के किसी भी विदेशी देश में कंपनी रखने वाले लोगों का समूह शामिल है।\n2. विदेशी नागरिक पर्यटक वीजा पर भारत आने के दौरान OCI के लिए आवेदन नहीं कर सकते हैं।\n3. किसी विशेष देश में या भारत में 6 महीने की निरंतर अवधि के लिए रहने वाला विदेशी OCI कार्डधारक के लिए आवेदन करने के लिए पात्र है।\n4. OCI कार्डधारक का जीवनसाथी, जिसका विवाह निवास के देश में पंजीकृत है, वह भी भारत के लिए OCI कार्डधारक के लिए पात्र है।\nऊपर दिए गए कथनों में से कितने सही हैं?",
+                "options": {
+                    "a": "(a) Only one / केवल एक",
+                    "b": "(b) Only two / केवल दो",
+                    "c": "(c) Only three / केवल तीन",
+                    "d": "(d) All four / सभी चार"
+                },
+                "answer": "b"
+            },
+            {
+                "id": 9,
+                "english": "The Preamble begins with the powerful words, \"We, the people of India,\" emphasizing",
+                "hindi": "प्रस्तावना \"हम, भारत के लोग\" जैसे शक्तिशाली शब्दों से शुरू होती है, जो जोर देती है:",
+                "options": {
+                    "a": "(a) The sovereign nature of the Indian state / भारतीय राज्य की संप्रभु प्रकृति पर",
+                    "b": "(b) The cultural nature of the Indian state / भारतीय राज्य की सांस्कृतिक प्रकृति पर",
+                    "c": "(c) The secular nature of the Indian state / भारतीय राज्य की धर्मनिरपेक्ष प्रकृति पर",
+                    "d": "(d) The democratic nature of the Indian state / भारतीय राज्य की लोकतांत्रिक प्रकृति पर"
+                },
+                "answer": "a"
+            },
+            {
+                "id": 10,
+                "english": "Consider the following:\n1. Right to freedom of Speech and Expression\n2. Right to Life\n3. Right to freedom of Religion\n4. Cultural and Educational Rights\nHow many of the following Fundamental Rights are not enjoyed by the aliens?",
+                "hindi": "निम्नलिखित पर विचार करें:\n1. भाषण और अभिव्यक्ति की स्वतंत्रता का अधिकार\n2. जीवन का अधिकार\n3. धर्म की स्वतंत्रता का अधिकार\n4. सांस्कृतिक और शैक्षिक अधिकार\nनिम्नलिखित मौलिक अधिकारों में से कितने अधिकार विदेशियों को प्राप्त नहीं हैं?",
+                "options": {
+                    "a": "(a) Only one / केवल एक",
+                    "b": "(b) Only two / केवल दो",
+                    "c": "(c) Only three / केवल तीन",
+                    "d": "(d) All four / सभी चार"
+                },
+                "answer": "c"
+            },
+            {
+                "id": 11,
+                "english": "Consider the following statements regarding the Indian Constitution:\n1. First Past the Post system is borrowed from british constitution.\n2. Emergency provisions are borrowed from Government of India Act (1935).\n3. Charter of fundamental rights is borrowed from French constitution.\n4. The idea of residuary powers is borrowed from Australian constitution.\nWhich of the statements given above is/are correct?",
+                "hindi": "भारतीय संविधान के संबंध में निम्नलिखित कथनों पर विचार करें:\n1. 'फर्स्ट पास्ट द पोस्ट' प्रणाली ब्रिटिश संविधान से ली गई है।\n2. आपातकालीन प्रावधान भारत सरकार अधिनियम (1935) से लिए गए हैं।\n3. मौलिक अधिकारों का चार्टर फ्रांसीसी संविधान से लिया गया है।\n4. अवशिष्ट शक्तियों का विचार ऑस्ट्रेलियाई संविधान से लिया गया है।\nऊपर दिए गए कथनों में से कौन सा/से सही है/हैं?",
+                "options": {
+                    "a": "(a) 1 and 2 only / केवल 1 और 2",
+                    "b": "(b) 2 and 3 only / केवल 2 और 3",
+                    "c": "(c) 1, 2 and 3 only / केवल 1, 2 और 3",
+                    "d": "(d) 1, 2 and 4 only / केवल 1, 2 और 4"
+                },
+                "answer": "a"
+            },
+            {
+                "id": 12,
+                "english": "Consider the following statements about secularism in the Indian Constitution:\nStatement - I: The Indian Constitution adopts a positive concept of secularism, which involves equal respect for all religions, rather than a complete separation of religion and state.\nStatement - II: The secular nature of the Indian state is reflected solely in the explicit use of the term 'secular' in the Preamble, added by the 42nd Constitutional Amendment Act of 1976.\nWhich one of the following is correct in respect of the above statements?",
+                "hindi": "भारतीय संविधान में धर्मनिरपेक्षता के बारे में निम्नलिखित कथनों पर विचार करें:\nकथन - I: भारतीय संविधान धर्मनिरपेक्षता की एक सकारात्मक अवधारणा को अपनाता है, जिसमें धर्म और राज्य के पूर्ण पृथक्करण के बजाय सभी धर्मों के लिए समान सम्मान शामिल है।\nकथन - II: भारतीय राज्य की धर्मनिरपेक्ष प्रकृति केवल प्रस्तावना में 'धर्मनिरपेक्ष' शब्द के स्पष्ट उपयोग में परिलक्षित होती है, जिसे 1976 के 42वें संवैधानिक संशोधन अधिनियम द्वारा जोड़ा गया था।\nउपरोक्त कथनों के संबंध में निम्नलिखित में से कौन सा सही है?",
+                "options": {
+                    "a": "(a) Both Statement-I and Statement-II are correct and Statement-II is the correct explanation for Statement-I. / कथन-I और कथन-II दोनों सही हैं तथा कथन-II, कथन-I की सही व्याख्या है",
+                    "b": "(b) Both Statement-I and Statement-II are correct and Statement-II is not the correct explanation for Statement-I. / कथन-I और कथन-II दोनों सही हैं लेकिन कथन-II, कथन-I की सही व्याख्या नहीं है",
+                    "c": "(c) Statement-I is correct but Statement-II is incorrect. / कथन-I सही है लेकिन कथन-II गलत है",
+                    "d": "(d) Statement-I is incorrect but Statement-II is correct. / कथन-I गलत है लेकिन कथन-II सही है"
+                },
+                "answer": "c"
+            },
+            {
+                "id": 13,
+                "english": "Which of the following was adopted as the symbol (seal) of the Constituent Assembly of India?",
+                "hindi": "निम्नलिखित में से किसे भारत की संविधान सभा के प्रतीक (मुहर) के रूप में अपनाया गया था?",
+                "options": {
+                    "a": "(a) Elephant / हाथी",
+                    "b": "(b) Spinning Wheel (Charkha) / चरखा",
+                    "c": "(c) Horse / घोड़ा",
+                    "d": "(d) Lion / शेर"
+                },
+                "answer": "a"
+            },
+            {
+                "id": 14,
+                "english": "Consider the following statements regarding the Government of India Act of 1858:\n1. The Act abolished the East India Company and transferred its powers to the British Crown.\n2. It introduced a system of double Government by establishing the Board of Control and Court of Directors.\n3. It created the office of the Secretary of State for India, who was responsible to the British Parliament.\nHow many of the statements given above is/are correct?",
+                "hindi": "1858 के भारत सरकार अधिनियम के संबंध में निम्नलिखित कथनों पर विचार करें:\n1. इस अधिनियम ने ईस्ट इंडिया कंपनी को समाप्त कर दिया और उसकी शक्तियों को ब्रिटिश क्राउन को हस्तांतरित कर दिया।\n2. इसने बोर्ड ऑफ कंट्रोल और कोर्ट ऑफ डायरेक्टर्स की स्थापना करके दोहरी सरकार की एक प्रणाली शुरू की।\n3. इसने भारत के राज्य सचिव के कार्यालय का निर्माण किया, जो ब्रिटिश संसद के प्रति उत्तरदायी था।\nऊपर दिए गए कथनों में से कितने सही हैं?",
+                "options": {
+                    "a": "(a) Only one / केवल एक",
+                    "b": "(b) Only two / केवल दो",
+                    "c": "(c) All three / सभी तीन",
+                    "d": "(d) None / कोई नहीं"
+                },
+                "answer": "b"
+            },
+            {
+                "id": 15,
+                "english": "Consider the following statements regarding the Indian Councils Act of 1861:\n1. The Act marked the beginning of representative institutions in India by associating Indians with the law-making process.\n2. It decentralized legislative powers to Bombay and Madras Presidencies, reversing the centralization started by the Regulating Act of 1773.\n3. The Viceroy was empowered to issue ordinances during emergencies with the concurrence of the legislative council.\nWhich of the statements given above is/are correct?",
+                "hindi": "1861 के भारतीय परिषद अधिनियम के संबंध में निम्नलिखित कथनों पर विचार करें:\n1. इस अधिनियम ने कानून बनाने की प्रक्रिया के साथ भारतीयों को जोड़कर भारत में प्रतिनिधि संस्थानों की शुरुआत को चिह्नित किया।\n2. इसने बॉम्बे और मद्रास प्रेसीडेंसी को विधायी शक्तियों का विकेंद्रीकरण किया, जो 1773 के रेगुलेटिंग एक्ट द्वारा शुरू किए गए केंद्रीकरण को उलट दिया।\n3. वायसराय को विधान परिषद की सहमति से आपातकाल के दौरान अध्यादेश जारी करने का अधिकार दिया गया था।\nऊपर दिए गए कथनों में से कौन सा/से सही है/हैं?",
+                "options": {
+                    "a": "(a) 1 and 2 only / केवल 1 और 2",
+                    "b": "(b) 2 and 3 only / केवल 2 और 3",
+                    "c": "(c) 1 and 3 only / केवल 1 और 3",
+                    "d": "(d) 1, 2 and 3 / 1, 2 और 3"
+                },
+                "answer": "a"
+            },
+            {
+                "id": 16,
+                "english": "Consider the following statements about the Indian Councils Act of 1892:\n1. It introduced direct elections for some non-official members of the legislative councils.\n2. The Act allowed legislative councils to discuss the budget and address questions to the executive.\n3. It maintained an official majority in both Central and provincial legislative councils.\nWhich of the statements given above is/are correct?",
+                "hindi": "1892 के भारतीय परिषद अधिनियम के बारे में निम्नलिखित कथनों पर विचार करें:\n1. इसने विधान परिषदों के कुछ गैर-सरकारी सदस्यों के लिए प्रत्यक्ष चुनाव की शुरुआत की।\n2. अधिनियम ने विधान परिषदों को बजट पर चर्चा करने और कार्यपालिका से प्रश्न पूछने की अनुमति दी।\n3. इसने केंद्रीय और प्रांतीय विधान परिषदों दोनों में आधिकारिक बहुमत बनाए रखा।\nऊपर दिए गए कथनों में से कौन सा/से सही है/हैं?",
+                "options": {
+                    "a": "(a) 1 and 2 only / केवल 1 और 2",
+                    "b": "(b) 2 and 3 only / केवल 2 और 3",
+                    "c": "(c) 1 and 3 only / केवल 1 और 3",
+                    "d": "(d) 1, 2 and 3 / 1, 2 और 3"
+                },
+                "answer": "b"
+            },
+            {
+                "id": 17,
+                "english": "Consider the following statements about the Indian Independence Act of 1947:\n1. It provided for the creation of two independent dominions, India and Pakistan, with the right to secede from the British Commonwealth.\n2. The Act abolished the office of Viceroy but retained the British Monarch's right to veto bills in the new dominions.\n3. It empowered the Constituent Assemblies of both dominions to repeal any act of the British Parliament, including the Independence Act itself.\nWhich of the statements given above is/are correct?",
+                "hindi": "1947 के भारतीय स्वतंत्रता अधिनियम के बारे में निम्नलिखित कथनों पर विचार करें:\n1. इसने ब्रिटिश राष्ट्रमंडल से अलग होने के अधिकार के साथ दो स्वतंत्र डोमिनियन, भारत और पाकिस्तान के निर्माण का प्रावधान किया।\n2. अधिनियम ने वायसराय के कार्यालय को समाप्त कर दिया लेकिन नए डोमिनियन में विधेयकों को वीटो करने के ब्रिटिश सम्राट के अधिकार को बरकरार रखा।\n3. इसने दोनों डोमिनियन की संविधान सभाओं को स्वतंत्रता अधिनियम सहित ब्रिटिश संसद के किसी भी अधिनियम को निरस्त करने का अधिकार दिया।\nऊपर दिए गए कथनों में से कौन सा/से सही है/हैं?",
+                "options": {
+                    "a": "(a) 1 and 2 only / केवल 1 और 2",
+                    "b": "(b) 1 and 3 only / केवल 1 और 3",
+                    "c": "(c) 2 and 3 only / केवल 2 और 3",
+                    "d": "(d) 1, 2 and 3 / 1, 2 और 3"
+                },
+                "answer": "b"
+            },
+            {
+                "id": 18,
+                "english": "Consider the following statements about the Simon Commission:\n1. The commission was appointed in 1927, two years ahead of schedule, to report on India's constitutional progress.\n2. All members of the commission were British, which led to its boycott by all Indian political parties.\nWhich of the statements given above is/are correct?",
+                "hindi": "साइमन कमीशन के बारे में निम्नलिखित कथनों पर विचार करें:\n1. आयोग को भारत की संवैधानिक प्रगति पर रिपोर्ट करने के लिए निर्धारित समय से दो साल पहले 1927 में नियुक्त किया गया था।\n2. आयोग के सभी सदस्य ब्रिटिश थे, जिसके कारण सभी भारतीय राजनीतिक दलों ने इसका बहिष्कार किया।\nऊपर दिए गए कथनों में से कौन सा/से सही है/हैं?",
+                "options": {
+                    "a": "(a) 1 only / केवल 1",
+                    "b": "(b) 2 only / केवल 2",
+                    "c": "(c) Both 1 and 2 / 1 और 2 दोनों",
+                    "d": "(d) Neither 1 nor 2 / न तो 1 और न ही 2"
+                },
+                "answer": "c"
+            },
+            {
+                "id": 19,
+                "english": "Who was the chief draftsman of the Indian Constitution?",
+                "hindi": "भारतीय संविधान का मुख्य प्रारूपकार (chief draftsman) कौन था?",
+                "options": {
+                    "a": "(a) S.N. Mukerjee / एस.एन. मुखर्जी",
+                    "b": "(b) Prem Behari Narain / प्रेम बिहारी नारायण",
+                    "c": "(c) Nand Lal Bose / नंद लाल बोस",
+                    "d": "(d) H.V.R. Iyengar / एच.वी.आर. अयंगर"
+                },
+                "answer": "a"
+            },
+            {
+                "id": 20,
+                "english": "Consider the following statements about the Preamble of the Indian Constitution:\n1. The Preamble is a part of the Constitution as affirmed by the Supreme Court in the Kesavananda Bharati case (1973).\n2. The Preamble can be amended, but amendments cannot alter the basic features of the Constitution.\n3. The Preamble is justiciable and its provisions are enforceable in courts of law.\nHow many of the statements given above is/are correct?",
+                "hindi": "भारतीय संविधान की प्रस्तावना के बारे में निम्नलिखित कथनों पर विचार करें:\n1. केशवानंद भारती मामले (1973) में सर्वोच्च न्यायालय द्वारा पुष्टि के अनुसार प्रस्तावना संविधान का एक हिस्सा है।\n2. प्रस्तावना में संशोधन किया जा सकता है, लेकिन संशोधन संविधान की मूल विशेषताओं को नहीं बदल सकते।\n3. प्रस्तावना न्यायोचित है और इसके प्रावधान कानून की अदालतों में लागू करने योग्य हैं।\nऊपर दिए गए कथनों में से कितने सही हैं?",
+                "options": {
+                    "a": "(a) Only one / केवल एक",
+                    "b": "(b) Only two / केवल दो",
+                    "c": "(c) Only three / केवल तीन",
+                    "d": "(d) All four / सभी चार"
+                },
+                "answer": "b"
+            },
+            {
+                "id": 21,
+                "english": "Consider the following statements:\nStatement - I: The Fazl Ali Commission rejected the principle of 'one language-one state' while recommending the reorganization of states in India.\nStatement - II: The primary consideration for the Fazl Ali Commission in redrawing the political units of India was the preservation and strengthening of the unity and security of the country.\nWhich one of the following is correct in respect of the above statements?",
+                "hindi": "निम्नलिखित कथनों पर विचार करें:\nकथन - I: फजल अली आयोग ने भारत में राज्यों के पुनर्गठन की सिफारिश करते हुए 'एक भाषा-एक राज्य' के सिद्धांत को खारिज कर दिया।\nकथन - II: भारत की राजनीतिक इकाइयों को फिर से तैयार करने में फजल अली आयोग के लिए प्राथमिक विचार देश की एकता और सुरक्षा का संरक्षण और सुदृढ़ीकरण था।\nउपरोक्त कथनों के संबंध में निम्नलिखित में से कौन सा सही है?",
+                "options": {
+                    "a": "(a) Both Statement-I and Statement-II are correct and Statement-II is the correct explanation for Statement-I. / कथन-I और कथन-II दोनों सही हैं तथा कथन-II, कथन-I की सही व्याख्या है",
+                    "b": "(b) Both Statement-I and Statement-II are correct and Statement-II is not the correct explanation for Statement-I. / कथन-I और कथन-II दोनों सही हैं लेकिन कथन-II, कथन-I की सही व्याख्या नहीं है",
+                    "c": "(c) Statement-I is correct but Statement-II is incorrect. / कथन-I सही है लेकिन कथन-II गलत है",
+                    "d": "(d) Statement-I is incorrect but Statement-II is correct. / कथन-I गलत है लेकिन कथन-II सही है"
+                },
+                "answer": "a"
+            },
+            {
+                "id": 22,
+                "english": "Consider the following categories of persons:\n1. A person who had his domicile in India and was born in India.\n2. A person who migrated to India from Pakistan before July 19, 1948, and had been ordinarily resident in India since the date of his migration.\n3. A person who, or any of whose parents or grandparents, was born in undivided India but is ordinarily residing outside India and has been registered as a citizen of India by the diplomatic or consular representative of India in the country of his residence.\n4. A person who migrated to India from Pakistan after July 19, 1948, and had been ordinarily resident in India since the date of his migration.\nHow many of the given categories correctly describe the persons who became the citizens of India at the commencement of the Constitution on January 26, 1950?",
+                "hindi": "व्यक्तियों की निम्नलिखित श्रेणियों पर विचार करें:\n1. एक व्यक्ति जिसका भारत में अधिवास था और जिसका जन्म भारत में हुआ था।\n2. एक व्यक्ति जो 19 जुलाई, 1948 से पहले पाकिस्तान से भारत आया था, और अपने प्रवास की तारीख से भारत में सामान्य रूप से निवासी था।\n3. एक व्यक्ति जो, या जिसके माता-पिता या दादा-दादी में से कोई अविभाजित भारत में पैदा हुआ था, लेकिन सामान्य रूप से भारत के बाहर रह रहा है और अपने निवास के देश में भारत के राजनयिक या कांसुलर प्रतिनिधि द्वारा भारत के नागरिक के रूप में पंजीकृत किया गया है।\n4. एक व्यक्ति जो 19 जुलाई, 1948 के बाद पाकिस्तान से भारत आया, और अपने प्रवास की तारीख से भारत में सामान्य रूप से निवासी था।\nदी गई श्रेणियों में से कितनी श्रेणियां उन व्यक्तियों का सही वर्णन करती हैं जो 26 जनवरी, 1950 को संविधान के प्रारंभ में भारत के नागरिक बने?",
+                "options": {
+                    "a": "(a) Only one / केवल एक",
+                    "b": "(b) Only two / केवल दो",
+                    "c": "(c) Only three / केवल तीन",
+                    "d": "(d) None / कोई नहीं"
+                },
+                "answer": "c"
+            },
+            {
+                "id": 23,
+                "english": "Consider the following statements regarding National Register of Citizens:\n1. National Register of Indian Citizens finds its mention in original Citizenship Act, 1955.\n2. The first NRC was conducted immediately after the enactment of the Citizenship Act, 1955.\nWhich of the above given statements is/are correct?",
+                "hindi": "राष्ट्रीय नागरिक रजिस्टर (NRC) के संबंध में निम्नलिखित कथनों पर विचार करें:\n1. राष्ट्रीय भारतीय नागरिक रजिस्टर का उल्लेख मूल नागरिकता अधिनियम, 1955 में मिलता है।\n2. पहला NRC नागरिकता अधिनियम, 1955 के लागू होने के तुरंत बाद आयोजित किया गया था।\nऊपर दिए गए कथनों में से कौन सा/से सही है/हैं?",
+                "options": {
+                    "a": "(a) 1 only / केवल 1",
+                    "b": "(b) 2 only / केवल 2",
+                    "c": "(c) Both 1 and 2 / 1 और 2 दोनों",
+                    "d": "(d) Neither 1 nor 2 / न तो 1 और न ही 2"
+                },
+                "answer": "d"
+            },
+            {
+                "id": 24,
+                "english": "Which of the following statements is/are correct?\n1. Laws giving effect to a resolution of a land boundary dispute between India and a foreign country must be passed by a special majority.\n2. Indian Territory can be ceded to a foreign state only by amending the Constitution.\nSelect the correct option using the codes given below:",
+                "hindi": "निम्नलिखित में से कौन सा/से कथन सही है/हैं?\n1. भारत और किसी विदेशी देश के बीच भूमि सीमा विवाद के समाधान को प्रभावी बनाने वाले कानूनों को विशेष बहुमत से पारित किया जाना चाहिए।\n2. भारतीय क्षेत्र को केवल संविधान में संशोधन करके ही किसी विदेशी राज्य को सौंपा जा सकता है।\nनीचे दिए गए कूट का उपयोग करके सही विकल्प का चयन करें:",
+                "options": {
+                    "a": "(a) 1 only / केवल 1",
+                    "b": "(b) 2 only / केवल 2",
+                    "c": "(c) Both 1 and 2 / 1 और 2 दोनों",
+                    "d": "(d) Neither 1 nor 2 / न तो 1 और न ही 2"
+                },
+                "answer": "b"
+            },
+            {
+                "id": 25,
+                "english": "Which of the following statements regarding the Inner Line Permit is/are correct?\n1. The concept of the Inner Line Permit is an offshoot of the Bengal Eastern Frontier Regulations, 1873.\n2. The states that are already in the Sixth Schedule can have the Inner Line Permit system.\nSelect the correct option using the codes given below:",
+                "hindi": "इनर लाइन परमिट के संबंध में निम्नलिखित में से कौन सा/से कथन सही है/हैं?\n1. इनर लाइन परमिट की अवधारणा बंगाल ईस्टर्न फ्रंटियर रेगुलेशन, 1873 की एक शाखा है।\n2. जो राज्य पहले से ही छठी अनुसूची में हैं, उनके पास इनर लाइन परमिट प्रणाली हो सकती है।\nनीचे दिए गए कूट का उपयोग करके सही विकल्प का चयन करें:",
+                "options": {
+                    "a": "(a) 1 only / केवल 1",
+                    "b": "(b) 2 only / केवल 2",
+                    "c": "(c) Both 1 and 2 / 1 और 2 दोनों",
+                    "d": "(d) Neither 1 nor 2 / न तो 1 और न ही 2"
+                },
+                "answer": "c"
+            },
+            {
+                "id": 26,
+                "english": "Consider the following pairs:\nFeatures of the Constitution : Year of adoption\n1. Objective resolution : January, 1947\n2. Ratification of the India's membership of the Commonwealth : May, 1949.\n3. National flag : January, 1950.\nWhich of the above pairs is/are correctly matched?",
+                "hindi": "निम्नलिखित युग्मों पर विचार करें:\nसंविधान की विशेषताएं : अंगीकरण का वर्ष\n1. उद्देश्य प्रस्ताव : जनवरी, 1947\n2. राष्ट्रमंडल में भारत की सदस्यता का अनुसमर्थन : मई, 1949\n3. राष्ट्रीय ध्वज : जनवरी, 1950\nउपरोक्त में से कौन सा/से युग्म सही सुमेलित है/हैं?",
+                "options": {
+                    "a": "(a) No Pair / कोई युग्म नहीं",
+                    "b": "(b) Only one pair / केवल एक युग्म",
+                    "c": "(c) Only two pairs / केवल दो युग्म",
+                    "d": "(d) All the three pairs / सभी तीन युग्म"
+                },
+                "answer": "b"
+            },
+            {
+                "id": 27,
+                "english": "Consider the following statements with respect to the principles of Rule of Law:\n1. Rule of Law ensures absence of arbitrary power, that is, no man can be punished except for a breach of law.\n2. Constitution of India is the result of the rights of the individual as defined and enforced by the courts of law which is one of the elements of Rule of Law.\nWhich of the above statements is/are correct?",
+                "hindi": "विधि के शासन के सिद्धांतों के संबंध में निम्नलिखित कथनों पर विचार करें:\n1. विधि का शासन मनमानी शक्ति की अनुपस्थिति सुनिश्चित करता है, अर्थात, किसी भी व्यक्ति को कानून के उल्लंघन के अलावा दंडित नहीं किया जा सकता है।\n2. भारत का संविधान कानून की अदालतों द्वारा परिभाषित और लागू किए गए व्यक्ति के अधिकारों का परिणाम है जो विधि के शासन के तत्वों में से एक है।\nऊपर दिए गए कथनों में से कौन सा/से सही है/हैं?",
+                "options": {
+                    "a": "(a) 1 only / केवल 1",
+                    "b": "(b) 2 only / केवल 2",
+                    "c": "(c) Both 1 and 2 / 1 और 2 दोनों",
+                    "d": "(d) Neither 1 nor 2 / न तो 1 और न ही 2"
+                },
+                "answer": "a"
+            },
+            {
+                "id": 28,
+                "english": "Which of the following justify the term 'Liberty' according to the constitution?\n1. Values attached to tolerance\n2. Absence of external constraints\n3. To develop his or her capability\n4. To utilize resources as per own will\nSelect the correct answer using the code given below:",
+                "hindi": "संविधान के अनुसार निम्नलिखित में से कौन 'स्वतंत्रता' शब्द को सही ठहराता है?\n1. सहिष्णुता से जुड़े मूल्य\n2. बाहरी बाधाओं की अनुपस्थिति\n3. अपनी क्षमता का विकास करना\n4. अपनी मर्जी के अनुसार संसाधनों का उपयोग करना\nनीचे दिए गए कूट का उपयोग करके सही उत्तर चुनें:",
+                "options": {
+                    "a": "(a) 1, 2 and 3 only / केवल 1, 2 और 3",
+                    "b": "(b) 2 and 4 only / केवल 2 और 4",
+                    "c": "(c) 1, 3 and 4 only / केवल 1, 3 और 4",
+                    "d": "(d) 1, 2, 3 and 4 / 1, 2, 3 और 4"
+                },
+                "answer": "a"
+            },
+            {
+                "id": 29,
+                "english": "Which one among the following are not associated with Drafting of the Constitution?\n1. J.B Kripalani\n2. H.C Mukherjee\n3. A.V Thakkar\n4. G.V Mavlankar\nSelect the correct answer using the code given below:",
+                "hindi": "निम्नलिखित में से कौन संविधान के प्रारूपण से जुड़ा नहीं है?\n1. जे.बी. कृपलानी\n2. एच.सी. मुखर्जी\n3. ए.वी. ठक्कर\n4. जी.वी. मावलंकर\nनीचे दिए गए कूट का उपयोग करके सही उत्तर चुनें:",
+                "options": {
+                    "a": "(a) 1 and 3 only / केवल 1 और 3",
+                    "b": "(b) 2 and 4 only / केवल 2 और 4",
+                    "c": "(c) 3 only / केवल 3",
+                    "d": "(d) 2 only / केवल 2"
+                },
+                "answer": "a"
+            },
+            {
+                "id": 30,
+                "english": "Consider the following:\nSchedule : Subject matters\n1. Ninth schedule : Diluting the concentration of wealth\n2. Fourth schedule : Federal structure\n3. Seventh schedule : Division of Powers\nWhich of the pairs given above is/are correctly matched?",
+                "hindi": "निम्नलिखित पर विचार करें:\nअनुसूची : विषय वस्तु\n1. नौवीं अनुसूची : धन की एकाग्रता को कम करना\n2. चौथी अनुसूची : संघीय ढांचा\n3. सातवीं अनुसूची : शक्तियों का विभाजन\nऊपर दिए गए युग्मों में से कौन सा/से सही सुमेलित है/हैं?",
+                "options": {
+                    "a": "(a) Only one pair / केवल एक युग्म",
+                    "b": "(b) Only two pairs / केवल दो युग्म",
+                    "c": "(c) No pair / कोई युग्म नहीं",
+                    "d": "(d) All the three pairs / सभी तीन युग्म"
+                },
+                "answer": "a"
+            },
+            {
+                "id": 31,
+                "english": "Consider the following statements regarding the provisions in the Constitution:\n1. Article 2 authorizes the Central government to establish new States.\n2. The Constitution gives power to admit new States which are not the part of India.\nWhich of the statements given above is/are correct?",
+                "hindi": "संविधान के प्रावधानों के संबंध में निम्नलिखित कथनों पर विचार करें:\n1. अनुच्छेद 2 केंद्र सरकार को नए राज्य स्थापित करने के लिए अधिकृत करता है।\n2. संविधान उन नए राज्यों को प्रवेश देने की शक्ति देता है जो भारत का हिस्सा नहीं हैं।\nऊपर दिए गए कथनों में से कौन सा/से सही है/हैं?",
+                "options": {
+                    "a": "(a) 1 only / केवल 1",
+                    "b": "(b) 2 only / केवल 2",
+                    "c": "(c) Both 1 and 2 / 1 और 2 दोनों",
+                    "d": "(d) Neither 1 nor 2 / न तो 1 और न ही 2"
+                },
+                "answer": "b"
+            },
+            {
+                "id": 32,
+                "english": "Regarding the Dhar Commission, which of the following statement is incorrect",
+                "hindi": "धर आयोग के संबंध में, निम्नलिखित में से कौन सा कथन गलत है?",
+                "options": {
+                    "a": "(a) It suggested administrative convenience should be the basis for reorganisation of the States. / इसने सुझाव दिया कि प्रशासनिक सुविधा राज्यों के पुनर्गठन का आधार होनी चाहिए।",
+                    "b": "(b) It rejected the Linguistic basis as the criteria for shuffling of states. / इसने राज्यों के फेरबदल के लिए भाषाई आधार को मानदंड के रूप में खारिज कर दिया।",
+                    "c": "(c) It supported the Andhra Pradesh reorganisation proposal. / इसने आंध्र प्रदेश पुनर्गठन प्रस्ताव का समर्थन किया।",
+                    "d": "(d) A linguistic provinces Committee has been formed under the commission. / आयोग के तहत एक भाषाई प्रांत समिति का गठन किया गया है।"
+                },
+                "answer": "c"
+            },
+            {
+                "id": 33,
+                "english": "Consider the following:\nAssertion (A): States are empowered to deal with few provisions of citizenship in special areas.\nReason (R): The Indians owe allegiance to the Union directly and not subject to Dual citizenship.\nSelect the correct answer from the code given below:",
+                "hindi": "निम्नलिखित पर विचार करें:\nअभिकथन (A): राज्यों को विशेष क्षेत्रों में नागरिकता के कुछ प्रावधानों से निपटने का अधिकार है।\nकारण (R): भारतीय सीधे संघ के प्रति निष्ठा रखते हैं और दोहरी नागरिकता के अधीन नहीं हैं।\nनीचे दिए गए कूट से सही उत्तर चुनें:",
+                "options": {
+                    "a": "(a) Both A and R is correct and R is the correct explanation of A. / A और R दोनों सही हैं और R, A की सही व्याख्या है।",
+                    "b": "(b) A is correct but R is not the correct explanation of A. / A सही है लेकिन R, A की सही व्याख्या नहीं है।",
+                    "c": "(c) A is incorrect but R is correct. / A गलत है लेकिन R सही है।",
+                    "d": "(d) A and R both are not correct. / A और R दोनों सही नहीं हैं।"
+                },
+                "answer": "b"
+            },
+            {
+                "id": 34,
+                "english": "Constitution of India guarantees which of the following to the States of India?",
+                "hindi": "भारत का संविधान भारत के राज्यों को निम्नलिखित में से किसकी गारंटी देता है?",
+                "options": {
+                    "a": "(a) Territorial Integrity / क्षेत्रीय अखंडता",
+                    "b": "(b) Sovereignty / संप्रभुता",
+                    "c": "(c) Right to secede from union / संघ से अलग होने का अधिकार",
+                    "d": "(d) None of the above / इनमें से कोई नहीं"
+                },
+                "answer": "d"
+            },
+            {
+                "id": 35,
+                "english": "The distribution of powers between the Centre and the States in the Indian Constitution is based on the scheme provided in which of the following:",
+                "hindi": "भारतीय संविधान में केंद्र और राज्यों के बीच शक्तियों का वितरण निम्नलिखित में से किसमें प्रदान की गई योजना पर आधारित है:",
+                "options": {
+                    "a": "(a) Morley-Minto Reforms, 1909 / मॉर्ले-मिंटो सुधार, 1909",
+                    "b": "(b) Montagu-Chelmsford Act, 1919 / मोंटेग्यू-चेम्सफोर्ड अधिनियम, 1919",
+                    "c": "(c) Government of India Act, 1935 / भारत सरकार अधिनियम, 1935",
+                    "d": "(d) Indian Independence Act, 1947 / भारतीय स्वतंत्रता अधिनियम, 1947"
+                },
+                "answer": "c"
+            },
+            {
+                "id": 36,
+                "english": "Consider the following statements:\n1. Preamble was not included in the original constitution of India.\n2. With commencement of the constitution, the Independence Act, 1947 was repealed.\nWhich of the statements given above is/are correct",
+                "hindi": "निम्नलिखित कथनों पर विचार करें:\n1. प्रस्तावना को भारत के मूल संविधान में शामिल नहीं किया गया था।\n2. संविधान के प्रारंभ के साथ, स्वतंत्रता अधिनियम, 1947 को निरस्त कर दिया गया था।\nऊपर दिए गए कथनों में से कौन सा/से सही है/हैं?",
+                "options": {
+                    "a": "(a) 1 only / केवल 1",
+                    "b": "(b) 2 only / केवल 2",
+                    "c": "(c) Both 1 and 2 / 1 और 2 दोनों",
+                    "d": "(d) Neither 1 nor 2 / न तो 1 और न ही 2"
+                },
+                "answer": "b"
+            },
+            {
+                "id": 37,
+                "english": "Consider the following statements:\n1. Plutocracy is a society or a system ruled and dominated by a small minority of the wealthiest.\n2. Governments with Autocracy are ruled by one person who has all the power over the people in a country.\nWhich of the above statements is/are correct?",
+                "hindi": "निम्नलिखित कथनों पर विचार करें:\n1. प्लूटोक्रेसी (धनिक तंत्र) एक ऐसा समाज या प्रणाली है जो सबसे धनी लोगों के एक छोटे अल्पसंख्यक द्वारा शासित और प्रभुत्व में होता है।\n2. ऑटोक्रेसी (एकतंत्र) वाली सरकारें एक व्यक्ति द्वारा शासित होती हैं जिसके पास देश के लोगों पर सारी शक्ति होती है।\nऊपर दिए गए कथनों में से कौन सा/से सही है/हैं?",
+                "options": {
+                    "a": "(a) 1 only / केवल 1",
+                    "b": "(b) 2 only / केवल 2",
+                    "c": "(c) Both 1 and 2 / 1 और 2 दोनों",
+                    "d": "(d) Neither 1 nor 2 / न तो 1 और न ही 2"
+                },
+                "answer": "c"
+            },
+            {
+                "id": 38,
+                "english": "Consider the following statements:\n1. Rights are justified claims to a certain kind of positive and negative treatment from others.\n2. Human Rights are those important conditions of social life without which no person can generally realize his best self.\n3. Human Rights Day is observed every year on the day the Universal Declaration of Human Rights was adopted.\nWhich of the above statements are correct?",
+                "hindi": "निम्नलिखित कथनों पर विचार करें:\n1. अधिकार दूसरों से एक निश्चित प्रकार के सकारात्मक और नकारात्मक व्यवहार के उचित दावे हैं।\n2. मानवाधिकार सामाजिक जीवन की वे महत्वपूर्ण परिस्थितियाँ हैं जिनके बिना कोई भी व्यक्ति आम तौर पर अपने सर्वश्रेष्ठ स्व का एहसास नहीं कर सकता है।\n3. मानवाधिकार दिवस हर साल उस दिन मनाया जाता है जिस दिन मानवाधिकारों की सार्वभौमिक घोषणा को अपनाया गया था।\nऊपर दिए गए कथनों में से कौन से सही हैं?",
+                "options": {
+                    "a": "(a) 1 and 2 only / केवल 1 और 2",
+                    "b": "(b) 2 and 3 only / केवल 2 और 3",
+                    "c": "(c) 1 and 3 only / केवल 1 और 3",
+                    "d": "(d) 1, 2 and 3 / 1, 2 और 3"
+                },
+                "answer": "d"
+            },
+            {
+                "id": 39,
+                "english": "Consider the following statements:\n1. In a Democracy the ultimate power to govern people comes from the people themselves.\n2. Both 'First Past the Post system' and 'Proportional Representation' types of the system of elections are followed in India.\nWhich of the above statements is/are incorrect?",
+                "hindi": "निम्नलिखित कथनों पर विचार करें:\n1. लोकतंत्र में लोगों पर शासन करने की अंतिम शक्ति स्वयं लोगों से आती है।\n2. भारत में 'फर्स्ट पास्ट द पोस्ट सिस्टम' और 'आनुपातिक प्रतिनिधित्व' दोनों प्रकार की चुनाव प्रणाली का पालन किया जाता है।\nऊपर दिए गए कथनों में से कौन सा/से गलत है/हैं?",
+                "options": {
+                    "a": "(a) 1 and 3 only / केवल 1 और 3",
+                    "b": "(b) 2 only / केवल 2",
+                    "c": "(c) 1 and 2 only / केवल 1 और 2",
+                    "d": "(d) Neither 1 nor 2 / न तो 1 और न ही 2"
+                },
+                "answer": "d"
+            },
+            {
+                "id": 40,
+                "english": "More than seventy years after the adoption, the Constitution continues to function as the framework within which the government of our country operates. What are the reasons for this continuity?\n1. There has been enough flexibility of interpretations of the Constitution through judicial rulings as well as political practice.\n2. Our Constitution is not a static document and it is not unalterable.\nSelect the correct option using the codes given below:",
+                "hindi": "गोद लेने के सत्तर साल से अधिक समय बाद भी, संविधान उस ढांचे के रूप में कार्य करना जारी रखता है जिसके भीतर हमारे देश की सरकार संचालित होती है। इस निरंतरता के क्या कारण हैं?\n1. न्यायिक फैसलों के साथ-साथ राजनीतिक व्यवहार के माध्यम से संविधान की व्याख्याओं में पर्याप्त लचीलापन रहा है।\n2. हमारा संविधान एक स्थिर दस्तावेज नहीं है और यह अपरिवर्तनीय नहीं है।\nनीचे दिए गए कूट का उपयोग करके सही विकल्प का चयन करें:",
+                "options": {
+                    "a": "(a) 1 only / केवल 1",
+                    "b": "(b) 2 only / केवल 2",
+                    "c": "(c) Both 1 and 2 / 1 और 2 दोनों",
+                    "d": "(d) Neither 1 nor 2 / न तो 1 और न ही 2"
+                },
+                "answer": "c"
+            },
+            {
+                "id": 41,
+                "english": "Consider the following statements regarding the concept of Liberalism:\n1. The liberalism in the Indian Constitution has been always linked to social justice.\n2. Classical liberalism always privileges the rights of the individuals over the demands of social justice.\nWhich of the above statements is/are correct?",
+                "hindi": "उदारवाद की अवधारणा के संबंध में निम्नलिखित कथनों पर विचार करें:\n1. भारतीय संविधान में उदारवाद को हमेशा सामाजिक न्याय से जोड़ा गया है।\n2. शास्त्रीय उदारवाद हमेशा सामाजिक न्याय की मांगों पर व्यक्तियों के अधिकारों को विशेषाधिकार देता है।\nऊपर दिए गए कथनों में से कौन सा/से सही है/हैं?",
+                "options": {
+                    "a": "(a) 1 only / केवल 1",
+                    "b": "(b) 2 only / केवल 2",
+                    "c": "(c) Both 1 and 2 / 1 और 2 दोनों",
+                    "d": "(d) Neither 1 nor 2 / न तो 1 और न ही 2"
+                },
+                "answer": "c"
+            },
+            {
+                "id": 42,
+                "english": "In what ways the Constitution expresses the fundamental identity of the people?\n1. The Constitution forms a collective identity by setting norms about how one should be governed and who should be governed.\n2. It gives the moral identity by through its authoritative constraints upon what one may or may not do.\n3. It gives powers to the government for pursuing the collective good of society.\nSelect the correct answer using the code given below:",
+                "hindi": "संविधान किन तरीकों से लोगों की मौलिक पहचान को व्यक्त करता है?\n1. संविधान मानदंडों को निर्धारित करके एक सामूहिक पहचान बनाता है कि किसी को कैसे शासित किया जाना चाहिए और किसे शासित किया जाना चाहिए।\n2. यह किसी को क्या करना चाहिए या क्या नहीं करना चाहिए, इस पर अपने आधिकारिक प्रतिबंधों के माध्यम से नैतिक पहचान देता है।\n3. यह समाज की सामूहिक भलाई को आगे बढ़ाने के लिए सरकार को शक्तियां देता है।\nनीचे दिए गए कूट का उपयोग करके सही उत्तर चुनें:",
+                "options": {
+                    "a": "(a) 1 only / केवल 1",
+                    "b": "(b) 2 only / केवल 2",
+                    "c": "(c) Both 1 and 2 / 1 और 2 दोनों",
+                    "d": "(d) 1, 2 and 3 / 1, 2 और 3"
+                },
+                "answer": "d"
+            },
+            {
+                "id": 43,
+                "english": "Consider the following statements:\n1. The Constituent Assembly was constituted in November 1946 under the scheme formulated by the August Offer 1940.\n2. The representatives of each community (Muslims, Sikhs and general) were to be elected by members of that community in the provincial legislative assembly.\nWhich of the above statements is/are correct?",
+                "hindi": "निम्नलिखित कथनों पर विचार करें:\n1. संविधान सभा का गठन नवंबर 1946 में अगस्त प्रस्ताव 1940 द्वारा तैयार की गई योजना के तहत किया गया था।\n2. प्रत्येक समुदाय (मुस्लिम, सिख और सामान्य) के प्रतिनिधियों को प्रांतीय विधानसभा में उस समुदाय के सदस्यों द्वारा चुना जाना था।\nऊपर दिए गए कथनों में से कौन सा/से सही है/हैं?",
+                "options": {
+                    "a": "(a) 1 only / केवल 1",
+                    "b": "(b) 2 only / केवल 2",
+                    "c": "(c) Both 1 and 2 / 1 और 2 दोनों",
+                    "d": "(d) Neither 1 nor 2 / न तो 1 और न ही 2"
+                },
+                "answer": "b"
+            },
+            {
+                "id": 44,
+                "english": "Which of the following statements is/are correct about the Constitution of India?\n1. It specifies how the government will be constituted.\n2. It does not lay down limits on the powers of the government.\n3. It provides a standard to examine and evaluate any law and action.\nSelect the correct answer using the code given below:",
+                "hindi": "भारत के संविधान के बारे में निम्नलिखित में से कौन सा/से कथन सही है/हैं?\n1. यह निर्दिष्ट करता है कि सरकार का गठन कैसे किया जाएगा।\n2. यह सरकार की शक्तियों पर सीमा निर्धारित नहीं करता है।\n3. यह किसी भी कानून और कार्रवाई की जांच और मूल्यांकन करने के लिए एक मानक प्रदान करता है।\nनीचे दिए गए कूट का उपयोग करके सही उत्तर चुनें:",
+                "options": {
+                    "a": "(a) 1 and 2 only / केवल 1 और 2",
+                    "b": "(b) 2 and 3 only / केवल 2 और 3",
+                    "c": "(c) 1 and 3 only / केवल 1 और 3",
+                    "d": "(d) 1, 2 and 3 / 1, 2 और 3"
+                },
+                "answer": "c"
+            },
+            {
+                "id": 45,
+                "english": "Consider the following statements:\n1. The demand for a constituent assembly was accepted in principle by British government in August Offer of 1940\n2. The Constituent Assembly was constituted in November 1946 under the scheme formulated by the Cabinet Mission Plan.\nWhich of the above statements is/are correct?",
+                "hindi": "निम्नलिखित कथनों पर विचार करें:\n1. संविधान सभा की मांग को ब्रिटिश सरकार ने 1940 के अगस्त प्रस्ताव में सैद्धांतिक रूप से स्वीकार कर लिया था।\n2. संविधान सभा का गठन नवंबर 1946 में कैबिनेट मिशन योजना द्वारा तैयार की गई योजना के तहत किया गया था।\nऊपर दिए गए कथनों में से कौन सा/से सही है/हैं?",
+                "options": {
+                    "a": "(a) 1 only / केवल 1",
+                    "b": "(b) 2 only / केवल 2",
+                    "c": "(c) Both 1 and 2 / 1 और 2 दोनों",
+                    "d": "(d) Neither 1 nor 2 / न तो 1 और न ही 2"
+                },
+                "answer": "c"
+            },
+            {
+                "id": 46,
+                "english": "Although the term 'fraternity' is missing in the provisions of the Constitution explicitly, except Preamble, which of the following parts/provisions imply the implicit meaning of the fraternity?\n1. Idea of single citizenship\n2. Directive Principles\n3. Fundamental Duties\n4. Indestructible nature of the Indian Union\nSelect the correct option using the codes given below:",
+                "hindi": "यद्यपि 'बंधुत्व' शब्द संविधान के प्रावधानों में स्पष्ट रूप से गायब है, सिवाय प्रस्तावना के, निम्नलिखित में से कौन सा भाग/प्रावधान बंधुत्व के निहित अर्थ को दर्शाता है?\n1. एकल नागरिकता का विचार\n2. निर्देशक सिद्धांत\n3. मौलिक कर्तव्य\n4. भारतीय संघ की अविनाशी प्रकृति\nनीचे दिए गए कूट का उपयोग करके सही विकल्प का चयन करें:",
+                "options": {
+                    "a": "(a) 1 and 4 only / केवल 1 और 4",
+                    "b": "(b) 2, 3 and 4 only / केवल 2, 3 और 4",
+                    "c": "(c) 1, 2 and 3 only / केवल 1, 2 और 3",
+                    "d": "(d) 1, 2, 3 and 4 / 1, 2, 3 और 4"
+                },
+                "answer": "d"
+            },
+            {
+                "id": 47,
+                "english": "Which of the following states/UTs were newly created by the States Reorganisation Act of 1956?\n1. Andhra Pradesh\n2. Kerala\n3. Mysore\n4. Union Territory of Laccadive, Minicoy and Amindivi Islands\nSelect the correct answer using the code given below:",
+                "hindi": "राज्य पुनर्गठन अधिनियम 1956 द्वारा निम्नलिखित में से कौन से राज्य/केंद्र शासित प्रदेश नए बनाए गए थे?\n1. आंध्र प्रदेश\n2. केरल\n3. मैसूर\n4. लक्कादीव, मिनिकॉय और अमीनदीवी द्वीप समूह का केंद्र शासित प्रदेश\nनीचे दिए गए कूट का उपयोग करके सही उत्तर चुनें:",
+                "options": {
+                    "a": "(a) 1, 2 and 4 only / केवल 1, 2 और 4",
+                    "b": "(b) 1 and 2 only / केवल 1 और 2",
+                    "c": "(c) 3 and 4 only / केवल 3 और 4",
+                    "d": "(d) 1, 2 and 3 / 1, 2 और 3"
+                },
+                "answer": "d"
+            },
+            {
+                "id": 48,
+                "english": "Consider the following statements:\n1. Indian Federation is not the result of an agreement among the states like the American Federation.\n2. 'Union of India' has a wider expression than the 'Territory of India'.\nWhich of the above given statements is/are incorrect?",
+                "hindi": "निम्नलिखित कथनों पर विचार करें:\n1. भारतीय संघ अमेरिकी संघ की तरह राज्यों के बीच किसी समझौते का परिणाम नहीं है।\n2. 'भारत का संघ' (Union of India) की अभिव्यक्ति 'भारत के क्षेत्र' (Territory of India) से व्यापक है।\nऊपर दिए गए कथनों में से कौन सा/से गलत है/हैं?",
+                "options": {
+                    "a": "(a) 1 only / केवल 1",
+                    "b": "(b) 2 only / केवल 2",
+                    "c": "(c) Both 1 and 2 / 1 और 2 दोनों",
+                    "d": "(d) Neither 1 nor 2 / न तो 1 और न ही 2"
+                },
+                "answer": "b"
+            },
+            {
+                "id": 49,
+                "english": "Who among the following can acquire citizenship by registration in India?",
+                "hindi": "निम्नलिखित में से कौन भारत में पंजीकरण द्वारा नागरिकता प्राप्त कर सकता है?",
+                "options": {
+                    "a": "(a) Married son of Indian citizen / भारतीय नागरिक का विवाहित पुत्र",
+                    "b": "(b) Unmarried son of Indian citizen above the age of 25 years / 25 वर्ष से अधिक आयु का भारतीय नागरिक का अविवाहित पुत्र",
+                    "c": "(c) Married daughter-in-law of Indian citizen / भारतीय नागरिक की विवाहित बहू (Note: The term used in option (c) of source is 'Married daughter-in-law' but standard text usually refers to persons married to citizens. Let's stick to source text option C).",
+                    "d": "(d) Under 18 son of Indian citizen / भारतीय नागरिक का 18 वर्ष से कम आयु का पुत्र"
+                },
+                "answer": "c"
+            },
+            {
+                "id": 50,
+                "english": "Which of the following statements about Committees of the Constituent Assembly is/are correct?\n1. Provincial Constitution Committee was chaired by Sardar Patel.\n2. Committee for Negotiating with States was chaired by Jawaharlal Nehru.\n3. Rules of Procedure Committee was chaired by JB Kripalani.\nSelect the correct answer using codes below:",
+                "hindi": "संविधान सभा की समितियों के बारे में निम्नलिखित में से कौन सा/से कथन सही है/हैं?\n1. प्रांतीय संविधान समिति की अध्यक्षता सरदार पटेल ने की थी।\n2. राज्यों के साथ बातचीत करने वाली समिति की अध्यक्षता जवाहरलाल नेहरू ने की थी।\n3. प्रक्रिया नियम समिति की अध्यक्षता जेबी कृपलानी ने की थी।\nनीचे दिए गए कूट का उपयोग करके सही उत्तर चुनें:",
+                "options": {
+                    "a": "(a) 1 and 2 only / केवल 1 और 2",
+                    "b": "(b) 2 and 3 only / केवल 2 और 3",
+                    "c": "(c) 1 and 3 only / केवल 1 और 3",
+                    "d": "(d) 1, 2 and 3 / 1, 2 और 3"
+                },
+                "answer": "c"
+            }
+        ];
+
+        // Data Filler
+        while (questionsData.length < 50) {
+            questionsData.push({
+                id: questionsData.length + 1,
+                english: "Sample Question " + (questionsData.length + 1) + ": Which of the following is correct regarding the basic structure of the Constitution?",
+                hindi: "नमूना प्रश्न: संविधान की मूल संरचना के संबंध में निम्नलिखित में से कौन सा सही है?",
+                options: { "a": "Option A", "b": "Option B", "c": "Option C", "d": "Option D" },
+                answer: ["a", "b", "c", "d"][Math.floor(Math.random() * 4)]
+            });
+        }
+
+        // --- 2. NAVIGATION LOGIC ---
+        function switchView(id) {
+            // Hide all views
+            document.querySelectorAll('.view-container').forEach(el => el.classList.remove('active'));
+            // Show target view
+            const target = document.getElementById(id);
+            if (target) {
+                target.classList.add('active');
+                target.scrollTop = 0; // Reset scroll
+            }
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            candidateDetails.name = document.getElementById('candidateName').value;
+            candidateDetails.roll = document.getElementById('rollNumber').value;
+            switchView('view-instructions');
+        });
+
+        // --- 3. TEST ENGINE ---
+        function startActualTest() {
+            switchView('view-test');
+            renderPalette();
+            loadQuestion(0);
+            startTimer();
+        }
+
+        function startTimer() {
+            const display = document.getElementById('timerDisplay');
+            timerInterval = setInterval(() => {
+                let h = Math.floor(totalTime / 3600);
+                let m = Math.floor((totalTime % 3600) / 60);
+                let s = totalTime % 60;
+                display.innerText = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+
+                if (totalTime < 300) display.parentElement.classList.replace('bg-slate-900', 'bg-red-600');
+                if (totalTime <= 0) { clearInterval(timerInterval); submitTest(); }
+                totalTime--;
+            }, 1000);
+        }
+
+        function loadQuestion(index) {
+            currentIndex = index;
+            const q = questionsData[index];
+            const savedAns = userResponses[q.id];
+            visitedQuestions.add(q.id);
+
+            // Update Header
+            document.getElementById('currentQNum').innerText = index + 1;
+            const revInd = document.getElementById('reviewIndicator');
+            reviewStatus.has(q.id) ? revInd.classList.remove('hidden') : revInd.classList.add('hidden');
+
+            // Render Question
+            let html = `<div class="mb-6"><h3 class="text-lg md:text-xl font-bold text-slate-900 font-serif question-text leading-relaxed">${q.english}</h3></div>`;
+            html += `<div class="mb-8 border-t border-dashed border-gray-300 pt-5"><h3 class="text-lg md:text-xl text-slate-800 font-hindi question-text leading-relaxed">${q.hindi}</h3></div>`;
+
+            // Render Options
+            html += '<div class="space-y-3">';
+            for (const [key, val] of Object.entries(q.options)) {
+                const isSel = savedAns === key;
+                const baseClass = "cursor-pointer rounded-xl p-4 md:p-5 flex items-start transition-all duration-200 group border select-none relative overflow-hidden";
+                const selClass = "bg-brand-50 border-brand-500 ring-1 ring-brand-500 shadow-md transform scale-[1.01]";
+                const unselClass = "bg-white border-gray-200 hover:bg-slate-50 hover:border-brand-200 hover:shadow-sm";
+
+                html += `
+                <div onclick="selectOption(${q.id}, '${key}')" class="${baseClass} ${isSel ? selClass : unselClass}">
+                    <div class="flex-shrink-0 w-8 h-8 rounded-full border-2 flex items-center justify-center mr-4 mt-0.5 transition-colors ${isSel ? 'bg-brand-600 border-brand-600 text-white' : 'border-gray-300 text-gray-400 group-hover:border-brand-400'}">
+                        ${isSel ? '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>' : `<span class="text-xs font-bold">${key.toUpperCase()}</span>`}
+                    </div>
+                    <div class="text-slate-700 font-medium text-sm md:text-base leading-relaxed z-10">${val}</div>
+                </div>`;
+            }
+            html += '</div>';
+
+            document.getElementById('questionContent').innerHTML = html;
+            updateNav();
+            renderPalette();
+        }
+
+        function selectOption(qid, opt) { userResponses[qid] = opt; loadQuestion(currentIndex); }
+        function clearResponse() { delete userResponses[questionsData[currentIndex].id]; loadQuestion(currentIndex); }
+        function markReview() {
+            const id = questionsData[currentIndex].id;
+            reviewStatus.has(id) ? reviewStatus.delete(id) : reviewStatus.add(id);
+            loadQuestion(currentIndex);
+        }
+        function changeQuestion(d) {
+            const n = currentIndex + d;
+            if (n >= 0 && n < questionsData.length) loadQuestion(n);
+        }
+        function updateNav() {
+            document.getElementById('prevBtn').disabled = currentIndex === 0;
+            document.getElementById('nextBtn').innerText = currentIndex === questionsData.length - 1 ? 'Finish' : 'Next';
+        }
+
+        // --- PALETTE LOGIC (Fixed Colors) ---
+        function renderPalette() {
+            const createGrid = (isMobile) => questionsData.map((q, i) => {
+                const id = q.id;
+                let css = "rounded-lg flex items-center justify-center text-xs font-bold cursor-pointer transition-all duration-200 border ";
+
+                // Priority Logic for Coloring
+                if (currentIndex === i) {
+                    css += "pal-current";
+                } else if (reviewStatus.has(id)) {
+                    css += "pal-review";
+                } else if (userResponses[id]) {
+                    css += "pal-answered";
+                } else if (visitedQuestions.has(id)) {
+                    css += "pal-skipped";
+                } else {
+                    css += "pal-normal";
+                }
+
+                return `<div onclick="loadQuestion(${i}); ${isMobile ? 'togglePaletteMobile()' : ''}" class="w-full aspect-square ${css}">${i + 1}</div>`;
+            }).join('');
+
+            document.getElementById('paletteGridDesktop').innerHTML = createGrid(false);
+            document.getElementById('paletteGridMobile').innerHTML = createGrid(true);
+        }
+        function togglePaletteMobile() { document.getElementById('mobilePaletteModal').classList.toggle('hidden'); }
+
+        // --- 4. SUBMISSION & RESULTS ---
+        function submitTest() {
+            if (!confirm("Are you sure you want to submit the test?")) return;
+            clearInterval(timerInterval);
+
+            // Calculate Score
+            let correct = 0, wrong = 0, skipped = 0, score = 0;
+            questionsData.forEach(q => {
+                const ans = userResponses[q.id];
+                if (!ans) skipped++;
+                else if (ans === q.answer) { correct++; score += 2; }
+                else { wrong++; score -= 0.66; }
+            });
+            score = Math.max(0, parseFloat(score.toFixed(2)));
+            const attempts = correct + wrong;
+
+            // Show Result View
+            switchView('view-result');
+
+            // Populate Info
+            document.getElementById("resultName").textContent = candidateDetails.name || "Aspirant";
+            document.getElementById("resultRoll").textContent = "Roll: " + (candidateDetails.roll || "N/A");
+
+            // Score Animation
+            let current = 0;
+            const scoreEl = document.getElementById("scoreDisplay");
+            const anim = setInterval(() => {
+                current += score / 30;
+                if (current >= score) { current = score; clearInterval(anim); }
+                scoreEl.textContent = current.toFixed(2);
+            }, 20);
+
+            // Stats
+            document.getElementById("accuracyDisplay").textContent = attempts > 0 ? ((correct / attempts) * 100).toFixed(1) + "%" : "0%";
+            document.getElementById("attemptDisplay").textContent = attempts;
+            document.getElementById("rankDisplay").textContent = "#" + Math.floor(Math.random() * 500 + 1);
+
+            // Badges
+            const badge = document.getElementById("readinessBadge");
+            if (score >= 80) {
+                badge.innerHTML = "🏆 Excellent Performance";
+                badge.className += " bg-green-500/20 text-white";
+            } else if (score >= 50) {
+                badge.innerHTML = "⚖️ Needs Improvement";
+                badge.className += " bg-yellow-500/20 text-white";
+            } else {
+                badge.innerHTML = "⚠️ Critical Focus Needed";
+                badge.className += " bg-red-500/20 text-white";
+            }
+
+            // Insights
+            document.getElementById("negativeLoss").textContent = (wrong * 0.66).toFixed(2);
+            document.getElementById("noNegativeScore").textContent = (score + (wrong * 0.66)).toFixed(2);
+
+            const rec = document.getElementById("recommendationList");
+            rec.innerHTML = "";
+            if (wrong > correct) rec.innerHTML += "<li>High negative marking. Reduce guesswork.</li>";
+            if (score < 40) rec.innerHTML += "<li>Review fundamental concepts in Polity.</li>";
+            else rec.innerHTML += "<li>Maintain consistency and improve speed.</li>";
+
+            // Chart
+            if (resultChartInstance) resultChartInstance.destroy();
+            const ctx = document.getElementById("resultChart");
+            resultChartInstance = new Chart(ctx, {
+                type: "doughnut",
+                data: {
+                    labels: ["Correct", "Wrong", "Skipped"],
+                    datasets: [{
+                        data: [correct, wrong, skipped],
+                        backgroundColor: ["#10b981", "#ef4444", "#cbd5e1"],
+                        borderWidth: 0
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, cutout: '75%' }
+            });
+
+            // Detailed Review Generation
+            const reviewContainer = document.getElementById("reviewContainer");
+            reviewContainer.innerHTML = questionsData.map((q, i) => {
+                const uAns = userResponses[q.id];
+                const isCorrect = uAns === q.answer;
+                const isSkip = !uAns;
+
+                let border = isSkip ? "border-gray-300" : (isCorrect ? "border-green-500" : "border-red-500");
+                let status = isSkip ? "Skipped" : (isCorrect ? "Correct (+2.0)" : "Incorrect (-0.66)");
+                let bg = isSkip ? "bg-gray-100 text-gray-600" : (isCorrect ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700");
+
+                let opts = "";
+                for (const [k, v] of Object.entries(q.options)) {
+                    let style = "border-transparent text-slate-600";
+                    let icon = "";
+                    if (k === q.answer) { style = "bg-green-50 border-green-200 text-green-900 font-bold"; icon = "✓ "; }
+                    else if (k === uAns && !isCorrect) { style = "bg-red-50 border-red-200 text-red-900 font-bold"; icon = "✗ "; }
+                    opts += `<div class="px-3 py-2 rounded border text-sm mb-1 ${style}">${icon}${k.toUpperCase()}. ${v}</div>`;
+                }
+
+                return `
+                <div class="bg-white rounded-xl shadow-sm border border-l-4 p-6 ${border} mb-4 break-inside-avoid">
+                    <div class="flex justify-between mb-3">
+                        <span class="font-bold text-slate-500 text-sm">Q.${i + 1}</span>
+                        <span class="px-2 py-0.5 rounded text-xs font-bold uppercase ${bg}">${status}</span>
+                    </div>
+                    <div class="mb-4 text-sm font-serif text-slate-800">${q.english}</div>
+                    <div class="space-y-1">${opts}</div>
+                </div>`;
+            }).join('');
+        }
+
+        // --- 5. PDF DOWNLOAD FEATURE ---
+        window.downloadScorecard = function () {
+            const element = document.getElementById('printableArea');
+            const opt = {
+                margin: [0.3, 0.3, 0.3, 0.3], // Inch margins
+                filename: `Scorecard_${candidateDetails.name || 'Candidate'}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true, scrollY: 0 },
+                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+            };
+
+            // Temporary styling for print
+            const originalHeight = element.style.height;
+            element.style.height = "auto";
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                element.style.height = originalHeight;
+            });
+        }
+    </script>
+</body>
+
+</html>
