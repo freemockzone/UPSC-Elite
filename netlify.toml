@@ -1,0 +1,5 @@
+# netlify.toml
+
+[[edge_functions]]
+  path = "/*.pdf"     # Trigger on all PDF files
+  function = "auth"   # Run the 'auth' function defined below

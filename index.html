@@ -907,15 +907,15 @@
             },
             "Ankit": {
                 hash: "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
-                profile: { name: "Ankit", exam: "UPSC CSE", year: "2026", optional: "Sociology", medium: "English", stage: "Mains Ready", prelims_count: "2", mains_written: "1", paid: "₹132", mode: "UPI", expiry: "31st Dec 2026" }
+                profile: { name: "Ankit", exam: "UPSC CSE", year: "2026", optional: "Sociology", medium: "English", stage: "Mains Ready", prelims_count: "2", mains_written: "1", paid: "₹132", "mode": "UPI", "expiry": "31st Dec 2026" }
             },
             "Anshul": {
                 hash: "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5",
-                profile: { name: "Anshul", exam: "UPSC CSE", year: "2026", optional: "Geography", medium: "Hindi", stage: "Foundation", prelims_count: "0", mains_written: "0", paid: "₹132", mode: "UPI", expiry: "31st Dec 2026" }
+                profile: { name: "Anshul", exam: "UPSC CSE", year: "2026", optional: "Geography", medium: "Hindi", stage: "Foundation", prelims_count: "0", mains_written: "0", paid: "₹132", "mode": "UPI", "expiry": "31st Dec 2026" }
             },
             "Amit": {
                 hash: "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
-                profile: { name: "Amit", exam: "UPSC CSE", year: "2026", optional: "History", medium: "Hindi", stage: "Interview", prelims_count: "4", mains_written: "2", paid: "₹132", mode: "UPI", expiry: "31st Dec 2026" }
+                profile: { name: "Amit", exam: "UPSC CSE", year: "2026", optional: "History", medium: "Hindi", stage: "Interview", prelims_count: "4", mains_written: "2", paid: "₹132", "mode": "UPI", "expiry": "31st Dec 2026" }
             },
             "Aryan": {
                 hash: "0a05aee6636042f69b31d8f3d8e5e65543bbbf25f42c3310700bdeb42803ae57",
@@ -1126,6 +1126,8 @@
                 { name: "Vision IAS Prelims 2026 Test 18 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-18-with-solution-in-english-pdf.pdf" },
                 { name: "Vision IAS Prelims 2026 Test 19 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-19-with-solution-in-english-pdf.pdf" },
                 { name: "Vision IAS Prelims 2026 Test 20 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-20-with-solution-in-english-pdf.pdf" },
+                { name: "Vision IAS Prelims 2026 Test 21 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-21-with-solution-in-english-pdf.pdf" },
+                { name: "Vision IAS Prelims 2026 Test 22 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-22-with-solution-in-english-pdf.pdf" },
                 ]
             }
         ];
@@ -1155,7 +1157,14 @@
 
             setTimeout(() => {
                 if (DATABASE[user] && DATABASE[user].hash === enteredHash) {
+                    // SAVE PROFILE LOCALLY
                     localStorage.setItem('currentUserProfile', JSON.stringify(DATABASE[user].profile));
+
+                    // --- NEW SECURITY: SET COOKIE FOR SERVER VALIDATION ---
+                    // Expires in 1 day (86400 seconds)
+                    document.cookie = "upsc_session=true; path=/; max-age=86400; SameSite=Strict";
+                    // ------------------------------------------------------
+
                     initDashboard();
                 } else {
                     err.style.display = 'block';
@@ -1195,26 +1204,26 @@
                     if (term && !test.name.toLowerCase().includes(term) && !group.institute.toLowerCase().includes(term)) return;
 
                     const row = `
-                    <a href="${test.link}" class="list-row" target="_blank">
-                        <div class="col-name">
-                            <span style="color:var(--primary); margin-right:5px; font-size:1.1em;">📄</span>
-                            ${test.name}
-                        </div>
-                        <div class="col-institute"><span>${group.institute}</span></div>
-                        <div class="col-action">
-                            <span class="btn-download">Download PDF</span>
-                        </div>
-                    </a>`;
+                <a href="${test.link}" class="list-row" target="_blank">
+                    <div class="col-name">
+                        <span style="color:var(--primary); margin-right:5px; font-size:1.1em;">📄</span>
+                        ${test.name}
+                    </div>
+                    <div class="col-institute"><span>${group.institute}</span></div>
+                    <div class="col-action">
+                        <span class="btn-download">Download PDF</span>
+                    </div>
+                </a>`;
                     tbody.innerHTML += row;
                 });
             });
 
             if (tbody.innerHTML === '') {
                 tbody.innerHTML = `
-                <div style="text-align:center; padding: 40px; color: #94a3b8;">
-                    <div style="font-size: 3rem; margin-bottom: 10px;">🔍</div>
-                    <p>No tests found matching your criteria.</p>
-                </div>`;
+            <div style="text-align:center; padding: 40px; color: #94a3b8;">
+                <div style="font-size: 3rem; margin-bottom: 10px;">🔍</div>
+                <p>No tests found matching your criteria.</p>
+            </div>`;
             }
         }
 
@@ -1236,6 +1245,11 @@
 
         function logout() {
             localStorage.clear();
+
+            // --- NEW SECURITY: DELETE COOKIE ---
+            document.cookie = "upsc_session=; path=/; max-age=0";
+            // -----------------------------------
+
             location.reload();
         }
 
@@ -1245,6 +1259,7 @@
             }
         }
     </script>
+
 </body>
 
 </html>
