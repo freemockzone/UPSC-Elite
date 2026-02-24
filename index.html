@@ -927,14 +927,14 @@
                 group.tests.forEach(test => {
                     if (CURRENT_SEARCH && !test.name.toLowerCase().includes(CURRENT_SEARCH.toLowerCase())) return;
 
-                    // UPDATED: Forces a secure file download using the test name to avoid HTML downloads
+                    // FIX: Removed target="_blank" entirely for mobile compatibility
                     container.innerHTML += `
                     <div class="card">
                         <div style="flex:1; margin-right:15px;">
                             <h4 style="font-size:1rem; margin-bottom:4px; line-height:1.4;">${test.name}</h4>
                             <span style="font-size:0.75rem; background:#f1f5f9; padding:2px 8px; border-radius:4px; color:#64748b; font-weight:600;">${group.institute}</span>
                         </div>
-                        <a href="${test.link}" download="${test.name}.pdf" target="_blank" rel="noopener noreferrer" class="btn-action">Download PDF</a>
+                        <a href="${test.link}" download="${test.name}.pdf" class="btn-action">Download PDF</a>
                     </div>`;
                 });
             });
