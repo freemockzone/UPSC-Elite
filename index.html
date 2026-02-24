@@ -431,6 +431,8 @@
             text-align: center;
             transition: background 0.2s;
             white-space: nowrap;
+            cursor: pointer;
+            display: inline-block;
         }
 
         .btn-action:hover {
@@ -520,7 +522,6 @@
                 flex-grow: 1;
             }
 
-            /* Responsive text handling for very small screens */
             @media (max-width: 450px) {
                 #headerUser {
                     display: none;
@@ -820,7 +821,7 @@
             "Siddhant Kumar": { hash: "fa5db00cda3a399096b1f7fab96688816fec373fe64ba11357724599f502faed", profile: { name: "Siddhant Kumar", exam: "UPSC CSE", year: "2026-27", optional: "Sociology", medium: "English", stage: "Foundation", prelims_count: "0", mains_written: "0", paid: "₹132", mode: "UPI", expiry: "31st Dec 2026" } },
         };
 
-
+        // 2. PASTE YOUR PDF_DATA ARRAY HERE
         const PDF_DATA = [
             { institute: "GS Score", tests: [{ name: "GS Score Prelims 2026 All India Open Mock Test 1 Download Pdf", link: "GS-Score-Prelims-2026-All-India-Open-Mock-Test-1-Download-Pdf.pdf" }, { name: "GS Score Prelims 2026 All India Open Mock Test 2 Download Pdf", link: "GS-Score-Prelims-2026-All-India-Open-Mock-Test-2-Download-Pdf.pdf" }, { name: "GS Score Prelims 2026 All India Open Mock Test 3 Download Pdf", link: "GS-Score-Prelims-2026-All-India-Open-Mock-Test-3-Download-Pdf.pdf" }, { name: "GS Score Prelims 2026 All India Open Mock Test 4 Download Pdf", link: "GS-Score-Prelims-2026-All-India-Open-Mock-Test-4-Download-Pdf.pdf" }, { name: "GS Score Prelims 2026 All India Open Mock Test 5 Download Pdf", link: "GS-Score-Prelims-2026-All-India-Open-Mock-Test-5-Download-Pdf.pdf" }, { name: "GS Score Prelims 2026 All India Open Mock Test 6 Download Pdf", link: "GS-Score-Prelims-2026-All-India-Open-Mock-Test-6-Download-Pdf.pdf" }, { name: "GS Score Prelims 2026 All India Open Mock Test 7 Download Pdf", link: "GS-Score-Prelims-2026-All-India-Open-Mock-Test-7-Download-Pdf.pdf" }, { name: "GS Score Prelims 2026 Polity Test 1 With Solution Download Pdf", link: "gs-score-prelims-2026-polity-test-1-with-solution-download-pdf.pdf" }, { name: "GS Score Prelims 2026 Polity Test 2 With Solution Download Pdf", link: "gs-score-prelims-2026-polity-test-2-with-solution-download-pdf.pdf" }, { name: "GS Score Prelims 2026 Polity Test 3 With Solution Download Pdf", link: "gs-score-prelims-2026-polity-test-3-with-solution-download-pdf.pdf" }, { name: "GS Score Prelims 2026 Polity Test 4 With Solution Download Pdf", link: "gs-score-prelims-2026-polity-test-4-with-solution-download-pdf.pdf" }, { name: "GS Score Prelims 2026 Polity Test 5 With Solution Download Pdf", link: "gs-score-prelims-2026-polity-test-5-with-solution-download-pdf.pdf" }] },
             { institute: "Next IAS", tests: [{ name: "NEXT IAS Prelims 2026 Test 1 With QA", link: "NEXT-IAS-Prelims-2026-Test-1-With-Question-and-answers.pdf" }, { name: "NEXT IAS Prelims 2026 Test 2 With QA", link: "NEXT-IAS-Prelims-2026-Test-2-With-Question-and-answers.pdf" }, { name: "NEXT IAS Prelims 2026 Test 3 With QA", link: "NEXT-IAS-Prelims-2026-Test-3-With-Question-and-answers.pdf" }, { name: "NEXT IAS Prelims 2026 Test 4 With QA", link: "NEXT-IAS-Prelims-2026-Test-4-With-Question-and-answers.pdf" }, { name: "NEXT IAS Prelims 2026 Test 5 With QA", link: "NEXT-IAS-Prelims-2026-Test-5-With-Question-and-answers.pdf" }, { name: "NEXT IAS Prelims 2026 Test 6 With QA", link: "NEXT-IAS-Prelims-2026-Test-6-With-Question-and-answers.pdf" }, { name: "NEXT IAS Prelims 2026 Test 7 With QA", link: "NEXT-IAS-Prelims-2026-Test-7-With-Question-and-answers.pdf" }, { name: "NEXT IAS Prelims 2026 Test 8 With QA", link: "NEXT-IAS-Prelims-2026-Test-8-With-Question-and-answers.pdf" }, { name: "NEXT IAS Prelims 2026 Test 9 With QA", link: "NEXT-IAS-Prelims-2026-Test-9-With-Question-and-answers.pdf" }, { name: "NEXT IAS Prelims 2026 Test 10 With QA", link: "NEXT-IAS-Prelims-2026-Test-10-With-Question-and-answers.pdf" }, { name: "NEXT IAS Prelims 2026 Test 11 With QA", link: "NEXT-IAS-Prelims-2026-Test-11-With-Question-and-answers.pdf" }, { name: "NEXT IAS Prelims 2026 Test 12 With QA", link: "NEXT-IAS-Prelims-2026-Test-12-With-Question-and-answers.pdf" }, { name: "NEXT IAS Prelims 2026 Test 13 With QA", link: "NEXT-IAS-Prelims-2026-Test-13-With-Question-and-answers.pdf" }, { name: "NEXT IAS Prelims 2026 Test 14 With QA", link: "NEXT-IAS-Prelims-2026-Test-14-With-Question-and-answers.pdf" }, { name: "NEXT IAS Prelims 2026 Test 15 With QA", link: "NEXT-IAS-Prelims-2026-Test-15-With-Question-and-answers.pdf" }, { name: "NEXT IAS Prelims 2026 Test 16 With QA", link: "NEXT-IAS-Prelims-2026-Test-16-With-Question-and-answers.pdf" }, { name: "NEXT IAS Prelims 2026 Test 17 With QA", link: "NEXT-IAS-Prelims-2026-Test-17-With-Question-and-answers.pdf" }, { name: "NEXT IAS Prelims 2026 Test 18 With QA", link: "NEXT-IAS-Prelims-2026-Test-18-With-Question-and-answers.pdf" }, { name: "NEXT IAS Prelims 2026 Test 19 With QA", link: "NEXT-IAS-Prelims-2026-Test-19-With-Question-and-answers.pdf" }, { name: "NEXT IAS Prelims 2026 Test 20 With QA", link: "NEXT-IAS-Prelims-2026-Test-20-With-Question-and-answers.pdf" }, { name: "NEXT IAS Prelims 2026 Test 21 With QA", link: "NEXT-IAS-Prelims-2026-Test-21-With-Question-and-answers.pdf" }] },
@@ -926,13 +927,14 @@
                 group.tests.forEach(test => {
                     if (CURRENT_SEARCH && !test.name.toLowerCase().includes(CURRENT_SEARCH.toLowerCase())) return;
 
+                    // UPDATED: Forces a secure file download using the test name to avoid HTML downloads
                     container.innerHTML += `
                     <div class="card">
                         <div style="flex:1; margin-right:15px;">
                             <h4 style="font-size:1rem; margin-bottom:4px; line-height:1.4;">${test.name}</h4>
                             <span style="font-size:0.75rem; background:#f1f5f9; padding:2px 8px; border-radius:4px; color:#64748b; font-weight:600;">${group.institute}</span>
                         </div>
-                        <a href="${test.link}" target="_blank" download="${test.name}.pdf" class="btn-action">Download PDF</a>
+                        <a href="${test.link}" download="${test.name}.pdf" target="_blank" rel="noopener noreferrer" class="btn-action">Download PDF</a>
                     </div>`;
                 });
             });
