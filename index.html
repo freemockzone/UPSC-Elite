@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     
     <!-- 🔴 SEO: High CTR Title & Meta Description -->
@@ -92,11 +92,10 @@
         input, select { font-family: inherit; }
 
         /* =========================================
-           2. HERO SECTION (100% WIDTH FIX APPLIED)
+           2. HERO SECTION
            ========================================= */
         #landing-wrapper { width: 100%; display: flex; flex-direction: column; }
         
-        /* Fixed: Spans 100% with no margins interfering */
         .hero-wrapper {
             width: 100%;
             min-height: 85vh;
@@ -139,6 +138,7 @@
             border-radius: 24px; box-shadow: var(--shadow-float); 
             border: 1px solid rgba(255,255,255,0.2);
             position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Fix: Added missing transitions */
         }
         .login-card h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.25rem; color: var(--secondary);}
         .login-card p { color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;}
@@ -152,7 +152,7 @@
         .btn-main:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37,99,235,0.3);}
 
         /* =========================================
-           3. SEO SECTIONS (HIGH DENSITY)
+           3. SEO SECTIONS
            ========================================= */
         .seo-section { width: 100%; padding: 6rem 2rem; background: white; display: flex; justify-content: center;}
         .seo-container { max-width: 1200px; width: 100%; }
@@ -201,7 +201,6 @@
         .nav-btn.active { background: var(--primary); color: white; }
         .nav-btn svg { width: 22px; height: 22px; fill: currentColor; }
 
-        /* FIXED: Renamed tag to specific class so it doesn't break the landing page */
         .dash-main-area { flex: 1; margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); display: flex; flex-direction: column;}
         
         header { width: 100%; padding: 1rem 3rem; background: var(--bg-card); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 40; }
@@ -236,7 +235,7 @@
         .mob-nav { display: none; }
 
         /* =========================================
-           5. MOBILE LAYOUT (RESPONSIVENESS)
+           5. MOBILE LAYOUT
            ========================================= */
         @media screen and (max-width: 1024px) {
             .hero-container { grid-template-columns: 1fr; text-align: center; gap: 3rem;}
@@ -349,7 +348,7 @@
                     </div>
                 </div>
 
-                <!-- FAQ Section (Massive Ranking Signal) -->
+                <!-- FAQ Section -->
                 <div class="faq-section">
                     <h2>Frequently Asked Questions</h2>
                     
@@ -414,7 +413,6 @@
             </div>
         </aside>
 
-        <!-- FIXED: Replaced generic <main> tag to avoid global CSS conflicts -->
         <div class="dash-main-area">
             <header>
                 <div class="search-box">
@@ -459,7 +457,8 @@
                             <div class="p-item"><div class="p-label">Plan Expiry</div><div class="p-val" style="color:#ef4444;" id="p-expiry">-</div></div>
                             <div class="p-item"><div class="p-label">Prelims Count</div><div class="p-val" id="p-pre">-</div></div>
                             <div class="p-item"><div class="p-label">Mains Written</div><div class="p-val" id="p-mains">-</div></div>
-                            <div class="p-item"><div class="p-label">Total Amount Paid:</div><div class="p-val" id="p-mains">-</div></div>
+                            <!-- Fix: Updated duplicate ID `p-mains` to `p-paid` -->
+                            <div class="p-item"><div class="p-label">Total Amount Paid:</div><div class="p-val" id="p-paid">-</div></div>
                         </div>
                     </div>
                 </div>
@@ -486,14 +485,24 @@
 
     <script>
         /* =========================================
-           DATA CONFIGURATION (100% PRESERVED)
+           SESSION FORCE-LOGOUT MANAGER
+           ========================================= */
+        // Change this version string (e.g., to "2.0") whenever you want to force log out ALL users on ALL devices.
+        const APP_VERSION = "2.0"; 
+        
+        if (localStorage.getItem("app_session_version") !== APP_VERSION) {
+            // New version detected: clear user session safely and update version
+            localStorage.removeItem('currentUserProfile');
+            document.cookie = "upsc_session=; path=/; max-age=0";
+            localStorage.setItem("app_session_version", APP_VERSION);
+        }
+
+        /* =========================================
+           DATA CONFIGURATION
            ========================================= */
         const DATABASE = {
             "Akash Kumar": { hash: "819ccee2da9b172c5c3a23521f16b1d925c9923974e548e140ab20c58b2657cb", profile: { name: "Akash Kumar", exam: "UPSC CSE", year: "2026", optional: "PSIR", medium: "Hindi", stage: "Foundation", prelims_count: "1", mains_written: "0", paid: "₹132", mode: "UPI", expiry: "31st Dec 2026" } },
-            "Ankit": {
-    hash: "aa05977c98f7e379554cfd8d7998c517f7fe4418bf08ea0181a3c2eb20dbed9f",
-    profile: {"name":"Ankit","exam":"UPSC CSE","year":"2025","optional":"History","medium":"English","stage":"Foundation","prelims_count":"0","mains_written":"0","paid":"₹132","mode":"UPI","expiry":"31st Dec 2026"}
-},
+            "Ankit": { hash: "aa05977c98f7e379554cfd8d7998c517f7fe4418bf08ea0181a3c2eb20dbed9f", profile: {"name":"Ankit","exam":"UPSC CSE","year":"2025","optional":"History","medium":"English","stage":"Foundation","prelims_count":"0","mains_written":"0","paid":"₹132","mode":"UPI","expiry":"31st Dec 2026"} },
             "Amit": { hash: "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3", profile: { name: "Amit", exam: "UPSC CSE", year: "2026", optional: "History", medium: "Hindi", stage: "Interview", prelims_count: "4", mains_written: "2", paid: "₹132", mode: "UPI", expiry: "31st Dec 2026" } },
             "Aryan": { hash: "0a05aee6636042f69b31d8f3d8e5e65543bbbf25f42c3310700bdeb42803ae57", profile: { name: "Aryan", exam: "UPSC CSE", year: "2026-27", optional: "PSIR", medium: "English", stage: "Foundation", prelims_count: "0", mains_written: "0", paid: "₹132", mode: "UPI", expiry: "31st Dec 2026" } },
             "Bansilal": { hash: "ec1abb792d50375c1869eee960dc9f594898777ce8607fe08977bea3622ed72d", profile: { name: "Bansilal", exam: "UPSC CSE", year: "2026", optional: "No Details", medium: "English", stage: "Foundation", prelims_count: "0", mains_written: "0", paid: "₹132", mode: "UPI", expiry: "31st Dec 2026" } },
@@ -593,6 +602,11 @@
             return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
         }
 
+        // Helper to safely escape user search inputs for RegEx evaluation
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
         /* SEO Link Interception (Require Login) */
         document.querySelectorAll('.blog-link').forEach(link => {
             link.addEventListener('click', function(e) {
@@ -645,7 +659,8 @@
             const enteredHash = await sha256(pass);
 
             setTimeout(() => {
-                if (DATABASE[user] && (DATABASE[user].hash === enteredHash || pass === '12345678')) {
+                // Fix: Removed backdoor bypass `|| pass === '12345678'` to secure login system.
+                if (DATABASE[user] && DATABASE[user].hash === enteredHash) {
                     localStorage.setItem('currentUserProfile', JSON.stringify(DATABASE[user].profile));
                     document.cookie = "upsc_session=true; path=/; max-age=86400; SameSite=Strict";
                     initDashboard(DATABASE[user].profile);
@@ -675,6 +690,9 @@
             set('p-name-main', profile.name); set('p-exam', profile.exam); set('p-year', profile.year);
             set('p-optional', profile.optional); set('p-medium', profile.medium); set('p-stage', profile.stage); 
             set('p-expiry', profile.expiry); set('p-pre', profile.prelims_count); set('p-mains', profile.mains_written);
+            
+            // Fix: Map the properly linked ID for the amount paid parameter
+            set('p-paid', profile.paid);
 
             const pillsContainer = document.getElementById('pillsContainer');
             pillsContainer.innerHTML = '<button class="pill active" onclick="setFilter(\'All\')">All Institutes</button>';
@@ -700,6 +718,9 @@
         function renderList() {
             const container = document.getElementById('fileListBody');
             container.innerHTML = '';
+            
+            // Fix: Clean search term to prevent RegEx crashes
+            let safeSearch = escapeRegExp(CURRENT_SEARCH);
 
             PDF_DATA.forEach(group => {
                 if (CURRENT_FILTER !== 'All' && group.institute !== CURRENT_FILTER) return;
@@ -718,7 +739,7 @@
                 html += `<div class="data-grid">`;
 
                 visibleTests.forEach(test => {
-                    let highlightedName = CURRENT_SEARCH ? test.name.replace(new RegExp(`(${CURRENT_SEARCH})`, "gi"), `<span style="background:#fef08a; padding:0 2px; border-radius:2px;">$1</span>`) : test.name;
+                    let highlightedName = CURRENT_SEARCH ? test.name.replace(new RegExp(`(${safeSearch})`, "gi"), `<span style="background:#fef08a; padding:0 2px; border-radius:2px;">$1</span>`) : test.name;
                     html += `
                     <div class="data-card">
                         <div>
@@ -784,7 +805,8 @@
         }
 
         function logout() {
-            localStorage.clear();
+            // Fix: More targeted approach than `localStorage.clear()` so we don't accidentally wipe user preferences
+            localStorage.removeItem('currentUserProfile');
             document.cookie = "upsc_session=; path=/; max-age=0";
             location.reload();
         }
