@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>NEXT-IAS-Prelims-2026-Test-1-With-Question-and-answers</title>
+<style>
+:root{--bg:#f4f7f6;--box:#fff;--txt:#333;--mut:#666;--pri:#1a73e8;--pri-h:#1557b0;--suc:#28a745;--dan:#dc3545;--war:#ffc107;--brd:#e0e0e0;--omr:#f8f9fa;--grad-pri:linear-gradient(135deg, #1a73e8, #4dabf7);--grad-suc:linear-gradient(135deg, #28a745, #20c997);--grad-dan:linear-gradient(135deg, #dc3545, #f06595)}[data-theme="dark"]{--bg:#121212;--box:#1e1e1e;--txt:#e0e0e0;--mut:#aaa;--pri:#4dabf7;--pri-h:#3b82f6;--brd:#333;--omr:#2d2d2d;--grad-pri:linear-gradient(135deg, #3b82f6, #60a5fa)}*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',system-ui,sans-serif;transition:background-color 0.3s,color 0.3s}body{background:var(--bg);color:var(--txt);padding:10px;overflow-x:hidden;width:100%}.container{max-width:1100px;margin:0 auto;background:var(--box);padding:15px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.05)}.hidden{display:none!important}.header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--brd);padding-bottom:10px;margin-bottom:15px;position:sticky;top:0;background:var(--box);z-index:100;flex-wrap:wrap;gap:10px}.header h2{font-size:1.1rem;word-break:break-word;flex:1 1 100%}@media(min-width:768px){.header h2{flex:1}}.btn{padding:10px 15px;border:none;border-radius:6px;cursor:pointer;font-weight:600;background:var(--pri);color:#fff;font-size:0.9rem;transition:all .2s}.btn:hover{filter:brightness(1.1);transform:translateY(-1px)}.btn-out{background:0 0;border:1px solid var(--brd);color:var(--txt)}.btn-war{background:var(--war);color:#000}.btn-dan{background:var(--dan)}.btn-purp{background:#6f42c1;color:#fff}.flex-row{display:flex;gap:10px;align-items:center}.main-grid{display:grid;grid-template-columns:1fr 280px;gap:20px}@media(max-width:768px){.main-grid{grid-template-columns:1fr}}.q-text{font-size:1.1rem;margin-bottom:15px;line-height:1.6}.opt-list{display:flex;flex-direction:column;gap:10px}.opt{padding:12px;border:1px solid var(--brd);border-radius:8px;cursor:pointer;display:flex;align-items:center;transition:all .2s}.opt:hover:not(.dis){background:var(--omr)}.opt input{margin-right:12px;transform:scale(1.2)}.opt.sel{border-color:var(--pri);background:rgba(26,115,232,.05)}.opt.dis{cursor:default;opacity:.8}.controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;padding-top:15px;border-top:1px solid var(--brd);justify-content:space-between}.palette{display:grid;grid-template-columns:repeat(auto-fill,minmax(35px,1fr));gap:6px;margin-top:10px}.p-btn{height:35px;border-radius:50%;border:1px solid var(--brd);background:var(--omr);color:var(--txt);font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.8rem;transition:transform .1s}.p-btn:hover{transform:scale(1.1)}.p-btn.ans{background:var(--suc);color:#fff;border-color:var(--suc)}.p-btn.unans{background:var(--dan);color:#fff;border-color:var(--dan)}.p-btn.mark{background:var(--war);color:#000;border-color:var(--war)}.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:15px;margin-bottom:20px}.card{background:var(--omr);padding:18px;border-radius:10px;border:1px solid var(--brd);text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.02);display:flex;flex-direction:column;justify-content:center}.card h3{font-size:.85rem;color:var(--mut);margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px}.val{font-size:2rem;font-weight:800;line-height:1.2}.tabs{display:flex;gap:10px;margin-bottom:20px;border-bottom:2px solid var(--brd);overflow-x:auto}.tab{padding:10px 15px;cursor:pointer;font-weight:700;color:var(--mut);white-space:nowrap;transition:all .3s}.tab.act{color:var(--pri);border-bottom:3px solid var(--pri);margin-bottom:-2px}.a-item{padding:15px;border:1px solid var(--brd);border-radius:8px;margin-bottom:12px;text-align:left}.badge{padding:3px 8px;border-radius:12px;font-size:.7rem;font-weight:700;color:#fff}.badge.cor{background:var(--suc)}.badge.inc{background:var(--dan)}.badge.skp{background:var(--mut)}.badge.mrk{background:var(--war);color:#000}.badge.gs{background:#6f42c1;color:#fff}.exp-box{background:var(--box);border-left:4px solid var(--pri);padding:15px;margin-top:10px;font-size:.9rem;border-radius:0 4px 4px 0;display:none;line-height:1.6}.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px;align-items:center}.legend{font-size:.8rem;display:flex;flex-wrap:wrap;gap:10px;margin-top:15px;padding-top:10px;border-top:1px solid var(--brd)}.legend div{display:flex;align-items:center;gap:5px}.dot{width:12px;height:12px;border-radius:50%}
+/* Dashboard Redesign Specifics */
+.metric-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin-bottom:15px}.metric-box{padding:20px;border-radius:10px;color:#fff;text-align:center;display:flex;flex-direction:column;justify-content:center}.metric-box.blue{background:var(--grad-pri)}.metric-box.green{background:var(--grad-suc)}.metric-box.red{background:var(--grad-dan)}.acc-bar-bg{width:100%;height:12px;background:var(--brd);border-radius:6px;margin:8px 0;overflow:hidden;position:relative}.acc-bar-fill{height:100%;border-radius:6px;transition:width 1s ease}.smart-list{list-style:none;text-align:left;font-size:.95rem;line-height:1.6}.smart-list li{padding:12px 0;border-bottom:1px solid var(--brd);display:flex;gap:12px;align-items:flex-start}.smart-list li:last-child{border:none}.diff-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:5px;text-align:center}.diff-box{padding:12px;background:var(--box);border-radius:8px;border:1px solid var(--brd)}.heat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:15px}.heat-box{aspect-ratio:1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:bold;color:#fff} .cta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:20px} .flex-sb{display:flex;justify-content:space-between;align-items:center}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>NEXT-IAS-Prelims-2026-Test-1-With-Question-and-answers</h2>
+        <div class="flex-row">
+            <button class="btn btn-out" onclick="window.location.href='index.html'">🏠 Home</button>
+            <button class="btn btn-out" id="lang-btn" onclick="toggleLang()">🌐 EN/HI</button>
+            <button class="btn btn-out" onclick="document.documentElement.setAttribute('data-theme', document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')">🌓</button>
+            <span id="timer" style="font-weight:700;font-size:1.1rem;color:var(--pri)">00:00</span>
+        </div>
+    </div>
+
+    <!-- Screen 1: Intro -->
+    <div id="screen-intro">
+        <div class="metric-box blue" style="text-align:left;margin-bottom:20px">
+            <h1 style="margin-bottom:10px;font-size:2rem">Sectional Mock: Core Concept Analysis</h1>
+            <p style="opacity:.9;font-size:1.1rem">Total Questions: <span id="intro-tot"></span> | Marks: +2 / -0.66 | Ideal Time: 120s/Q</p>
+        </div>
+        <div class="res-grid" style="grid-template-columns:1fr 1fr">
+            <div class="card" style="text-align:left">
+                <h3>Historical Analytics</h3>
+                <div id="prev-stat" style="font-size:1rem;color:var(--mut);line-height:1.6">No previous attempts recorded.</div>
+            </div>
+            <div class="card" style="text-align:left">
+                <h3>Select Competition Cohort</h3>
+                <p style="font-size:.85rem;color:var(--mut);margin-bottom:10px">Your simulated rank & cutoff will adapt based on the selected peer group.</p>
+                <select id="cohort-select" class="btn btn-out" style="width:100%;font-size:0.95rem;padding:10px">
+                    <option value="serious">Target Batch: Serious Aspirants</option>
+                    <option value="beginner">Target Batch: Beginners</option>
+                    <option value="topper">Target Batch: Topper Batch</option>
+                </select>
+            </div>
+        </div>
+        <button class="btn" style="width:100%;font-size:1.2rem;padding:15px" onclick="startTest()">Start Mock Test</button>
+    </div>
+
+    <!-- Screen 2: Engine -->
+    <div id="screen-test" class="hidden main-grid">
+        <div>
+            <div id="rev-banner" class="metric-box green hidden" style="padding:10px;margin-bottom:15px;font-size:1rem;text-align:center">🔍 Review Mistakes Mode Active</div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:10px;color:var(--mut);font-size:.9rem">
+                <span id="q-trk" style="font-weight:600"></span> 
+                <div>
+                    <span class="badge badge.mrk" id="m-badge" style="display:none;background:var(--war)">Marked</span>
+                    <span class="badge badge.gs" id="g-badge" style="display:none;">Blind Guess</span>
+                </div>
+            </div>
+            <div id="q-con" class="q-text"></div>
+            <div id="o-con" class="opt-list"></div>
+            <div id="q-exp" class="exp-box" style="display:none;margin-bottom:15px;background:var(--omr)"></div>
+            <div class="controls" id="norm-ctrl">
+                <button class="btn btn-out" onclick="nav(-1)">← Prev</button>
+                <div style="display:flex;gap:10px;">
+                    <button class="btn btn-war" onclick="mark()">Mark / चिह्नित करें</button>
+                    <button class="btn btn-out" id="gs-btn" onclick="toggleGuess()">🎲 Guess</button>
+                </div>
+                <button class="btn btn-out" onclick="clearAns()">Clear</button>
+                <button class="btn" onclick="nav(1)" id="n-btn">Next →</button>
+            </div>
+            <div class="controls hidden" id="rev-ctrl">
+                <button class="btn btn-out" onclick="navRev(-1)">← Prev Mistake</button>
+                <button class="btn btn-dan" onclick="exitReview()">Exit Review</button>
+                <button class="btn" onclick="navRev(1)" id="nr-btn">Next Mistake →</button>
+            </div>
+            <button class="btn btn-dan" id="sub-btn" style="width:100%;margin-top:15px;padding:12px" onclick="sub()">Submit Test / टेस्ट सबमिट करें</button>
+        </div>
+        <div style="background:var(--omr);padding:15px;border-radius:10px;border:1px solid var(--brd)">
+            <h3 style="margin-bottom:10px;font-size:.9rem;color:var(--mut);text-transform:uppercase">Question Palette</h3>
+            <div id="pal" class="palette"></div>
+            <div class="legend">
+                <div><div class="dot" style="background:var(--suc)"></div> Answered</div>
+                <div><div class="dot" style="background:var(--dan)"></div> Not Answered</div>
+                <div><div class="dot" style="background:var(--war)"></div> Marked</div>
+                <div><div class="dot" style="background:var(--brd)"></div> Not Visited</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 3: Results -->
+    <div id="screen-res" class="hidden">
+        <!-- Premium Top Metrics Banner -->
+        <div class="metric-row">
+            <div class="metric-box blue">
+                <div style="font-size:1rem;opacity:.9">Total Score</div>
+                <div style="font-size:3rem;font-weight:900" id="r-scr-anim">0</div>
+                <div style="font-size:1rem">out of <span id="r-tot"></span> Marks</div>
+            </div>
+            <div class="metric-box" id="pct-box">
+                <div style="font-size:1rem;opacity:.9">Simulated Standing</div>
+                <div style="font-size:2.5rem;font-weight:900;margin:5px 0" id="dyn-rnk">0th</div>
+                <div style="font-size:.9rem" id="res-msg">Percentile</div>
+            </div>
+            <div class="metric-box" style="background:var(--box);border:1px solid var(--brd);color:var(--txt)">
+                <div style="font-size:1rem;color:var(--mut)">Net Accuracy</div>
+                <div style="font-size:2.5rem;font-weight:900;margin:5px 0" id="top-acc-val">0%</div>
+                <div style="font-size:.9rem;font-weight:bold" id="acc-zone">Zone</div>
+            </div>
+            <div class="metric-box" style="background:#1a1a1a;color:#fff;border:1px solid #333;position:relative;overflow:hidden">
+                <div style="position:absolute;top:-15px;right:-15px;font-size:5rem;opacity:0.05">🎯</div>
+                <div style="font-size:1rem;opacity:.9;color:#aaa">Predicted Cutoff</div>
+                <div style="font-size:2.5rem;font-weight:900;margin:5px 0;color:#fff" id="pred-cutoff">0</div>
+                <div style="font-size:.9rem;font-weight:bold" id="cutoff-msg">Loading...</div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <div class="tab act" onclick="tab('sum')">Analytics Dashboard</div>
+            <div class="tab" onclick="tab('ins')">AI Insights & Strategy</div>
+            <div class="tab" onclick="tab('ana')">Detailed Solutions</div>
+        </div>
+
+        <!-- Tab 1: Dashboard -->
+        <div id="t-sum">
+            <div class="res-grid" style="grid-template-columns:1fr 1fr">
+                <div class="card" style="text-align:left">
+                    <h3>Attempt Profile & Time</h3>
+                    <div class="flex-sb" style="margin-bottom:8px">
+                        <span style="font-size:.95rem">Attempted:</span> 
+                        <strong><span id="r-att">0</span> / <span id="r-tot-q">0</span></strong>
+                    </div>
+                    
+                    <div style="font-size:.85rem;color:var(--mut);margin-top:10px">Ideal Attempt Zone vs Yours</div>
+                    <div class="acc-bar-bg" style="height:14px">
+                        <div style="position:absolute;left:65%;width:20%;height:100%;background:rgba(40,167,69,0.25);border-left:1px dashed var(--suc);border-right:1px dashed var(--suc)" title="Ideal Range: 65%-85%"></div>
+                        <div class="acc-bar-fill" id="att-bar" style="background:var(--pri);width:0%"></div>
+                    </div>
+                    <div class="flex-sb" style="font-size:.75rem;color:var(--mut);margin-bottom:15px">
+                        <span>0%</span><span>Ideal (65-85%)</span><span>100%</span>
+                    </div>
+
+                    <div class="flex-sb" style="padding:10px;background:var(--bg);border-radius:6px;border:1px solid var(--brd);margin-bottom:10px">
+                        <span style="font-size:.9rem;color:var(--mut)">Strategy Type:</span>
+                        <strong id="strat-type">Analyzing...</strong>
+                    </div>
+                    
+                    <div class="flex-sb" style="padding:10px;background:var(--bg);border-radius:6px;border:1px solid var(--brd)">
+                        <span style="font-size:.9rem;color:var(--mut)">Time Efficiency:</span>
+                        <strong id="tm-eff">Analyzing...</strong>
+                    </div>
+                </div>
+
+                <div class="card" style="text-align:left">
+                    <h3>Marks Breakdown</h3>
+                    <div class="flex-sb" style="margin-bottom:10px">
+                        <span style="font-size:1.1rem">✅ Positive Marks</span>
+                        <span style="font-size:1.5rem;font-weight:bold;color:var(--suc)">+<span id="m-gain"></span></span>
+                    </div>
+                    <div class="flex-sb" style="margin-bottom:10px">
+                        <span style="font-size:1.1rem">❌ Negative Penalty</span>
+                        <span style="font-size:1.5rem;font-weight:bold;color:var(--dan)">-<span id="m-lost"></span></span>
+                    </div>
+                    <div style="margin-bottom:15px;padding:10px;background:rgba(220,53,69,0.05);border-left:3px solid var(--dan);border-radius:4px">
+                        <div style="font-size:.85rem;color:var(--dan);font-weight:bold" id="neg-impact">If avoided: Your score = 0</div>
+                    </div>
+
+                    <div class="flex-sb" style="font-size:.9rem;color:var(--mut);padding-top:10px;border-top:1px dashed var(--brd)">
+                        <span>Batch Avg: <strong id="dyn-avg" style="color:var(--txt)"></strong></span>
+                        <span>Topper: <strong id="dyn-top" style="color:var(--txt)"></strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="res-grid" style="grid-template-columns:1fr 1fr">
+                <div class="card" style="text-align:left">
+                    <h3 class="flex-sb"><span>Accuracy</span> <span style="color:var(--pri)">vs Topper</span></h3>
+                    <div style="margin-top:10px">
+                        <div class="flex-sb" style="font-size:.9rem;font-weight:bold">
+                            <span>Your Accuracy</span> <span id="u-acc-txt">0%</span>
+                        </div>
+                        <div class="acc-bar-bg"><div class="acc-bar-fill" id="u-acc-bar" style="background:var(--pri);width:0%"></div></div>
+                    </div>
+                    <div style="margin-top:15px">
+                        <div class="flex-sb" style="font-size:.9rem;font-weight:bold;color:var(--mut)">
+                            <span>Avg Topper Accuracy</span> <span>88.5%</span>
+                        </div>
+                        <div class="acc-bar-bg"><div class="acc-bar-fill" style="background:var(--mut);width:88.5%"></div></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Difficulty Profile</h3>
+                    <div class="diff-grid" style="margin-top:auto;margin-bottom:auto">
+                        <div class="diff-box"><div style="color:var(--suc);font-weight:bold;margin-bottom:5px">EASY</div><div style="font-size:.85rem;color:var(--mut)">Accuracy</div><div class="val" id="df-1" style="font-size:1.5rem">0%</div></div>
+                        <div class="diff-box"><div style="color:var(--war);font-weight:bold;margin-bottom:5px">MEDIUM</div><div style="font-size:.85rem;color:var(--mut)">Accuracy</div><div class="val" id="df-2" style="font-size:1.5rem">0%</div></div>
+                        <div class="diff-box"><div style="color:var(--dan);font-weight:bold;margin-bottom:5px">HARD</div><div style="font-size:.85rem;color:var(--mut)">Accuracy</div><div class="val" id="df-3" style="font-size:1.5rem">0%</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-grid">
+                <button class="btn btn-dan" onclick="startRev()">🔍 Review Mistakes</button>
+                <button class="btn btn-out" onclick="tab('ana'); flt('inc')">📝 Retry Incorrect Only</button>
+                <button class="btn btn-out" onclick="tab('ins')">📈 Revise Weak Areas</button>
+                <button class="btn btn-pri" style="background:var(--pri);color:#fff" onclick="location.reload()">🔄 Take Next Mock</button>
+            </div>
+        </div>
+
+        <!-- Tab 2: Smart Insights -->
+        <div id="t-ins" class="hidden">
+            <div class="res-grid" style="grid-template-columns:2fr 1fr">
+                <div class="card" style="text-align:left">
+                    <h3>🧠 Skill & Strategy Intelligence</h3>
+                    <ul class="smart-list" id="s-ins-list"></ul>
+                </div>
+                <div class="card">
+                    <h3>Paper Attempt Heatmap</h3>
+                    <p style="font-size:.8rem;color:var(--mut);margin-bottom:10px">Chronological attempt view.</p>
+                    <div id="q-heat" class="heat-grid"></div>
+                    <div style="text-align:left;margin-top:20px;font-size:.8rem;color:var(--mut)">
+                        <div><span style="color:var(--suc)">■</span> Correct</div>
+                        <div><span style="color:var(--dan)">■</span> Incorrect</div>
+                        <div><span style="color:var(--brd)">■</span> Skipped</div>
+                        <div style="margin-top:10px"><em>*Darker color = More time spent</em></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Solutions -->
+        <div id="t-ana" class="hidden">
+            <div class="filter-bar">
+                <button class="btn btn-out" onclick="flt('all')">All</button>
+                <button class="btn btn-out" onclick="flt('cor')">Correct</button>
+                <button class="btn btn-out" onclick="flt('inc')">Incorrect</button>
+                <button class="btn btn-out" onclick="flt('skp')">Skipped</button>
+                <button class="btn btn-out" onclick="flt('mrk')">Marked</button>
+                <select class="btn btn-out" style="margin-left:auto;padding:10px" id="srt" onchange="srt()">
+                    <option value="def">Sort: Default Order</option>
+                    <option value="time">Sort: Time Spent (High to Low)</option>
+                    <option value="diff">Sort: Difficulty (Hard to Easy)</option>
+                </select>
+            </div>
+            <div id="a-con"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+// --- PRNG & Math ---
+function getPRNG() {
+    let seed = localStorage.getItem('peer_seed');
+    if(!seed) { seed = Math.floor(Math.random() * 999999); localStorage.setItem('peer_seed', seed); }
+    let a = parseInt(seed);
+    return function() { var t=a+=0x6D2B79F5; t=Math.imul(t^t>>>15,t|1); t^=t+Math.imul(t^t>>>7,t|61); return ((t^t>>>14)>>>0)/4294967296; }
+}
+function normalRand(mean, std, randFn) {
+    let u = 0, v = 0; while(u === 0) u = randFn(); while(v === 0) v = randFn();
+    return mean + std * Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+}
+
+// --- DUAL LANGUAGE DATA ---
+const qs = [
+    { id: 1, correct: "d", subject: "Polity", difficulty: 2,
+      en: { text: "A public authority disqualifies a woman candidate from applying to a government post citing her marital status. Which writ is appropriate?", options: { a: "Quo Warranto", b: "Certiorari", c: "Habeas Corpus", d: "Mandamus" }, explanation: "Mandamus is issued to command a public authority to perform its legal duty." },
+      hi: { text: "एक सार्वजनिक प्राधिकरण एक महिला उम्मीदवार को सरकारी पद के लिए आवेदन करने से अयोग्य घोषित कर देता है, जिसका कारण उसकी वैवाहिक स्थिति बताया गया है। इस परिदृश्य में उसे उपाय मांगने के लिए निम्नलिखित में से कौन सी रिट सबसे उपयुक्त है?", options: { a: "अधिकार पृच्छा (Quo Warranto)", b: "उत्प्रेषण (Certiorari)", c: "बंदी प्रत्यक्षीकरण (Habeas Corpus)", d: "परमादेश (Mandamus)" }, explanation: "परमादेश (Mandamus) किसी सार्वजनिक प्राधिकरण को अपने कानूनी कर्तव्य का पालन करने का आदेश देने के लिए जारी किया जाता है।" }
+    },
+    { id: 2, correct: "c", subject: "Polity", difficulty: 3,
+      en: { text: "1. Bifurcation of a State requires simple majority. 2. Ceding territory requires Const. amendment. 3. Boundary disputes can be settled by executive action. Correct statements?", options: { a: "Only one", b: "Only two", c: "All three", d: "None" }, explanation: "All 3 statements are correct. Article 3 requires simple majority. Berubari case dictates constitutional amendment for ceding territory." },
+      hi: { text: "निम्नलिखित कथनों पर विचार कीजिए: 1. भारत के भीतर किसी राज्य के विभाजन के लिए संसद द्वारा साधारण बहुमत से कानून पारित किया जाना आवश्यक है। 2. भारतीय क्षेत्र के एक हिस्से को किसी विदेशी देश को सौंपने के लिए संवैधानिक संशोधन की आवश्यकता होती है। 3. भारत सरकार कार्यकारी कार्रवाई के माध्यम से पड़ोसी देशों के साथ सीमा विवादों को सुलझा सकती है। उपर्युक्त कथनों में से कितने सही हैं?", options: { a: "केवल एक", b: "केवल दो", c: "सभी तीन", d: "कोई नहीं" }, explanation: "तीनों कथन सही हैं। अनुच्छेद 3 के तहत साधारण बहुमत की आवश्यकता होती है। बेरुबारी मामले के अनुसार क्षेत्र सौंपने के लिए संवैधानिक संशोधन आवश्यक है। सीमा विवाद निपटाने के लिए कार्यकारी कार्रवाई पर्याप्त है।" }
+    },
+    { id: 3, correct: "a", subject: "Constitution", difficulty: 3,
+      en: { text: "Which provisions constitute limitations on arbitrary actions of legislature and executive? 1. DPSP 2. Fundamental Rights 3. Fundamental Duties", options: { a: "Only one", b: "Only two", c: "All three", d: "None" }, explanation: "Only Fundamental Rights act as a limitation (negative injunctions) on the state's arbitrary actions." },
+      hi: { text: "भारत के संविधान के निम्नलिखित प्रावधानों पर विचार कीजिए: 1. राज्य के नीति निर्देशक सिद्धांत 2. मौलिक अधिकार 3. मौलिक कर्तव्य। उपरोक्त में से कितने प्रावधान विधायिका और कार्यपालिका की मनमानी कार्रवाइयों पर सीमाएं (limitations) लगाते हैं?", options: { a: "केवल एक", b: "केवल दो", c: "सभी तीन", d: "कोई नहीं" }, explanation: "केवल मौलिक अधिकार ही राज्य की मनमानी कार्रवाइयों पर एक सीमा (नकारात्मक निषेध) के रूप में कार्य करते हैं।" }
+    },
+    { id: 4, correct: "b", subject: "Constitution", difficulty: 1,
+      en: { text: "Article 13 includes in the definition of 'law': 1. Ordinances 2. Rules 3. Custom 4. Const. amendments.", options: { a: "1, 2, 4", b: "1, 2, 3", c: "2, 3, 4", d: "1, 2, 3, 4" }, explanation: "Under Kesavananda Bharati case, a constitutional amendment is not considered 'law' under Article 13." },
+      hi: { text: "अनुच्छेद 13 के तहत 'कानून' की परिभाषा में निम्नलिखित में से कौन शामिल हैं? 1. अध्यादेश 2. नियम और विनियम 3. कानून का बल रखने वाली प्रथा 4. संवैधानिक संशोधन।", options: { a: "केवल 1, 2 और 4", b: "केवल 1, 2 और 3", c: "केवल 2, 3 और 4", d: "1, 2, 3 और 4" }, explanation: "केशवानंद भारती मामले के तहत, एक संवैधानिक संशोधन को अनुच्छेद 13 के तहत 'कानून' नहीं माना जाता है।" }
+    },
+    { id: 5, correct: "c", subject: "Constitution", difficulty: 2,
+      en: { text: "Altering state boundaries modifies which Schedules? I. First II. Second III. Third IV. Fourth", options: { a: "I only", b: "II and IV only", c: "I and IV only", d: "III and IV only" }, explanation: "First Schedule deals with State names/territories. Fourth Schedule deals with Rajya Sabha seat allocation." },
+      hi: { text: "राज्यों के पुनर्गठन और उनकी सीमाओं में परिवर्तन करने पर निम्नलिखित में से किस अनुसूची में संशोधन की आवश्यकता हो सकती है? I. पहली II. दूसरी III. तीसरी IV. चौथी।", options: { a: "केवल I", b: "केवल II और IV", c: "केवल I और IV", d: "केवल III और IV" }, explanation: "पहली अनुसूची राज्यों के नाम/क्षेत्रों से संबंधित है। चौथी अनुसूची राज्यसभा सीट आवंटन से संबंधित है, जो सीमाएं बदलने पर बदल जाती है।" }
+    },
+    { id: 6, correct: "c", subject: "Polity", difficulty: 3,
+      en: { text: "State affirmative actions: 1. Reservation for SC/ST in private aided. 2. Reservation for EWS in private unaided.", options: { a: "1 only", b: "2 only", c: "Both 1 and 2", d: "Neither" }, explanation: "93rd and 103rd amendments allow the state to make special provisions for SC/ST/OBC and EWS in private educational institutions." },
+      hi: { text: "राज्य निम्नलिखित में से कौन सी सकारात्मक कार्रवाई करने के लिए अधिकृत है? 1. निजी सहायता प्राप्त शैक्षणिक संस्थानों में SC/ST के लिए आरक्षण। 2. निजी गैर-सहायता प्राप्त शैक्षणिक संस्थानों में EWS के लिए आरक्षण।", options: { a: "केवल 1", b: "केवल 2", c: "1 और 2 दोनों", d: "न तो 1 और न ही 2" }, explanation: "93वें और 103वें संशोधन राज्य को निजी शैक्षणिक संस्थानों (सहायता प्राप्त या गैर-सहायता प्राप्त) में SC/ST/OBC और EWS के लिए विशेष प्रावधान करने की अनुमति देते हैं।" }
+    },
+    { id: 7, correct: "a", subject: "History", difficulty: 2,
+      en: { text: "Constituent Assembly: 1. Seats allotted by population. 2. Princely states nominated by British. 3. Seats divided among Hindu, Muslim, General.", options: { a: "Only one", b: "Only two", c: "All three", d: "None" }, explanation: "Only 1 is correct. Princely states were nominated by their rulers. Communities were Muslims, Sikhs, and General (not Hindus)." },
+      hi: { text: "संविधान सभा के संदर्भ में: 1. सीटें जनसंख्या के अनुपात में आवंटित की गई थीं। 2. रियासतों के प्रतिनिधि ब्रिटिश गवर्नरों द्वारा नामित थे। 3. सीटें हिंदू, मुस्लिम और सामान्य के बीच वितरित की गई थीं। कितने कथन सही हैं?", options: { a: "केवल एक", b: "केवल दो", c: "सभी तीन", d: "कोई नहीं" }, explanation: "केवल कथन 1 सही है। रियासतों को उनके शासकों द्वारा नामित किया गया था। समुदायों को मुस्लिम, सिख और सामान्य (हिंदू नहीं) में बांटा गया था।" }
+    },
+    { id: 8, correct: "a", subject: "Constitution", difficulty: 1,
+      en: { text: "Preamble: 1. Adopted after entire Constitution. 2. Mentions Jan 26 1950. 3. Not enforceable in courts.", options: { a: "1 and 3 only", b: "2 and 3 only", c: "3 only", d: "1, 2, 3" }, explanation: "Preamble mentions Nov 26, 1949, not Jan 26, 1950. It was adopted last to ensure conformity." },
+      hi: { text: "प्रस्तावना के संदर्भ में: 1. पूरे संविधान के अधिनियमन के बाद अपनाया गया। 2. 26 जनवरी 1950 का उल्लेख है। 3. न्यायालयों द्वारा प्रवर्तनीय नहीं है। कौन सा/से सही है/हैं?", options: { a: "केवल 1 और 3", b: "केवल 2 और 3", c: "केवल 3", d: "1, 2 और 3" }, explanation: "प्रस्तावना में 26 नवंबर 1949 का उल्लेख है, 26 जनवरी 1950 का नहीं। अनुरूपता सुनिश्चित करने के लिए इसे अंत में अपनाया गया था।" }
+    },
+    { id: 9, correct: "b", subject: "Acts & Policies", difficulty: 2,
+      en: { text: "POSH Act 2013: 1. Applies to organized/unorganized. 2. Only >10 employees need ICC. 3. Aggrieved must be employee. 4. Excludes men/trans.", options: { a: "1 and 2", b: "1, 2, 4", c: "2, 3, 4", d: "All" }, explanation: "The aggrieved woman need not be an employee. It only protects women, not men or trans individuals." },
+      hi: { text: "POSH अधिनियम 2013: 1. संगठित/असंगठित दोनों पर लागू। 2. केवल 10 या अधिक कर्मचारियों वाले कार्यस्थलों को ICC चाहिए। 3. पीड़ित महिला का कर्मचारी होना आवश्यक है। 4. पुरुषों/ट्रांसजेंडर व्यक्तियों को बाहर रखता है। कितने सही हैं?", options: { a: "केवल 1 और 2", b: "केवल 1, 2 और 4", c: "केवल 2, 3 और 4", d: "1, 2, 3 और 4" }, explanation: "पीड़ित महिला का कर्मचारी होना आवश्यक नहीं है (वह आगंतुक भी हो सकती है)। यह केवल महिलाओं की रक्षा करता है।" }
+    },
+    { id: 10, correct: "a", subject: "History", difficulty: 1,
+      en: { text: "Earliest event?", options: { a: "Adoption of National Flag", b: "Adoption of National Anthem", c: "Last meeting of Constituent Assembly", d: "Adoption of Constitution" }, explanation: "National flag was adopted on July 22, 1947. Constitution on Nov 26, 1949. Anthem and last meeting on Jan 24, 1950." },
+      hi: { text: "निम्नलिखित में से कौन सी घटना सबसे पहले घटी?", options: { a: "राष्ट्रीय ध्वज को अपनाना", b: "राष्ट्रगान को अपनाना", c: "संविधान सभा की अंतिम बैठक", d: "संविधान को अपनाना" }, explanation: "राष्ट्रीय ध्वज 22 जुलाई, 1947 को अपनाया गया था। संविधान 26 नवंबर, 1949 को। राष्ट्रगान 24 जनवरी, 1950 को।" }
+    }
+];
+
+// --- Core State ---
+let s={lang:'en', c:0, ans:Array(qs.length).fill(null), mrk:Array(qs.length).fill(!1), gs:Array(qs.length).fill(!1), vis:Array(qs.length).fill(!1), chg:Array(qs.length).fill(0), vCnt:Array(qs.length).fill(0), tm:Array(qs.length).fill(0), tSeq:Array(qs.length).fill(0), sec:0, int:null, isRev:!1, rArr:[], rIdx:0, seqC:1, cohort: 'serious'};
+const el=i=>document.getElementById(i);
+el('intro-tot').innerText=qs.length; el('r-tot-q').innerText=qs.length;
+
+let hist = JSON.parse(localStorage.getItem('up_hist')||'[]');
+if(hist.length > 0) {
+    let maxS = Math.max(...hist.map(h=>parseFloat(h.score)));
+    let avgS = (hist.reduce((a,b)=>a+parseFloat(b.score),0)/hist.length).toFixed(1);
+    el('prev-stat').innerHTML = `Best Score: <strong style="color:var(--pri);font-size:1.2rem">${maxS}</strong> <br>Avg Score: <strong>${avgS}</strong> | Total Tests: <strong>${hist.length}</strong>`;
+}
+
+function toggleLang(){
+    s.lang = s.lang === 'en' ? 'hi' : 'en';
+    el('lang-btn').innerText = s.lang === 'en' ? '🌐 EN/HI' : '🌐 HI/EN';
+    if(!el('screen-test').classList.contains('hidden')) loadQ();
+    if(!el('screen-res').classList.contains('hidden') && !el('t-ana').classList.contains('hidden')) renderAna();
+}
+
+function startTest(){
+    s.cohort = el('cohort-select').value;
+    el('screen-intro').classList.add('hidden');el('screen-test').classList.remove('hidden');
+    s.int=setInterval(()=>{s.sec++;if(!s.isRev)s.tm[s.c]++;let m=String(Math.floor(s.sec/60)).padStart(2,'0'),sc=String(s.sec%60).padStart(2,'0');el('timer').innerText=`${m}:${sc}`},1000);
+    loadQ();
+}
+function loadQ(){
+    let idx = s.isRev ? s.rArr[s.rIdx] : s.c; 
+    s.vis[idx]=!0; if(!s.isRev) s.vCnt[idx]++; 
+
+    let q = qs[idx];
+    el('q-trk').innerText=s.isRev ? `Mistake ${s.rIdx+1} of ${s.rArr.length}` : `Question ${idx+1} of ${qs.length}`;
+    el('q-con').innerHTML=`<strong>Q${idx+1}.</strong> ${q[s.lang].text.replace(/(\d\.)/g,'<br>$1')}`;
+    let o='';for(let[k,v]of Object.entries(q[s.lang].options)){
+        let sel=s.ans[idx]===k, cor=(s.isRev&&k===q.correct), wrg=(s.isRev&&sel&&k!==q.correct);
+        let cName = `opt ${sel?'sel':''} ${s.isRev?'dis':''} ${cor?'badge cor':''} ${wrg?'badge inc':''}`;
+        o+=`<label class="${cName}" ${!s.isRev?`onclick="selO('${k}')"`:''}><input type="radio" ${sel?'checked':''} ${s.isRev?'disabled':''}><span><strong>(${k})</strong> ${v}</span></label>`
+    }
+    el('o-con').innerHTML=o;
+    el('m-badge').style.display=s.mrk[idx]?'inline-block':'none';
+    el('g-badge').style.display=s.gs[idx]?'inline-block':'none';
+    el('gs-btn').className=`btn ${s.gs[idx]?'btn-purp':'btn-out'}`;
+
+    if(s.isRev){
+        el('q-exp').style.display='block'; el('q-exp').innerHTML=`<strong>Explanation:</strong> ${q[s.lang].explanation}`;
+        el('nr-btn').innerText=s.rIdx===s.rArr.length-1?'Finish Review':'Next Mistake →';
+    }else{
+        el('q-exp').style.display='none'; el('n-btn').innerText=idx===qs.length-1?'Save & Finish':'Next →';
+    }
+    renderPal();
+}
+
+function selO(k){let idx = s.isRev ? s.rArr[s.rIdx] : s.c; if(s.ans[idx] && s.ans[idx] !== k) s.chg[idx]++; s.ans[idx] = k; if(!s.tSeq[idx]) {s.tSeq[idx]=s.seqC; s.seqC++;} loadQ()}
+function clearAns(){ let idx = s.isRev ? s.rArr[s.rIdx] : s.c; s.ans[idx]=null; loadQ() }
+function mark(){ let idx = s.isRev ? s.rArr[s.rIdx] : s.c; s.mrk[idx]=!s.mrk[idx]; loadQ() }
+function toggleGuess(){ let idx = s.isRev ? s.rArr[s.rIdx] : s.c; s.gs[idx]=!s.gs[idx]; loadQ() }
+function nav(d){let n=s.c+d;if(n>=0&&n<qs.length){s.c=n;loadQ()}else if(d>0)sub()}
+function navRev(d){let n=s.rIdx+d;if(n>=0&&n<s.rArr.length){s.rIdx=n;loadQ()}else if(d>0)exitReview()}
+function jump(i){if(s.isRev)return; s.c=i;loadQ()}
+
+function renderPal(){
+    if(s.isRev){el('pal').innerHTML='<p style="grid-column:1/-1;color:var(--mut);font-size:.8rem">Palette disabled in review mode</p>';return;}
+    let p='';qs.forEach((_,i)=>{let c='p-btn ';if(!s.vis[i])c+='';else if(s.ans[i])c+='ans';else c+='unans';if(s.mrk[i])c+=' mark';p+=`<div class="${c}" onclick="jump(${i})">${i+1}</div>`});el('pal').innerHTML=p;
+}
+function sub(){if(confirm("Are you sure you want to submit the test?")){clearInterval(s.int);genRes()}}
+
+function startRev(){
+    s.rArr = qs.map((q,i)=>(s.ans[i]!==q.correct&&s.ans[i]!==null)?i:-1).filter(i=>i!==-1);
+    if(s.rArr.length===0) return alert("Great job! No mistakes to review.");
+    s.isRev=!0; s.rIdx=0;
+    el('screen-res').classList.add('hidden');el('screen-test').classList.remove('hidden');
+    el('norm-ctrl').classList.add('hidden');el('rev-ctrl').classList.remove('hidden');
+    el('sub-btn').classList.add('hidden');el('rev-banner').classList.remove('hidden');
+    loadQ();
+}
+function exitReview(){
+    s.isRev=!1;el('screen-test').classList.add('hidden');el('screen-res').classList.remove('hidden');
+    el('norm-ctrl').classList.remove('hidden');el('rev-ctrl').classList.add('hidden');
+    el('sub-btn').classList.remove('hidden');el('rev-banner').classList.add('hidden');
+}
+
+// --- Results Engine & Analysis ---
+function genRes(){
+    el('screen-test').classList.add('hidden');el('screen-res').classList.remove('hidden');
+    let c=0,w=0,sk=0,mk=0, df={1:{c:0,t:0},2:{c:0,t:0},3:{c:0,t:0}}, tStats={fst:999,slw:0,cTm:0,wTm:0}, totTm=0;
+    
+    qs.forEach((q,i)=>{
+        df[q.difficulty].t++; let t = s.tm[i]; totTm += t;
+        if(t>tStats.slw) tStats.slw = t;
+        if(!s.ans[i]){sk++;}
+        else if(s.ans[i]===q.correct){ c++;mk+=2; df[q.difficulty].c++; if(t<tStats.fst) tStats.fst=t; tStats.cTm+=t; }
+        else{ w++;mk-=0.66; tStats.wTm+=t; }
+    });
+    mk=Math.max(0,mk.toFixed(2));let tMk=qs.length*2; let att=c+w;
+    
+    el('r-tot').innerText = tMk; el('r-att').innerText = att;
+    let curMk=0; let anim = setInterval(()=>{curMk+=(tMk/30);if(curMk>=mk){curMk=mk;clearInterval(anim);}el('r-scr-anim').innerText=curMk.toFixed(2);},30);
+
+    hist.push({score: mk, date: Date.now()}); localStorage.setItem('up_hist', JSON.stringify(hist));
+
+    let accRate = att===0?0:Math.round((c/att)*100);
+    let attPct = Math.round((att/qs.length)*100);
+    
+    let accZColor = "var(--dan)"; let accZText = "Unsafe 🚨";
+    if (accRate >= 80) { accZColor = "var(--suc)"; accZText = "Safe Zone ✅"; }
+    else if (accRate >= 65) { accZColor = "var(--war)"; accZText = "Borderline ⚠️"; }
+    el('acc-zone').innerText = accZText; el('acc-zone').style.color = accZColor;
+    
+    el('top-acc-val').innerText = accRate + '%'; el('top-acc-val').style.color = accZColor;
+    el('u-acc-txt').innerText = accRate + '%';
+    setTimeout(() => { el('u-acc-bar').style.width = accRate + '%'; el('u-acc-bar').style.background = accZColor; }, 500);
+    setTimeout(() => { el('att-bar').style.width = attPct + '%'; }, 600);
+
+    el('m-gain').innerText=(c*2).toFixed(2); let pen = (w*0.66); el('m-lost').innerText=pen.toFixed(2);
+    el('neg-impact').innerText = `If avoided: Score = ${(parseFloat(mk) + pen).toFixed(2)} 🚀`;
+
+    let strat = "Balanced ⚖️";
+    if (attPct > 75 && accRate < 65) strat = "Aggressive ⚠️";
+    else if (attPct < 60 && accRate > 75) strat = "Conservative 🛡️";
+    else if (attPct >= 60 && attPct <= 85 && accRate >= 70) strat = "Optimal 🎯";
+    el('strat-type').innerText = strat;
+
+    let avgTm = att === 0 ? 0 : Math.round(totTm/att); let tmMsg = "Balanced Speed ⏱️";
+    if (avgTm < 60 && accRate > 70) tmMsg = "Fast & Accurate ⚡";
+    else if (avgTm < 60 && accRate <= 70) tmMsg = "Fast but Risky ⚠️";
+    else if (avgTm > 90 && accRate > 70) tmMsg = "Slow but Safe 🐢";
+    else if (avgTm > 90 && accRate <= 70) tmMsg = "<span style='color:var(--dan)'>Slow & Wrong 🚨</span>";
+    el('tm-eff').innerHTML = `${avgTm}s/Q - ${tmMsg}`;
+
+    [1,2,3].forEach(d=>{ el(`df-${d}`).innerText = df[d].t===0?'0%':`${Math.round((df[d].c/df[d].t)*100)}%`; });
+
+    let randFn = getPRNG(); let diffFactor = s.cohort === 'topper' ? 0.70 : s.cohort === 'beginner' ? 0.35 : 0.50; 
+    let scores = [];
+    for(let i=0; i<1000; i++){ let sc = normalRand(tMk * diffFactor, tMk * 0.18, randFn); scores.push(Math.max(0, Math.min(tMk, sc))); }
+    scores.push(parseFloat(mk)); scores.sort((a,b)=>b-a);
+    
+    let rank = scores.indexOf(parseFloat(mk)) + 1;
+    let percentile = ((scores.length - rank) / scores.length) * 100;
+    
+    el('dyn-avg').innerText=`${(scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1)}`; 
+    el('dyn-top').innerText=`${scores[0].toFixed(1)}`; 
+
+    let cutoffMid = tMk * (diffFactor - 0.05); 
+    el('pred-cutoff').innerText = `~${(cutoffMid - (tMk*0.05)).toFixed(1)}–${(cutoffMid + (tMk*0.05)).toFixed(1)}`;
+    let diffStr = (mk - cutoffMid).toFixed(1);
+    el('cutoff-msg').innerHTML = mk >= cutoffMid ? `<span style="color:#28a745">You are +${diffStr} above safe zone ✅</span>` : `<span style="color:#dc3545">You are ${diffStr} below safe zone ⚠️</span>`;
+
+    let pb = el('pct-box'); let pMsg = el('res-msg');
+    if(percentile >= 50) { el('dyn-rnk').innerText = `Top ${(100 - percentile).toFixed(1)}%`; pb.className = 'metric-box green'; pMsg.innerText = "Rank Status"; } 
+    else { el('dyn-rnk').innerText = `${percentile.toFixed(1)}th`; pb.className = 'metric-box red'; pMsg.innerText = "Percentile"; }
+
+    let heatHtml = '';
+    qs.forEach((q,i) => {
+        let bg = 'var(--brd)';
+        if(s.ans[i] === q.correct) bg = s.tm[i] > 60 ? '#1e7e34' : 'var(--suc)'; 
+        else if(s.ans[i]) bg = s.tm[i] > 60 ? '#bd2130' : 'var(--dan)'; 
+        heatHtml += `<div class="heat-box" style="background:${bg}">${i+1}</div>`;
+    }); el('q-heat').innerHTML = heatHtml;
+
+    let ins = [];
+    let msg = percentile >= 95 ? "🏆 <strong>Elite Tier:</strong> Top 5% of this cohort. Excellent command." : percentile >= 80 ? "🥇 <strong>Strong Competitor:</strong> Top 20%. Solid fundamentals, maintain consistency." : percentile >= 60 ? "🛡️ <strong>Above Average:</strong> Good attempt, but work on eliminating negative marks." : percentile >= 40 ? "⚖️ <strong>Average Band:</strong> Middle of the pack. Focus on accuracy." : "🚨 <strong>Below Average:</strong> Requires serious revision and conceptual clearing.";
+    ins.push(`📊 ${msg}`);
+
+    let guesses = s.gs.filter((g,i) => g && s.ans[i]).length;
+    if(guesses>0){
+        let corG = s.gs.filter((g,i) => g && s.ans[i] === qs[i].correct).length;
+        ins.push(`🎲 <strong>Guessing Strategy:</strong> You marked ${guesses} blind guesses. ${corG} were correct (${Math.round((corG/guesses)*100)}% success). ${corG/guesses > 0.3 ? 'Good elimination skills.' : 'Avoid blind guessing.'}`);
+    }
+
+    if(df[1].t > 0 && (df[1].c/df[1].t) < 0.6) ins.push(`📉 <strong>Easy Question Trap:</strong> You missed easy scoring opportunities. Read basic questions more carefully.`);
+    if(df[3].t > 0 && (df[3].c/df[3].t) > 0.5) ins.push(`🏅 <strong>Hard Concept Mastery:</strong> Strong capability in handling difficult, multi-statement questions.`);
+
+    if(attPct > 80 && accRate < 50) ins.push(`⚠️ <strong>Risk Profile (High):</strong> Over-attempting with low accuracy is causing massive negative marking loss.`);
+    else if(attPct < 50 && accRate > 80) ins.push(`🛡️ <strong>Risk Profile (Conservative):</strong> High accuracy, but too few attempts to clear high cutoffs.`);
+
+    let overthinking = s.chg.filter(x=>x>1).length;
+    if(overthinking>0) ins.push(`🧠 <strong>Overthinking Alert:</strong> You changed answers multiple times in ${overthinking} questions. First instincts are often correct.`);
+
+    let slowQs = s.tm.filter(t=>t>120).length;
+    if(slowQs>0) ins.push(`⏳ <strong>Speed Warning:</strong> ${slowQs} questions exceeded the ideal time limit (120s). Enhance reading speed.`);
+    if(w>0 && tStats.wTm > 0) ins.push(`⏱️ <strong>Time Trap:</strong> You wasted an average of ${Math.round(tStats.wTm/w)}s on questions you eventually got wrong.`);
+
+    el('s-ins-list').innerHTML = ins.map(i=>`<li>${i}</li>`).join('');
+    renderAna();
+}
+
+function renderAna(){
+    let fl=el('a-con').getAttribute('data-f')||'all',so=el('srt').value||'def';
+    let arr=qs.map((q,i)=>{
+        let st='skp',txt='Skipped';if(s.ans[i]===q.correct){st='cor';txt='Correct'}else if(s.ans[i]){st='inc';txt='Incorrect'}
+        return {i:i,q:q,st:st,txt:txt,ans:s.ans[i],t:s.tm[i],m:s.mrk[i],g:s.gs[i]}
+    });
+    if(so==='time')arr.sort((a,b)=>b.t-a.t);if(so==='diff')arr.sort((a,b)=>b.q.difficulty-a.q.difficulty);
+    
+    let h='';arr.forEach(x=>{
+        if(fl!=='all'&&fl!=='mrk'&&x.st!==fl)return;if(fl==='mrk'&&!x.m)return;
+        h+=`<div class="a-item"><div style="display:flex;justify-content:space-between"><strong>Q${x.i+1}. ${x.q.subject}</strong><span>${x.m?'<span class="badge badge.mrk" style="background:var(--war);color:#000;margin-right:5px">Marked</span>':''}${x.g?'<span class="badge badge.gs" style="margin-right:5px">Guessed</span>':''}<span class="badge ${x.st}">${x.txt}</span></span></div><p style="margin:10px 0;line-height:1.6;font-size:1.05rem">${x.q[s.lang].text}</p><div style="font-size:.85rem;color:var(--mut);background:var(--omr);padding:8px;border-radius:4px">Your Ans: <strong style="color:var(--txt)">${x.ans?x.ans.toUpperCase():'-'}</strong> | Correct: <strong style="color:var(--txt)">${x.q.correct.toUpperCase()}</strong> | Time: ${x.t}s | Diff: ${x.q.difficulty===1?'Easy':x.q.difficulty===2?'Medium':'Hard'}</div><button class="btn btn-out" style="padding:6px 12px;font-size:.8rem;margin-top:10px" onclick="let e=el('exp${x.i}');e.style.display=e.style.display==='block'?'none':'block'">Toggle Solution</button><div id="exp${x.i}" class="exp-box">${x.q[s.lang].explanation}</div></div>`
+    });el('a-con').innerHTML=h||'<p style="text-align:center;color:var(--mut);padding:20px">No questions match filter.</p>';
+}
+function tab(t){['sum','ana','ins'].forEach(x=>{el(`t-${x}`).classList.add('hidden');document.querySelectorAll('.tab').forEach(e=>e.classList.remove('act'))});el(`t-${t}`).classList.remove('hidden');event.target.classList.add('act')}
+function flt(f){el('a-con').setAttribute('data-f',f);renderAna()}
+function srt(){renderAna()}
+document.addEventListener('keydown',e=>{if(el('screen-test').classList.contains('hidden'))return;if(e.key==='ArrowRight'){s.isRev?navRev(1):nav(1);}if(e.key==='ArrowLeft'){s.isRev?navRev(-1):nav(-1);}});
+</script>
+</body>
+</html>
