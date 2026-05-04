@@ -138,7 +138,7 @@
             border-radius: 24px; box-shadow: var(--shadow-float); 
             border: 1px solid rgba(255,255,255,0.2);
             position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Fix: Added missing transitions */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
         }
         .login-card h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.25rem; color: var(--secondary);}
         .login-card p { color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;}
@@ -396,6 +396,10 @@
                 <svg viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/></svg>
                 Document Library
             </button>
+            <button class="nav-btn" onclick="switchTab('topics')" id="nav-topics">
+                <svg viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+                Topic Wise Tests
+            </button>
             <button class="nav-btn" onclick="switchTab('tests')" id="nav-tests">
                 <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
                 Live Simulator
@@ -417,26 +421,34 @@
             <header>
                 <div class="search-box">
                     <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                    <input type="text" placeholder="Search for mock tests..." oninput="handleSearch(this.value)" id="searchInput">
+                    <input type="text" placeholder="Search for mock tests or topics..." oninput="handleSearch(this.value)" id="searchInput">
                 </div>
                 <div class="user-profile-tag" id="headerUser">Student</div>
             </header>
 
             <div class="dash-content">
                 
-                <!-- View 1: PDFs -->
+                <!-- View 1: PDFs (Institute Wise) -->
                 <div id="view-pdfs" class="view-panel">
+                    <h2 style="font-size: 2rem; color: var(--secondary); margin-bottom: 2rem;">Institute Wise Library</h2>
                     <div class="filter-bar" id="pillsContainer"></div>
                     <div id="fileListBody"></div>
                 </div>
 
-                <!-- View 2: Live Tests -->
+                <!-- View 2: Topic Wise Tests -->
+                <div id="view-topics" class="view-panel hidden">
+                    <h2 style="font-size: 2rem; color: var(--secondary); margin-bottom: 2rem;">Topic Wise Library</h2>
+                    <div class="filter-bar" id="topicPillsContainer"></div>
+                    <div id="topicListBody"></div>
+                </div>
+
+                <!-- View 3: Live Tests -->
                 <div id="view-tests" class="view-panel hidden">
                     <h2 style="font-size: 2rem; color: var(--secondary); margin-bottom: 2rem;">Online Exam Simulator</h2>
                     <div class="data-grid" id="testGrid"></div>
                 </div>
 
-                <!-- View 3: Profile -->
+                <!-- View 4: Profile -->
                 <div id="view-profile" class="view-panel hidden">
                     <h2 style="font-size: 2rem; color: var(--secondary); margin-bottom: 2rem;">Master Dossier</h2>
                     <div class="profile-wrap">
@@ -457,7 +469,6 @@
                             <div class="p-item"><div class="p-label">Plan Expiry</div><div class="p-val" style="color:#ef4444;" id="p-expiry">-</div></div>
                             <div class="p-item"><div class="p-label">Prelims Count</div><div class="p-val" id="p-pre">-</div></div>
                             <div class="p-item"><div class="p-label">Mains Written</div><div class="p-val" id="p-mains">-</div></div>
-                            <!-- Fix: Updated duplicate ID `p-mains` to `p-paid` -->
                             <div class="p-item"><div class="p-label">Total Amount Paid:</div><div class="p-val" id="p-paid">-</div></div>
                         </div>
                     </div>
@@ -470,7 +481,11 @@
         <nav class="mob-nav">
             <button class="mob-btn active" onclick="switchTab('pdfs')" id="mob-pdfs">
                 <svg viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/></svg>
-                PDFs
+                Institutes
+            </button>
+            <button class="mob-btn" onclick="switchTab('topics')" id="mob-topics">
+                <svg viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+                Topics
             </button>
             <button class="mob-btn" onclick="switchTab('tests')" id="mob-tests">
                 <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
@@ -487,11 +502,8 @@
         /* =========================================
            SESSION FORCE-LOGOUT MANAGER
            ========================================= */
-        // Change this version string (e.g., to "2.0") whenever you want to force log out ALL users on ALL devices.
         const APP_VERSION = "2.0"; 
-        
         if (localStorage.getItem("app_session_version") !== APP_VERSION) {
-            // New version detected: clear user session safely and update version
             localStorage.removeItem('currentUserProfile');
             document.cookie = "upsc_session=; path=/; max-age=0";
             localStorage.setItem("app_session_version", APP_VERSION);
@@ -584,6 +596,70 @@
             { institute: "Vision IAS", tests: [{ name: "Vision IAS Prelims 2026 Test 1 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-1-with-solution-in-english-pdf.pdf" }, { name: "Vision IAS Prelims 2026 Test 2 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-2-with-solution-in-english-pdf.pdf" }, { name: "Vision IAS Prelims 2026 Test 3 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-3-with-solution-in-english-pdf.pdf" }, { name: "Vision IAS Prelims 2026 Test 4 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-4-with-solution-in-english-pdf.pdf" }, { name: "Vision IAS Prelims 2026 Test 5 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-5-with-solution-in-english-pdf.pdf" }, { name: "Vision IAS Prelims 2026 Test 6 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-6-with-solution-in-english-pdf.pdf" }, { name: "Vision IAS Prelims 2026 Test 7 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-7-with-solution-in-english-pdf.pdf" }, { name: "Vision IAS Prelims 2026 Test 8 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-8-with-solution-in-english-pdf.pdf" }, { name: "Vision IAS Prelims 2026 Test 9 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-9-with-solution-in-english-pdf.pdf" }, { name: "Vision IAS Prelims 2026 Test 10 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-10-with-solution-in-english-pdf.pdf" }, { name: "Vision IAS Prelims 2026 Test 11 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-11-with-solution-in-english-pdf.pdf" }, { name: "Vision IAS Prelims 2026 Test 12 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-12-with-solution-in-english-pdf.pdf" }, { name: "Vision IAS Prelims 2026 Test 13 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-13-with-solution-in-english-pdf.pdf" }, { name: "Vision IAS Prelims 2026 Test 14 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-14-with-solution-in-english-pdf.pdf" }, { name: "Vision IAS Prelims 2026 Test 15 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-15-with-solution-in-english-pdf.pdf" }, { name: "Vision IAS Prelims 2026 Test 16 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-16-with-solution-in-english-pdf.pdf" }, { name: "Vision IAS Prelims 2026 Test 17 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-17-with-solution-in-english-pdf.pdf" }, { name: "Vision IAS Prelims 2026 Test 18 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-18-with-solution-in-english-pdf.pdf" }, { name: "Vision IAS Prelims 2026 Test 19 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-19-with-solution-in-english-pdf.pdf" }, { name: "Vision IAS Prelims 2026 Test 20 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-20-with-solution-in-english-pdf.pdf" }, { name: "Vision IAS Prelims 2026 Test 21 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-21-with-solution-in-english-pdf.pdf" }, { name: "Vision IAS Prelims 2026 Test 22 with Solution in English Pdf", link: "vision-ias-prelims-2026-test-22-with-solution-in-english-pdf.pdf" }] }
         ];
 
+        /* --- NEW: TOPIC WISE TEST DATA --- */
+        const TOPIC_DATA = [
+            {
+                subject: "History",
+                topics: [
+                    { name: "Ancient India - Indus Valley to Mauryan Empire PDF", link: "#" },
+                    { name: "Medieval India - Delhi Sultanate & Mughals PDF", link: "#" },
+                    { name: "Modern India - Freedom Struggle Phase 1 PDF", link: "#" },
+                    { name: "Modern India - Gandhian Era & Independence PDF", link: "#" },
+                    { name: "Indian Art & Culture - Architecture & Paintings PDF", link: "#" }
+                ]
+            },
+            {
+                subject: "Geography",
+                topics: [
+                    { name: "Physical Geography - Geomorphology PDF", link: "#" },
+                    { name: "Physical Geography - Climatology & Oceanography PDF", link: "#" },
+                    { name: "Indian Geography - Rivers & Drainage System PDF", link: "#" },
+                    { name: "Indian Geography - Agriculture & Resources PDF", link: "#" },
+                    { name: "World Geography - Continents & Mapping PDF", link: "#" }
+                ]
+            },
+            {
+                subject: "Polity",
+                topics: [
+                    { name: "Historical Underpinnings & Making of Constitution PDF", link: "#" },
+                    { name: "Fundamental Rights, DPSP & Basic Structure PDF", link: "#" },
+                    { name: "Union & State Executive (President, Governor) PDF", link: "#" },
+                    { name: "Parliament & State Legislature Working PDF", link: "#" },
+                    { name: "Judiciary & Constitutional Bodies PDF", link: "#" }
+                ]
+            },
+            {
+                subject: "Economy",
+                topics: [
+                    { name: "National Income & Macroeconomic Indicators PDF", link: "#" },
+                    { name: "Money, Banking & RBI Monetary Policy PDF", link: "#" },
+                    { name: "Inflation, Taxation & Fiscal Policy PDF", link: "#" },
+                    { name: "Sectors of Economy: Agriculture & Industry PDF", link: "#" },
+                    { name: "External Sector, Balance of Payment & WTO PDF", link: "#" }
+                ]
+            },
+            {
+                subject: "Environment",
+                topics: [
+                    { name: "Ecology, Ecosystems & Food Chains PDF", link: "#" },
+                    { name: "Biodiversity & Conservation (In-situ & Ex-situ) PDF", link: "#" },
+                    { name: "Climate Change & Global Warming PDF", link: "#" },
+                    { name: "Environmental Pollution & Degradation PDF", link: "#" },
+                    { name: "International Conventions & Protocols PDF", link: "#" }
+                ]
+            },
+            {
+                subject: "Science & Tech",
+                topics: [
+                    { name: "Space Technology & ISRO Missions PDF", link: "#" },
+                    { name: "Biotechnology & Genetic Engineering PDF", link: "#" },
+                    { name: "IT, Computers & Emerging Tech (AI, Web3) PDF", link: "#" },
+                    { name: "Defense Technology & Missiles PDF", link: "#" },
+                    { name: "General Science - Physics, Chemistry, Biology PDF", link: "#" }
+                ]
+            }
+        ];
+
         const LIVE_TESTS = [
             { id: "gs_test_01", title: "GS Score Prelims 2026 - Polity Test #01", institute: "GS Score", questions: 100, time: "120 Mins", link: "tests/t_8f7a9_gs4.html" },
             { id: "gs_test_04", title: "GS Score Prelims 2026 - Polity Test #04", institute: "GS Score", questions: 100, time: "120 Mins", link: "tests/gs1.html" }
@@ -593,6 +669,7 @@
            JAVASCRIPT LOGIC
            ========================================= */
         let CURRENT_FILTER = 'All';
+        let CURRENT_TOPIC_FILTER = 'All';
         let CURRENT_SEARCH = '';
         let visibleLimits = {};
 
@@ -602,12 +679,10 @@
             return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
         }
 
-        // Helper to safely escape user search inputs for RegEx evaluation
         function escapeRegExp(string) {
             return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         }
 
-        /* SEO Link Interception (Require Login) */
         document.querySelectorAll('.blog-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -659,7 +734,6 @@
             const enteredHash = await sha256(pass);
 
             setTimeout(() => {
-                // Fix: Removed backdoor bypass `|| pass === '12345678'` to secure login system.
                 if (DATABASE[user] && DATABASE[user].hash === enteredHash) {
                     localStorage.setItem('currentUserProfile', JSON.stringify(DATABASE[user].profile));
                     document.cookie = "upsc_session=true; path=/; max-age=86400; SameSite=Strict";
@@ -690,18 +764,29 @@
             set('p-name-main', profile.name); set('p-exam', profile.exam); set('p-year', profile.year);
             set('p-optional', profile.optional); set('p-medium', profile.medium); set('p-stage', profile.stage); 
             set('p-expiry', profile.expiry); set('p-pre', profile.prelims_count); set('p-mains', profile.mains_written);
-            
-            // Fix: Map the properly linked ID for the amount paid parameter
             set('p-paid', profile.paid);
 
+            // Populate Institute Pills
             const pillsContainer = document.getElementById('pillsContainer');
-            pillsContainer.innerHTML = '<button class="pill active" onclick="setFilter(\'All\')">All Institutes</button>';
-            PDF_DATA.forEach(group => {
-                visibleLimits[group.institute] = 12;
-                pillsContainer.innerHTML += `<button class="pill" onclick="setFilter('${group.institute}')">${group.institute}</button>`;
-            });
+            if(pillsContainer) {
+                pillsContainer.innerHTML = '<button class="pill active" onclick="setFilter(\'All\')">All Institutes</button>';
+                PDF_DATA.forEach(group => {
+                    visibleLimits[group.institute] = 12;
+                    pillsContainer.innerHTML += `<button class="pill" onclick="setFilter('${group.institute}')">${group.institute}</button>`;
+                });
+            }
+
+            // Populate Topic Pills
+            const topicPillsContainer = document.getElementById('topicPillsContainer');
+            if(topicPillsContainer) {
+                topicPillsContainer.innerHTML = '<button class="pill active" onclick="setTopicFilter(\'All\')">All Subjects</button>';
+                TOPIC_DATA.forEach(group => {
+                    topicPillsContainer.innerHTML += `<button class="pill" onclick="setTopicFilter('${group.subject}')">${group.subject}</button>`;
+                });
+            }
 
             renderList();
+            renderTopics();
             renderTests();
         }
 
@@ -717,9 +802,8 @@
 
         function renderList() {
             const container = document.getElementById('fileListBody');
+            if(!container) return;
             container.innerHTML = '';
-            
-            // Fix: Clean search term to prevent RegEx crashes
             let safeSearch = escapeRegExp(CURRENT_SEARCH);
 
             PDF_DATA.forEach(group => {
@@ -758,8 +842,43 @@
             });
         }
 
+        function renderTopics() {
+            const container = document.getElementById('topicListBody');
+            if(!container) return;
+            container.innerHTML = '';
+            let safeSearch = escapeRegExp(CURRENT_SEARCH);
+
+            TOPIC_DATA.forEach(group => {
+                if (CURRENT_TOPIC_FILTER !== 'All' && group.subject !== CURRENT_TOPIC_FILTER) return;
+
+                let filteredTests = group.topics.filter(t => 
+                    !CURRENT_SEARCH || t.name.toLowerCase().includes(CURRENT_SEARCH.toLowerCase())
+                );
+
+                if (filteredTests.length === 0) return;
+
+                let html = `<h3 style="margin: 2.5rem 0 1.25rem; color:var(--secondary); font-size: 1.5rem; font-weight:800;">${group.subject} <span style="font-size:0.8rem; background:var(--primary); color:white; padding:4px 10px; border-radius:100px; margin-left: 8px; vertical-align: middle;">${filteredTests.length} Tests</span></h3>`;
+                html += `<div class="data-grid">`;
+
+                filteredTests.forEach(test => {
+                    let highlightedName = CURRENT_SEARCH ? test.name.replace(new RegExp(`(${safeSearch})`, "gi"), `<span style="background:#fef08a; padding:0 2px; border-radius:2px;">$1</span>`) : test.name;
+                    html += `
+                    <div class="data-card" style="border-top: 4px solid #10b981;">
+                        <div>
+                            <span class="inst-tag" style="background: rgba(16, 185, 129, 0.1); color: #059669;">${group.subject}</span>
+                            <h4 class="data-title">${highlightedName}</h4>
+                        </div>
+                        <a href="${test.link}" download class="action-link" style="color: #059669; background: #f0fdf4;">Download PDF</a>
+                    </div>`;
+                });
+                html += `</div>`;
+                container.innerHTML += html;
+            });
+        }
+
         function renderTests() {
             const grid = document.getElementById('testGrid');
+            if(!grid) return;
             grid.innerHTML = '';
             LIVE_TESTS.forEach(test => {
                 if (CURRENT_SEARCH && !test.title.toLowerCase().includes(CURRENT_SEARCH.toLowerCase())) return;
@@ -784,12 +903,21 @@
 
         function setFilter(name) {
             CURRENT_FILTER = name;
-            document.querySelectorAll('.pill').forEach(p => {
+            document.querySelectorAll('#pillsContainer .pill').forEach(p => {
                 if (p.innerText === name || (name === 'All' && p.innerText === 'All Institutes')) p.classList.add('active');
                 else p.classList.remove('active');
             });
             Object.keys(visibleLimits).forEach(k => visibleLimits[k] = 12);
             renderList();
+        }
+
+        function setTopicFilter(name) {
+            CURRENT_TOPIC_FILTER = name;
+            document.querySelectorAll('#topicPillsContainer .pill').forEach(p => {
+                if (p.innerText === name || (name === 'All' && p.innerText === 'All Subjects')) p.classList.add('active');
+                else p.classList.remove('active');
+            });
+            renderTopics();
         }
 
         let searchTimeout;
@@ -800,12 +928,12 @@
                 if(val) Object.keys(visibleLimits).forEach(k => visibleLimits[k] = 100);
                 else Object.keys(visibleLimits).forEach(k => visibleLimits[k] = 12);
                 renderList();
+                renderTopics(); // Added Topic Rendering on Search
                 renderTests();
             }, 200);
         }
 
         function logout() {
-            // Fix: More targeted approach than `localStorage.clear()` so we don't accidentally wipe user preferences
             localStorage.removeItem('currentUserProfile');
             document.cookie = "upsc_session=; path=/; max-age=0";
             location.reload();
